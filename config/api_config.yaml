@@ -13,19 +13,19 @@ gpt-4o-mini-2024-07-18:
     model_name: gpt-4o-mini-2024-07-18
     endpoints: null
     api_type: openai
-    parallel: 8
+    parallel: 4
 
 gpt-4o-2024-11-20:
     model_name: gpt-4o-2024-11-20
     endpoints: null
     api_type: openai
-    parallel: 8
+    parallel: 4
 
 gpt-4o-2024-08-06:
     model_name: gpt-4o-2024-08-06
     endpoints: null
     api_type: openai
-    parallel: 8
+    parallel: 4
 
 gemma-2-9b-it:
     model_name: google/gemma-2-9b-it
@@ -33,17 +33,17 @@ gemma-2-9b-it:
         - api_base: # Place your vllm api_base
           api_key: # Place your api_key
     api_type: openai
-    parallel: 100
+    parallel: 4
     tokenizer: google/gemma-2-9b-it
 
 claude-3-5-haiku-20241022:
     model_name: claude-3-5-haiku-20241022
     endpoints: null
     api_type: anthropic
-    parallel: 8
+    parallel: 4
 
 claude-3-5-sonnet-20241022:
     model_name: claude-3-5-sonnet-20241022
     endpoints: null
     api_type: anthropic
-    parallel: 8
+    parallel: 4
