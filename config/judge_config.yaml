@@ -1,6 +1,6 @@
 name: judgment config file for Arena Hard
 
-bench_name: arena-hard-v0.1
+bench_name: ko-ko-arena-hard-v0.1
 
 # Arena Hard default
 judge_model: gpt-4-1106-preview

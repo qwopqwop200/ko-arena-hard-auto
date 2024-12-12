@@ -56,7 +56,7 @@ def to_arena_hard_questions_format(conversations: List[Dict], clusters: List[int
     """
     Convert to a format like this:
     {"question_id":"328c149ed45a41c0b9d6f14659e63599",
-     "category":"arena-hard-v0.1",
+     "category":"ko-ko-arena-hard-v0.1",
      "cluster":"ABC Sequence Puzzles & Groups",
      "turns":[{"content":"Use ABC notation to write a melody in the style of a folk tune."}]
     }
@@ -83,7 +83,7 @@ def to_arena_hard_questions_format(conversations: List[Dict], clusters: List[int
 
         arena_hard_questions.append({
             "question_id": f"{i}",
-            "category": "arena-hard-v0.1",
+            "category": "ko-ko-arena-hard-v0.1",
             "cluster": cluster_number_to_name[str(cluster)],
             "turns": turns_list
         })
