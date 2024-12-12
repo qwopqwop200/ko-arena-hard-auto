@@ -28,7 +28,7 @@ question_selector_map = {}
 category_selector_map = defaultdict(list)
 
 def display_question(category_selector, request: gr.Request):
-    choices = category_selector_map['ko-ko-arena-hard-v0.1']
+    choices = category_selector_map['ko-arena-hard-v0.1']
     return gr.Dropdown.update(
         value=choices[0],
         choices=choices,

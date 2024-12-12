@@ -236,7 +236,7 @@ sudo docker run --gpus 8 -e HUGGING_FACE_HUB_TOKEN=$hf_pat --shm-size 2000g -p $
 
 In `config/gen_answer_config.yaml`, add your model name in `model_list`.
 ```yaml
-bench_name: ko-ko-arena-hard-v0.1
+bench_name: ko-arena-hard-v0.1
 temperature: 0.0
 max_tokens: 4096
 num_choices: 1

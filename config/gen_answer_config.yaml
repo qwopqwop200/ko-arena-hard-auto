@@ -1,6 +1,6 @@
-name: config of answer generation for ko-ko-arena-hard-v0.1
+name: config of answer generation for ko-arena-hard-v0.1
 
-bench_name: ko-ko-arena-hard-v0.1
+bench_name: ko-arena-hard-v0.1
 
 temperature: 0.0
 max_tokens: 4096
