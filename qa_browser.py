@@ -259,7 +259,7 @@ def load_pairwise_model_judgments(dir: str):
 
     judge_dict = {}
     for filename in filenames:
-        for line in open(filename):
+        for line in open(filename, encoding='utf-8'):
             obj = json.loads(line)
             qid, model = obj["question_id"], obj["model"]
 
@@ -282,7 +282,7 @@ def load_single_model_judgments(dir: str):
 
     judge_dict = {}
     for filename in filenames:
-        for line in open(filename):
+        for line in open(filename, encoding='utf-8'):
             obj = json.loads(line)
             judge = tuple(["gpt-4","single-math-v1"])
             qid, model = obj["question_id"], obj["model"]
@@ -332,7 +332,7 @@ def get_single_judge_explanation(gamekey, judgment_dict):
 # load config args from config yaml files
 def make_config(config_file: str) -> dict:
     config_kwargs = {}
-    with open(config_file, "r") as f:
+    with open(config_file, "r", encoding='utf-8') as f:
         config_kwargs = yaml.load(f, Loader=yaml.SafeLoader)
 
     return config_kwargs

@@ -23,7 +23,7 @@ def run(args):
     if args.embedding_file is not None:
         embeddings = np.load(args.embedding_file)
         if args.post_process_conv is not None:
-            all_convs = json.load(open(args.post_process_conv))
+            all_convs = json.load(open(args.post_process_conv, encoding="utf-8"))
         else:
             raise ValueError("Please provide post process conv file")
 
@@ -31,7 +31,7 @@ def run(args):
         for row in all_convs:
             convs.append(row["post_process_conv"])
     else:
-        all_convs = json.load(open(args.conv_file))
+        all_convs = json.load(open(args.conv_file, encoding="utf-8"))
 
         if args.first_n is not None:
             all_convs = all_convs[:args.first_n]
@@ -60,7 +60,7 @@ def run(args):
             all_convs_new.append(row)
 
         # save convs to file
-        with open(f"{args.output_dir}/post_process_convs.json", "w") as f:
+        with open(f"{args.output_dir}/post_process_convs.json", "w", encoding="utf-8") as f:
             json.dump(all_convs_new, f, indent=4)
 
         batch_size = 2000
@@ -113,7 +113,7 @@ def run(args):
     topics, _ = topic_model.fit_transform(convs, embeddings); len(topic_model.get_topic_info())
 
     new_topics = topic_model.reduce_outliers(convs, topics)
-    with open(f"{args.output_dir}/conv_topics.json", "w") as f:
+    with open(f"{args.output_dir}/conv_topics.json", "w", encoding="utf-8") as f:
         json.dump(new_topics, f, default=str)
 
     topic_model.save(f"{args.output_dir}/model_dir", serialization="pytorch", save_ctfidf=True, save_embedding_model=embedding_model)

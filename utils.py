@@ -77,7 +77,7 @@ def load_model_answers(answer_dir: str):
     for filename in filenames:
         model_name = os.path.basename(filename)[:-6]
         answer = {}
-        with open(filename) as fin:
+        with open(filename, encoding='utf-8') as fin:
             for line in fin:
                 line = json.loads(line)
                 answer[line["question_id"]] = line
@@ -100,7 +100,7 @@ def get_endpoint(endpoint_list):
 # load config args from config yaml files
 def make_config(config_file: str) -> dict:
     config_kwargs = {}
-    with open(config_file, "r") as f:
+    with open(config_file, "r", encoding='utf-8') as f:
         config_kwargs = yaml.load(f, Loader=yaml.SafeLoader)
 
     return config_kwargs
@@ -336,12 +336,12 @@ def chat_completion_cohere(model, messages, temperature, max_tokens):
 def reorg_answer_file(answer_file):
     """Sort by question id and de-duplication"""
     answers = {}
-    with open(answer_file, "r") as fin:
+    with open(answer_file, "r", encoding='utf-8') as fin:
         for l in fin:
             qid = json.loads(l)["question_id"]
             answers[qid] = l
 
     qids = sorted(list(answers.keys()))
-    with open(answer_file, "w") as fout:
+    with open(answer_file, "w", encoding='utf-8') as fout:
         for qid in qids:
             fout.write(answers[qid])

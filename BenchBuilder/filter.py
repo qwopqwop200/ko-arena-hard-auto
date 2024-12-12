@@ -12,12 +12,12 @@ import numpy as np
 import wandb
 
 def load_json(file_path: str) -> List[Dict]:
-    with open(file_path, 'rb') as f:
+    with open(file_path, 'rb', encoding='utf-8') as f:
         return orjson.loads(f.read())
 
 def load_jsonl(file_path: str) -> List[Dict]:
     conversations = []
-    with open(file_path, 'rb') as f:
+    with open(file_path, 'rb', encoding='utf-8') as f:
         for line in f:
             conversations.append(orjson.loads(line))
     return conversations
@@ -137,7 +137,7 @@ def main():
     
     arena_hard_questions = to_arena_hard_questions_format(filtered_prompts, clusters, args.topics_file, args.image_dir)
 
-    with open(args.output_file, "w") as f:
+    with open(args.output_file, "w", encoding="utf-8") as f:
         for question in arena_hard_questions:
             f.write(json.dumps(question) + "\n")
     

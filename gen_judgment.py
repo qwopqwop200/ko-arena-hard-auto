@@ -120,7 +120,7 @@ def judgment(**args):
         }
         output["games"].append(result)
 
-    with open(output_file, "a") as f:
+    with open(output_file, "a", encoding="utf-8") as f:
         f.write(json.dumps(output, ensure_ascii=False) + "\n")
 
 

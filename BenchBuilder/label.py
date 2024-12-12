@@ -29,7 +29,7 @@ API_ERROR_OUTPUT = None
 # load config args from config yaml files
 def make_config(config_file: str) -> dict:
     config_kwargs = {}
-    with open(config_file, "r") as f:
+    with open(config_file, "r", encoding="utf-8") as f:
         config_kwargs = yaml.load(f, Loader=yaml.SafeLoader)
     return config_kwargs
 
@@ -173,7 +173,7 @@ def get_answer(
     question.drop(["prompt", "uid", "required_tasks"], inplace=True)
 
     with LOCK:
-        with open(answer_file, "a") as fout:
+        with open(answer_file, "a", encoding="utf-8") as fout:
             fout.write(json.dumps(question.to_dict()) + "\n")
 
 
@@ -250,7 +250,7 @@ if __name__ == "__main__":
     )
 
     print("loading input data (might take min)")
-    with open(config["input_file"], "rb") as f:
+    with open(config["input_file"], "rb", encoding="utf-8") as f:
         data = orjson.loads(f.read())
     input_data = pd.DataFrame(data)
 
@@ -261,7 +261,7 @@ if __name__ == "__main__":
 
     if config["cache_file"]:
         print("loading cache data")
-        with open(config["cache_file"], "rb") as f:
+        with open(config["cache_file"], "rb", encoding="utf-8") as f:
             data = orjson.loads(f.read())
         cache_data = pd.DataFrame(data)
         cache_data["uid"] = cache_data.question_id.map(str) + cache_data.tstamp.map(str)
