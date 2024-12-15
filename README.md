@@ -12,6 +12,7 @@ Although both Arena-Hard-Auto and Chatbot Arena Category Hard ([See Blog](https:
 - [Install](#install-dependencies)
 - [Evaluation](#evaluate)
 - [Style Control Guide](#style-control)
+- [Citation](#citation)
 
 ## Style Control Leaderboard
 Following the newly introduced Style Control on Chatbot Arena, we release Style Control on Arena Hard Auto! We employ the same Style Control methods as proposed in the [blogpost](https://lmsys.org/blog/2024-08-28-style-control/). Please refer to the blogpost for methodology and technical background. 
@@ -304,21 +305,13 @@ To control for length and markdown separately, use `--length-control-only` and `
 Coming soon...
 
 ## Citation
-The code in this repository is mostly developed for or derived from the papers below. Please cite it if you find the repository helpful.
+The code in this repository is developed from the papers below. Please cite it if you find the repository helpful.
 ```
 @article{li2024crowdsourced,
   title={From Crowdsourced Data to High-Quality Benchmarks: Arena-Hard and BenchBuilder Pipeline},
   author={Li, Tianle and Chiang, Wei-Lin and Frick, Evan and Dunlap, Lisa and Wu, Tianhao and Zhu, Banghua and Gonzalez, Joseph E and Stoica, Ion},
   journal={arXiv preprint arXiv:2406.11939},
   year={2024}
-}
-@misc{chiang2024chatbot,
-    title={Chatbot Arena: An Open Platform for Evaluating LLMs by Human Preference},
-    author={Wei-Lin Chiang and Lianmin Zheng and Ying Sheng and Anastasios Nikolas Angelopoulos and Tianle Li and Dacheng Li and Hao Zhang and Banghua Zhu and Michael Jordan and Joseph E. Gonzalez and Ion Stoica},
-    year={2024},
-    eprint={2403.04132},
-    archivePrefix={arXiv},
-    primaryClass={cs.AI}
 }
 @misc{arenahard2024,
     title = {From Live Data to High-Quality Benchmarks: The Arena-Hard Pipeline},
