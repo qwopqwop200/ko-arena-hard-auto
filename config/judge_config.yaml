@@ -8,7 +8,7 @@ reference: False # Optional
 ref_model: null  
 
 baseline: True
-baseline_model: anthropic/claude-3.7-sonnet
+baseline_model: claude-3.7-sonnet
 
 pairwise: True
 temperature: 0.5
