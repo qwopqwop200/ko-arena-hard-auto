@@ -2,11 +2,10 @@ name: config of answer generation for ko-arena-hard-v0.1
 
 bench_name: ko-arena-hard-v0.1
 
-temperature: 0.0
-max_tokens: 4096
+temperature: 0.5
+max_tokens: 16384
 num_choices: 1
 
 # a list of model to generate answers
 model_list:
-  - gpt-4o-mini-2024-07-18
-  - gpt-4o-2024-08-06
+  - anthropic/claude-3.7-sonnet

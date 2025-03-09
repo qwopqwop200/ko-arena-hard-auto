@@ -1,49 +1,215 @@
-# name: str
-#     model_name: str
-#     endpoints: default to null
-#         - api_base: str
-#           api_key: str
-#           api_version: str optional (only for azure)
-#     api_type: str
-#     tokenizer: str optional (to optimize token limits)
-#     parallel: int
-#     system_prompt: str optional (add system instruction when generating model answer)
+qwen-2.5-7b-instruct:
+    model_name: qwen/qwen-2.5-7b-instruct
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 8
 
-gpt-4o-mini-2024-07-18:
-    model_name: gpt-4o-mini-2024-07-18
-    endpoints: null
+qwen2.5-32b-instruct:
+    model_name: qwen/qwen2.5-32b-instruct
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 8
+
+qwen-2.5-72b-instruct:
+    model_name: qwen/qwen-2.5-72b-instruct
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 8
+
+gpt-4.5-preview:
+    model_name: openai/gpt-4.5-preview
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
     api_type: openai
     parallel: 8
 
 gpt-4o-2024-11-20:
-    model_name: gpt-4o-2024-11-20
-    endpoints: null
+    model_name: openai/gpt-4o-2024-11-20
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
     api_type: openai
     parallel: 8
 
-gpt-4o-2024-08-06:
-    model_name: gpt-4o-2024-08-06
-    endpoints: null
+gpt-4o-mini:
+    model_name: openai/gpt-4o-mini
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 8
+
+gpt-4-1106-preview:
+    model_name: openai/gpt-4-1106-preview
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 8
+
+gemini-2.0-flash-lite-001:
+    model_name: google/gemini-2.0-flash-lite-001
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 8
+
+gemini-2.0-flash-001:
+    model_name: google/gemini-2.0-flash-001
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 8
+
+gemini-2.0-pro-exp-02-05:free:
+    model_name: google/gemini-2.0-pro-exp-02-05:free
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 8
+
+claude-3.5-sonnet:
+    model_name: anthropic/claude-3.5-sonnet
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 8
+
+claude-3.5-sonnet-20240620:
+    model_name: anthropic/claude-3.5-sonnet-20240620
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 8
+
+claude-3.7-sonnet:
+    model_name: anthropic/claude-3.7-sonnet
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 8
+
+minimax-01:
+    model_name: minimax/minimax-01
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 8
+
+phi-4:
+    model_name: microsoft/phi-4
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 8
+
+llama-3.1-8b-instruct:
+    model_name: meta-llama/llama-3.1-8b-instruct
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 8
+
+llama-3.1-70b-instruct:
+    model_name: meta-llama/llama-3.1-70b-instruct
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 8
+
+llama-3.3-70b-instruct:
+    model_name: meta-llama/llama-3.3-70b-instruct
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 8
+
+llama-3.1-405b-instruct:
+    model_name: meta-llama/llama-3.1-405b-instruct
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 8
+
+gemma-2-27b-it:
+    model_name: google/gemma-2-27b-it
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
     api_type: openai
     parallel: 8
 
 gemma-2-9b-it:
     model_name: google/gemma-2-9b-it
     endpoints:
-        - api_base: # Place your vllm api_base
+        - api_base: https://openrouter.ai/api/v1
           api_key: # Place your api_key
     api_type: openai
     parallel: 8
-    tokenizer: google/gemma-2-9b-it
 
-claude-3-5-haiku-20241022:
-    model_name: claude-3-5-haiku-20241022
-    endpoints: null
-    api_type: anthropic
+grok-2-1212:
+    model_name: x-ai/grok-2-1212
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
     parallel: 8
 
-claude-3-5-sonnet-20241022:
-    model_name: claude-3-5-sonnet-20241022
-    endpoints: null
-    api_type: anthropic
+grok-2-mini:
+    model_name: x-ai/grok-2-mini
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 8
+
+mistral-small-24b-instruct-2501:
+    model_name: mistralai/mistral-small-24b-instruct-2501
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 8
+
+mistral-large-2411:
+    model_name: mistralai/mistral-large-2411
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 8
+
+hermes-3-llama-3.1-70b:
+    model_name: nousresearch/hermes-3-llama-3.1-70b
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 8
+
+hermes-3-llama-3.1-405b:
+    model_name: nousresearch/hermes-3-llama-3.1-405b
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
     parallel: 8

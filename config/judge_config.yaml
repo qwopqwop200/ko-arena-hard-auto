@@ -8,11 +8,11 @@ reference: False # Optional
 ref_model: null  
 
 baseline: True
-baseline_model: gpt-4o-2024-08-06
+baseline_model: anthropic/claude-3.7-sonnet
 
 pairwise: True
-temperature: 0
-max_tokens: 4096
+temperature: 0.5
+max_tokens: 65536
 
 regex_pattern: \[\[([AB<>=]+)\]\]
 number_of_judgment_attempts: 2
