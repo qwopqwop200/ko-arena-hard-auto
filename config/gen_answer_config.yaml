@@ -8,4 +8,3 @@ num_choices: 1
 
 # a list of model to generate answers
 model_list:
-  - anthropic/claude-3.7-sonnet
