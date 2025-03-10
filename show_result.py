@@ -137,8 +137,8 @@ def get_battles_from_judgment(bench_name,
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--bench-name", type=str, default="ko-arena-hard-v0.1")
-    parser.add_argument("--judge-name", type=str, default="gpt-4o-2024-11-20")
-    parser.add_argument("--baseline", type=str, default="gpt-4o-2024-08-06")
+    parser.add_argument("--judge-name", type=str, default="gpt-4o-mini")
+    parser.add_argument("--baseline", type=str, default="claude-3.7-sonnet")
     parser.add_argument("--load-bootstrap", action="store_true")
     parser.add_argument("--show-elo", action="store_true")
     parser.add_argument("--weight", type=int, default=3)
