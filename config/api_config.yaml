@@ -22,7 +22,7 @@ qwen-2.5-72b-instruct:
     api_type: openai
     parallel: 64
 
-gpt-4.5-preview: # TODO: so expensive
+gpt-4.5-preview:
     model_name: openai/gpt-4.5-preview
     endpoints:
         - api_base: https://openrouter.ai/api/v1
@@ -302,3 +302,27 @@ wizardlm-2-8x22b:
           api_key: # Place your api_key
     api_type: openai
     parallel: 64
+
+o3-mini-high:
+    model_name: openai/o3-mini-high
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 32
+
+o1-mini:  # not working, idk why
+    model_name: openai/o1-mini
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 32
+
+o3-mini:
+    model_name: openai/o3-mini
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 32
