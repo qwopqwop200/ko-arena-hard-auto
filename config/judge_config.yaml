@@ -3,7 +3,7 @@ name: judgment config file for Arena Hard
 bench_name: ko-arena-hard-v0.1
 
 # Arena Hard default
-judge_model: gpt-4o-2024-11-20
+judge_model: gpt-4o-mini
 reference: False # Optional
 ref_model: null  
 
@@ -11,8 +11,8 @@ baseline: True
 baseline_model: claude-3.7-sonnet
 
 pairwise: True
-temperature: 0.5
-max_tokens: 65536
+temperature: 0.0
+max_tokens: 16384
 
 regex_pattern: \[\[([AB<>=]+)\]\]
 number_of_judgment_attempts: 2
@@ -23,4 +23,4 @@ prompt_template: ["<|User Prompt|>\n{question_1}\n\n<|The Start of Assistant A's
 
 # Add your model below for evaluation
 model_list:
-  - gpt-4o-2024-11-20
+  - gpt-4.5-preview
