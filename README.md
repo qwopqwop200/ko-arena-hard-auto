@@ -20,78 +20,47 @@ Following the newly introduced Style Control on Chatbot Arena, we release Style 
 
 (Updated: 11/14)
 ```console
-claude-3-5-sonnet-20241022     | score: 86.4  | 95% CI: (-1.3, 1.3)  | average #tokens: 691                
-claude-3-5-sonnet-20240620     | score: 82.2  | 95% CI: (-1.9, 1.6)  | average #tokens: 567                
-o1-preview-2024-09-12          | score: 81.7  | 95% CI: (-2.2, 2.1)  | average #tokens: 1193                      
-o1-mini-2024-09-12             | score: 79.3  | 95% CI: (-2.8, 2.3)  | average #tokens: 1399                      
-gpt-4-turbo-2024-04-09         | score: 74.3  | 95% CI: (-2.4, 2.4)  | average #tokens: 662                       
-gpt-4-0125-preview             | score: 73.6  | 95% CI: (-2.0, 2.0)  | average #tokens: 619                               
-athene-v2-chat                 | score: 72.1  | 95% CI: (-2.5, 2.5)  | average #tokens: 884                               
-gpt-4o-2024-08-06              | score: 71.1  | 95% CI: (-2.5, 2.0)  | average #tokens: 594                                         
-llama-3.1-nemotron-70b-instruct| score: 71.0  | 95% CI: (-2.8, 3.1)  | average #tokens: 869                                        
-gpt-4o-2024-05-13              | score: 69.9  | 95% CI: (-2.5, 2.0)  | average #tokens: 696                                                    
-athene-70b-0725                | score: 68.3  | 95% CI: (-2.6, 2.4)  | average #tokens: 683                                                    
-llama-3.1-405b-instruct-fp8    | score: 67.1  | 95% CI: (-2.2, 2.8)  | average #tokens: 658                                                    
-yi-lightning                   | score: 66.9  | 95% CI: (-3.3, 2.7)  | average #tokens: 875                                                                 
-claude-3-opus-20240229         | score: 65.5  | 95% CI: (-2.3, 2.2)  | average #tokens: 541                                                                 
-yi-large-preview               | score: 65.1  | 95% CI: (-2.5, 2.5)  | average #tokens: 720                                                                 
-gpt-4o-mini-2024-07-18         | score: 64.0  | 95% CI: (-3.5, 2.9)  | average #tokens: 668                                                                 
-qwen2.5-72b-instruct           | score: 63.3  | 95% CI: (-2.5, 2.3)  | average #tokens: 821                                                                                
-mistral-large-2407             | score: 63.1  | 95% CI: (-3.0, 2.6)  | average #tokens: 623                                                                                
-gemini-1.5-pro-api-0514        | score: 62.7  | 95% CI: (-3.2, 3.0)  | average #tokens: 676                                                                                
-glm-4-0520                     | score: 61.4  | 95% CI: (-2.6, 2.4)  | average #tokens: 636                                                                                
-yi-large                       | score: 59.4  | 95% CI: (-2.8, 2.5)  | average #tokens: 626                                                                                
-deepseek-coder-v2              | score: 58.3  | 95% CI: (-2.8, 2.6)  | average #tokens: 578                                                                                                   
-glm-4-0116                     | score: 54.2  | 95% CI: (-2.2, 2.2)  | average #tokens: 622                                                                                                   
-llama-3.1-70b-instruct         | score: 51.8  | 95% CI: (-3.4, 2.1)  | average #tokens: 628                                                                                                   
-glm-4-air                      | score: 50.6  | 95% CI: (-2.6, 2.4)  | average #tokens: 619                                                                                                   
-gpt-4-0314                     | score: 50.0  | 95% CI:  (0.0, 0.0)  | average #tokens: 423                                                                                                   
-claude-3-sonnet-20240229       | score: 49.9  | 95% CI: (-2.7, 2.4)  | average #tokens: 552                                                                                                   
-gpt-4-0613                     | score: 49.7  | 95% CI: (-2.3, 2.5)  | average #tokens: 354                
-qwen2-72b-instruct             | score: 49.6  | 95% CI: (-2.1, 2.2)  | average #tokens: 515                
-gemma-2-27b-it                 | score: 47.5  | 95% CI: (-2.5, 2.7)  | average #tokens: 577                
-gemini-1.5-pro-api-0409-preview| score: 46.7  | 95% CI: (-2.6, 3.1)  | average #tokens: 478                              
-mistral-large-2402             | score: 45.6  | 95% CI: (-2.1, 2.3)  | average #tokens: 400                               
-claude-3-haiku-20240307        | score: 45.4  | 95% CI: (-2.5, 2.7)  | average #tokens: 505                               
-llama-3-70b-instruct           | score: 44.5  | 95% CI: (-2.4, 2.0)  | average #tokens: 591                               
-mixtral-8x22b-instruct-v0.1    | score: 44.2  | 95% CI: (-2.7, 3.1)  | average #tokens: 430                               
-gemini-1.5-flash-api-0514      | score: 39.9  | 95% CI: (-2.5, 2.1)  | average #tokens: 642                               
-llama-3.1-nemotron-51b-instruct| score: 39.9  | 95% CI: (-2.9, 2.7)  | average #tokens: 747                              
-qwen1.5-72b-chat               | score: 39.9  | 95% CI: (-2.1, 2.4)  | average #tokens: 474                               
-mistral-next                   | score: 39.6  | 95% CI: (-2.4, 2.7)  | average #tokens: 297                               
-mistral-medium                 | score: 39.1  | 95% CI: (-2.4, 2.8)  | average #tokens: 485                               
-phi-3-medium-4k-instruct       | score: 38.8  | 95% CI: (-2.5, 2.7)  | average #tokens: 517                               
-command-r-plus                 | score: 37.5  | 95% CI: (-2.4, 2.3)  | average #tokens: 541                               
-claude-2.0                     | score: 36.6  | 95% CI: (-3.0, 3.0)  | average #tokens: 295                               
-claude-2.1                     | score: 35.0  | 95% CI: (-2.6, 2.3)  | average #tokens: 290                                                    
-gpt-3.5-turbo-0613             | score: 34.9  | 95% CI: (-2.4, 2.9)  | average #tokens: 401                                                    
-gpt-3.5-turbo-0125             | score: 34.6  | 95% CI: (-2.3, 2.6)  | average #tokens: 329                                                    
-phi-3-small-8k-instruct        | score: 33.8  | 95% CI: (-2.4, 1.9)  | average #tokens: 568                                                    
-gemma-2-9b-it                  | score: 33.6  | 95% CI: (-2.3, 2.2)  | average #tokens: 541                                                    
-gpt-3.5-turbo-1106             | score: 32.9  | 95% CI: (-3.7, 2.4)  | average #tokens: 285                                                    
-dbrx-instruct-preview          | score: 32.0  | 95% CI: (-2.5, 2.4)  | average #tokens: 415                                                    
-internlm2-20b-5-chat           | score: 30.4  | 95% CI: (-2.2, 2.6)  | average #tokens: 576                                                    
-mixtral-8x7b-instruct-v0.1     | score: 29.8  | 95% CI: (-2.3, 2.2)  | average #tokens: 457                                                    
-gpt-3.5-turbo-0314             | score: 29.4  | 95% CI: (-2.5, 3.0)  | average #tokens: 334                                                    
-starling-lm-7b-beta            | score: 26.1  | 95% CI: (-2.6, 2.0)  | average #tokens: 530                                                    
-snowflake-arctic-instruct      | score: 25.8  | 95% CI: (-2.3, 2.1)  | average #tokens: 365                                                    
-gemini-pro                     | score: 24.9  | 95% CI: (-1.8, 2.5)  | average #tokens: 322                                                    
-command-r                      | score: 23.3  | 95% CI: (-1.9, 2.0)  | average #tokens: 432                                                                                
-snorkel-mistral-pairrm-dpo     | score: 21.9  | 95% CI: (-1.6, 1.9)  | average #tokens: 564                                                                                
-yi-34b-chat                    | score: 21.9  | 95% CI: (-1.5, 2.2)  | average #tokens: 611                                                                                
-internlm2-20b-chat             | score: 21.3  | 95% CI: (-2.1, 1.8)  | average #tokens: 667                                                                                
-llama-3-8b-instruct            | score: 19.8  | 95% CI: (-1.6, 1.9)  | average #tokens: 585                                                                                
-llama-3.1-8b-instruct          | score: 18.3  | 95% CI: (-1.6, 1.6)  | average #tokens: 861                                                                                
-tulu-2-dpo-70b                 | score: 18.0  | 95% CI: (-1.9, 2.4)  | average #tokens: 550                                                                                
-starling-lm-7b-alpha           | score: 16.4  | 95% CI: (-1.4, 1.5)  | average #tokens: 483                                                                                
-phi-3-mini-128k-instruct       | score: 16.1  | 95% CI: (-1.5, 1.6)  | average #tokens: 609                                                                                
-mistral-7b-instruct            | score: 15.2  | 95% CI: (-1.6, 2.0)  | average #tokens: 541                                                                                
-llama-2-70b-chat               | score: 13.4  | 95% CI: (-1.5, 1.8)  | average #tokens: 595                                                                                
-vicuna-33b                     | score: 11.8  | 95% CI: (-1.8, 1.3)  | average #tokens: 451                                                                                
-gemma-1.1-7b-it                | score: 11.5  | 95% CI: (-1.5, 1.3)  | average #tokens: 341                                                                                
-gemma-7b-it                    | score:  7.1  | 95% CI: (-1.3, 1.2)  | average #tokens: 378                                                                                
-gemma-1.1-2b-it                | score:  3.5  | 95% CI: (-0.5, 0.8)  | average #tokens: 316                                                                                
-gemma-2b-it                    | score:  2.9  | 95% CI: (-0.6, 0.7)  | average #tokens: 369                                                                                                
+claude-3.7-sonnet                             | score:  50.00 | average #tokens: 1094
+o1-medium                                     | score:  43.10 | average #tokens: 1487
+o3-mini-high                                  | score:  42.80 | average #tokens: 1257
+gemini-2.0-flash-001                          | score:  32.52 | average #tokens: 1901
+claude-3.5-sonnet                             | score:  36.00 | average #tokens: 682
+o3-mini-medium                                | score:  36.73 | average #tokens: 1221
+gpt-4.5-preview                               | score:  38.26 | average #tokens: 1040
+gemini-2.0-flash-lite-001                     | score:  29.76 | average #tokens: 2196
+o3-mini-low                                   | score:  33.41 | average #tokens: 1205
+claude-3.5-haiku                              | score:  27.86 | average #tokens: 601
+gpt-4o-2024-11-20                             | score:  28.06 | average #tokens: 1216
+claude-3.5-sonnet-20240620                    | score:  23.70 | average #tokens: 628
+minimax-01                                    | score:  20.02 | average #tokens: 370
+grok-2-1212                                   | score:  19.20 | average #tokens: 898
+deepseek-v3                                   | score:  22.60 | average #tokens: 1007
+qwen-2.5-72b-instruct                         | score:  17.77 | average #tokens: 1097
+nova-pro-v1                                   | score:  17.93 | average #tokens: 905
+gemma-2-27b-it                                | score:  15.18 | average #tokens: 794
+gpt-4-1106-preview                            | score:  15.41 | average #tokens: 846
+mistral-large-2411                            | score:  16.68 | average #tokens: 906
+gpt-4o-mini                                   | score:  16.39 | average #tokens: 890
+qwen2.5-32b-instruct                          | score:  11.38 | average #tokens: 795
+wizardlm-2-8x22b                              | score:  12.67 | average #tokens: 1028
+command-r-plus-08-2024                        | score:  12.64 | average #tokens: 969
+nova-lite-v1                                  | score:  12.16 | average #tokens: 994
+hermes-3-llama-3.1-405b                       | score:  10.57 | average #tokens: 771
+gemma-2-9b-it                                 | score:   9.48 | average #tokens: 751
+mistral-small-24b-instruct-2501               | score:  11.15 | average #tokens: 998
+hermes-3-llama-3.1-70b                        | score:   9.90 | average #tokens: 771
+lfm-7b                                        | score:  11.21 | average #tokens: 1011
+lfm-40b                                       | score:   8.49 | average #tokens: 863
+llama-3.3-70b-instruct                        | score:   7.38 | average #tokens: 809
+command-r-08-2024                             | score:   9.13 | average #tokens: 796
+nova-micro-v1                                 | score:   8.71 | average #tokens: 927
+lfm-3b                                        | score:   5.06 | average #tokens: 776
+command-r7b-12-2024                           | score:   6.47 | average #tokens: 882
+qwen-2.5-7b-instruct                          | score:   5.32 | average #tokens: 844
+llama-3.1-nemotron-70b-instruct               | score:   4.32 | average #tokens: 1854
+llama-3.1-405b-instruct                       | score:   2.45 | average #tokens: 1735
+llama-3.1-70b-instruct                        | score:   1.56 | average #tokens: 1923
+llama-3.1-8b-instruct                         | score:   0.42 | average #tokens: 5081                                                                                            
 ```
 
 # Leaderboard
