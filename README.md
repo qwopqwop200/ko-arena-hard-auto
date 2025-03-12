@@ -27,11 +27,11 @@ gemini-2.0-flash-lite-001와 gpt-4o-mini는 자신의 답변을 선호하는 경
 claude-3.7-sonnet                             | score:  50.00 | average #tokens: 1094
 o1-medium                                     | score:  43.10 | average #tokens: 1487
 o3-mini-high                                  | score:  42.80 | average #tokens: 1257
-gemini-2.0-flash-001                          | score:  32.52 | average #tokens: 1901
+gemini-2.0-flash-001(judge)                   | score:  32.52 | average #tokens: 1901
 claude-3.5-sonnet                             | score:  36.00 | average #tokens: 682
 o3-mini-medium                                | score:  36.73 | average #tokens: 1221
 gpt-4.5-preview                               | score:  38.26 | average #tokens: 1040
-gemini-2.0-flash-lite-001(judge)              | score:  29.76 | average #tokens: 2196
+gemini-2.0-flash-lite-001                     | score:  29.76 | average #tokens: 2196
 o3-mini-low                                   | score:  33.41 | average #tokens: 1205
 claude-3.5-haiku                              | score:  27.86 | average #tokens: 601
 gpt-4o-2024-11-20                             | score:  28.06 | average #tokens: 1216
