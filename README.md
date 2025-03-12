@@ -3,6 +3,7 @@
 Ko-Arena-Hard-Auto는 한국어를 벤치마킹하기위한 자동 평가 도구입니다. 
 Arena-Hard-Auto-v0.1([논문](https://arxiv.org/abs/2406.11939))가 수집한 500개의 어려운 질문을 번역하여 사용합니다.
 gemini-2.0-flash-lite-001와 gpt-4o-mini를 심사위원(judge)으로 사용하고 모델의 응답을 기준 모델(기본값: claude-3.7-sonnet)과 비교합니다.
+
 특히, 인간의 선호도와높은 상관관계와 분리력을 가지고 있는 Arena-Hard-Auto를 기반으로 두기에 실제로 높은 상관관계를 가지고 있을것으로 예상됩니다. 
 
 더 자세한 세부사항은 [arena-hard-auto 코드](https://github.com/lmarena/arena-hard-auto)를 참조하세요.
