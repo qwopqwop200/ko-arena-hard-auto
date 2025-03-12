@@ -326,3 +326,11 @@ o3-mini-high:
           api_key: # Place your api_key
     api_type: openai
     parallel: 64
+
+o1-medium:
+    model_name: o1
+    endpoints:
+        - api_base: https://api.openai.com/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 16

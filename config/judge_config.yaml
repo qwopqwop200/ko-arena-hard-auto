@@ -64,3 +64,4 @@ model_list:
   - qwen-2.5-7b-instruct
   - qwen2.5-32b-instruct
   - wizardlm-2-8x22b
+  - o1-medium

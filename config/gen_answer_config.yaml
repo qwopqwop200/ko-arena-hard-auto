@@ -48,3 +48,4 @@ model_list:
   - o3-mini-low
   - qwen-2.5-72b-instruct
   - qwen-2.5-7b-instruct
+  - o1-medium
