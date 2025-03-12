@@ -175,7 +175,7 @@ if __name__ == "__main__":
                     endpoint_info,
                     settings["num_choices"],
                     max_tokens[index],
-                    settings["temperature"],
+                    0.0, # fix temperature to 0.0
                     answer_file,
                     get_endpoint(endpoint_info["endpoints"]),
                 )

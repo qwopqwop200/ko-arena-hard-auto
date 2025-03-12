@@ -97,7 +97,7 @@ def judgment(**args):
             new_judgment = get_answer(
                 endpoint_info["model_name"],
                 conv,
-                configs["temperature"],
+                0.0, # fix temperature to 0.0
                 configs["max_tokens"],
                 args["endpoint_dict"],
             )

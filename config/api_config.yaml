@@ -4,7 +4,7 @@ qwen-2.5-7b-instruct:
         - api_base: https://openrouter.ai/api/v1
           api_key: # Place your api_key
     api_type: openai
-    parallel: 64
+    parallel: 128
 
 qwen2.5-32b-instruct:
     model_name: qwen/qwen2.5-32b-instruct
@@ -12,7 +12,7 @@ qwen2.5-32b-instruct:
         - api_base: https://openrouter.ai/api/v1
           api_key: # Place your api_key
     api_type: openai
-    parallel: 64
+    parallel: 32
 
 qwen-2.5-72b-instruct:
     model_name: qwen/qwen-2.5-72b-instruct
@@ -20,10 +20,10 @@ qwen-2.5-72b-instruct:
         - api_base: https://openrouter.ai/api/v1
           api_key: # Place your api_key
     api_type: openai
-    parallel: 64
+    parallel: 128
 
 gpt-4.5-preview:
-    model_name: openai/gpt-4.5-preview
+    model_name: gpt-4.5-preview
     endpoints:
         - api_base: https://openrouter.ai/api/v1
           api_key: # Place your api_key
@@ -31,7 +31,7 @@ gpt-4.5-preview:
     parallel: 64
 
 gpt-4o-2024-11-20:
-    model_name: openai/gpt-4o-2024-11-20
+    model_name: gpt-4o-2024-11-20
     endpoints:
         - api_base: https://openrouter.ai/api/v1
           api_key: # Place your api_key
@@ -39,15 +39,15 @@ gpt-4o-2024-11-20:
     parallel: 64
 
 gpt-4o-mini:
-    model_name: openai/gpt-4o-mini
+    model_name: gpt-4o-mini
     endpoints:
         - api_base: https://openrouter.ai/api/v1
           api_key: # Place your api_key
     api_type: openai
-    parallel: 64
+    parallel: 128
 
 gpt-4-1106-preview:
-    model_name: openai/gpt-4-1106-preview
+    model_name: gpt-4-1106-preview
     endpoints:
         - api_base: https://openrouter.ai/api/v1
           api_key: # Place your api_key
@@ -68,7 +68,7 @@ gemini-2.0-flash-001:
         - api_base: https://openrouter.ai/api/v1
           api_key: # Place your api_key
     api_type: openai
-    parallel: 64
+    parallel: 128
 
 
 gemini-2.0-pro-exp-02-05: # TODO
@@ -269,7 +269,7 @@ nova-lite-v1:
         - api_base: https://openrouter.ai/api/v1
           api_key: # Place your api_key
     api_type: openai
-    parallel: 64
+    parallel: 128
 
 nova-micro-v1:
     model_name: amazon/nova-micro-v1
@@ -277,7 +277,7 @@ nova-micro-v1:
         - api_base: https://openrouter.ai/api/v1
           api_key: # Place your api_key
     api_type: openai
-    parallel: 64
+    parallel: 128
 
 nova-pro-v1:
     model_name: amazon/nova-pro-v1
@@ -285,7 +285,7 @@ nova-pro-v1:
         - api_base: https://openrouter.ai/api/v1
           api_key: # Place your api_key
     api_type: openai
-    parallel: 64
+    parallel: 128
 
 claude-3.5-haiku:
     model_name: anthropic/claude-3.5-haiku
@@ -301,28 +301,28 @@ wizardlm-2-8x22b:
         - api_base: https://openrouter.ai/api/v1
           api_key: # Place your api_key
     api_type: openai
+    parallel: 128
+
+o3-mini-low:
+    model_name: o3-mini
+    endpoints:
+        - api_base: https://api.openai.com/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 64
+
+o3-mini-medium:
+    model_name: o3-mini
+    endpoints:
+        - api_base: https://api.openai.com/v1
+          api_key: # Place your api_key
+    api_type: openai
     parallel: 64
 
 o3-mini-high:
-    model_name: openai/o3-mini-high
+    model_name: o3-mini
     endpoints:
-        - api_base: https://openrouter.ai/api/v1
+        - api_base: https://api.openai.com/v1
           api_key: # Place your api_key
     api_type: openai
-    parallel: 32
-
-o1-mini:  # not working, idk why
-    model_name: openai/o1-mini
-    endpoints:
-        - api_base: https://openrouter.ai/api/v1
-          api_key: # Place your api_key
-    api_type: openai
-    parallel: 32
-
-o3-mini:
-    model_name: openai/o3-mini
-    endpoints:
-        - api_base: https://openrouter.ai/api/v1
-          api_key: # Place your api_key
-    api_type: openai
-    parallel: 32
+    parallel: 64
