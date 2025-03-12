@@ -1,20 +1,26 @@
-# Arena-Hard-Auto
+# Ko-Arena-Hard-Auto
 
-Arena-Hard-Auto-v0.1 ([See Paper](https://arxiv.org/abs/2406.11939)) is an automatic evaluation tool for instruction-tuned LLMs. It contains 500 challenging user queries sourced from Chatbot Arena. We prompt GPT-4-Turbo as judge to compare the models' responses against a baseline model (default: GPT-4-0314). Notably, Arena-Hard-Auto has the highest correlation and separability to Chatbot Arena among popular open-ended LLM benchmarks ([See Paper](https://arxiv.org/abs/2406.11939)). If you are curious to see how well your model might perform on Chatbot Arena, we recommend trying Arena-Hard-Auto.
+Ko-Arena-Hard-Auto는 한국어를 벤치마킹하기위한 자동 평가 도구입니다. 
+Arena-Hard-Auto-v0.1([논문](https://arxiv.org/abs/2406.11939))가 수집한 500개의 어려운 질문을 번역하여 사용합니다.
+gemini-2.0-flash-lite-001와 gpt-4o-mini를 심사위원(judge)으로 사용하고 모델의 응답을 기준 모델(기본값: claude-3.7-sonnet)과 비교합니다.
+특히, 인간의 선호도와높은 상관관계와 분리력을 가지고 있는 Arena-Hard-Auto를 기반으로 두기에 실제로 높은 상관관계를 가지고 있을것으로 예상됩니다. 
 
-Although both Arena-Hard-Auto and Chatbot Arena Category Hard ([See Blog](https://lmsys.org/blog/2024-05-17-category-hard/)) employ similar pipeline to select hard prompts, Arena-Hard-Auto employs automatic judge as a cheaper and faster approximator to human preference. Checkout [BenchBuilder](BenchBuilder) folder for code and resources on how we curate Arena-Hard-Auto. In the paper we also purposed metrics, such as model separability and agreement to human preference, for evaluating benchmarks' ability to rank models (See [Evaluate Benchmarks](#evaluate-benchmarks) for more information and code).
+더 자세한 세부사항은 [arena-hard-auto 코드](https://github.com/lmarena/arena-hard-auto)를 참조하세요.
+
+ko-arena-hard-auto 데이터는 huggingface에 공개되어 있습니다. [ko-arena-hard-auto-v0.1](https://huggingface.co/datasets/qwopqwop/ko-arena-hard-auto-v0.1)
 
 ## Content
-- [Install](#install-dependencies)
-- [Evaluation](#evaluate)
-- [Style Control: how to mitigate biases](#style-control)
-- [Evaluate Benchmarks: how to evaluate benchmarks](#evaluate-benchmarks)
-- [Citation](#citation)
+- [리더보드](#리더보드)
+- [설치](#설치)
+- [평가](#평가)
+- [참고문헌](#참고문헌)
 
-# Leaderboard
-The following leaderboard has [style control](https://lmsys.org/blog/2024-08-28-style-control/).
+# 리더보드
+ [style control](https://lmsys.org/blog/2024-08-28-style-control/)를 사용한 리더보드 입니다.
+단순히 gemini-2.0-flash-lite-001와 gpt-4o-mini의 평과결과를 단순 평균한 결과입니다.
+gemini-2.0-flash-lite-001와 gpt-4o-mini는 자신의 답변을 선호하는 경향이 있기에 해석을 주의해야 합니다.
 
-(Updated: 2025/03/12)
+(업데이트: 2025/03/12)
 ```console
 claude-3.7-sonnet                             | score:  50.00 | average #tokens: 1094
 o1-medium                                     | score:  43.10 | average #tokens: 1487
@@ -23,7 +29,7 @@ gemini-2.0-flash-001                          | score:  32.52 | average #tokens:
 claude-3.5-sonnet                             | score:  36.00 | average #tokens: 682
 o3-mini-medium                                | score:  36.73 | average #tokens: 1221
 gpt-4.5-preview                               | score:  38.26 | average #tokens: 1040
-gemini-2.0-flash-lite-001                     | score:  29.76 | average #tokens: 2196
+gemini-2.0-flash-lite-001(judge)              | score:  29.76 | average #tokens: 2196
 o3-mini-low                                   | score:  33.41 | average #tokens: 1205
 claude-3.5-haiku                              | score:  27.86 | average #tokens: 601
 gpt-4o-2024-11-20                             | score:  28.06 | average #tokens: 1216
@@ -36,7 +42,7 @@ nova-pro-v1                                   | score:  17.93 | average #tokens:
 gemma-2-27b-it                                | score:  15.18 | average #tokens: 794
 gpt-4-1106-preview                            | score:  15.41 | average #tokens: 846
 mistral-large-2411                            | score:  16.68 | average #tokens: 906
-gpt-4o-mini                                   | score:  16.39 | average #tokens: 890
+gpt-4o-mini(judge)                            | score:  16.39 | average #tokens: 890
 qwen2.5-32b-instruct                          | score:  11.38 | average #tokens: 795
 wizardlm-2-8x22b                              | score:  12.67 | average #tokens: 1028
 command-r-plus-08-2024                        | score:  12.64 | average #tokens: 969
@@ -59,41 +65,19 @@ llama-3.1-70b-instruct                        | score:   1.56 | average #tokens:
 llama-3.1-8b-instruct                         | score:   0.42 | average #tokens: 5081                                                                                            
 ```
 
-## Install Dependencies
+# 설치
 ```
-git clone https://github.com/lm-sys/arena-hard.git
+git clone https://github.com/qwopqwop200/ko-arena-hard-auto
 cd arena-hard
 pip install -r requirements.txt
-pip install -r requirements-optional.txt  # Optional dependencies (e.g., anthropic sdk)
+pip install -r requirements-optional.txt  # 선택사항 (e.g., anthropic sdk)
 ```
+## 평가
 
-## Download dataset
-We have pre-generated many popular models answers and judgments. You can browse them with an online [demo](https://huggingface.co/spaces/lmsys/arena-hard-browser) or download them (with [`git-lfs`](https://git-lfs.com) installed) by
-```console
-> git clone https://huggingface.co/spaces/lmsys/arena-hard-browser
-// copy answers/judgments to the data directory
-> cp -r arena-hard-browser/data . 
-```
-Then run
-```console
-> python show_result.py
-gpt-4-0125-preview             | score: 78.0  | 95% CI: (-1.8, 2.2)  | average #tokens: 619
-claude-3-opus-20240229         | score: 60.4  | 95% CI: (-2.6, 2.1)  | average #tokens: 541
-gpt-4-0314                     | score: 50.0  | 95% CI:  (0.0, 0.0)  | average #tokens: 423
-claude-3-sonnet-20240229       | score: 46.8  | 95% CI: (-2.7, 2.3)  | average #tokens: 552
-claude-3-haiku-20240307        | score: 41.5  | 95% CI: (-2.4, 2.5)  | average #tokens: 505
-gpt-4-0613                     | score: 37.9  | 95% CI: (-2.1, 2.2)  | average #tokens: 354
-mistral-large-2402             | score: 37.7  | 95% CI: (-2.9, 2.8)  | average #tokens: 400
-Qwen1.5-72B-Chat               | score: 36.1  | 95% CI: (-2.1, 2.4)  | average #tokens: 474
-command-r-plus                 | score: 33.1  | 95% CI: (-2.0, 1.9)  | average #tokens: 541
-```
-Running `show_result.py` will save generated battles into `data/arena_hard_battles.jsonl` and bootstrapping statistics into `data/bootstrapping_results.jsonl`. If you don't want to regenerate battles or bootstrapping statistics, simply toggle argument `--load-battles` or `--load-bootstrap`, respectively.
+### Step 1. 모델의 엔드포인트 설정
+`config/api_config.yaml`에 API 엔드포인트를 입력하세요. OpenAI 호환 API 서버를 지원합니다. `parallel`을 지정하여 동시 API 요청 수를 지정할 수 있습니다(기본값: 1).
 
-## Evaluate
-
-### Step 1. Set up the endpoint config to your model
-
-Fill in your API endpoint in `config/api_config.yaml`. We support OpenAI compatible API server. You can specify `parallel` to indicate the number of concurrent API requests (default: 1).
+o1, o3-mini와 같은 추론 모델은 현재 자동으로 지원되지 않으며 추가적인 코드 작업이 필요합니다.
 ```yaml
 # example
 gpt-3.5-turbo-0125:
@@ -110,22 +94,10 @@ gpt-3.5-turbo-0125:
     api_type: openai
     parallel: 8
 ```
-You may use inference engine such as [Latest TGI version](https://huggingface.co/docs/text-generation-inference/en/messages_api) or [vLLM](https://docs.vllm.ai/en/latest/serving/openai_compatible_server.html) or [SGLang](https://github.com/sgl-project/sglang?tab=readme-ov-file#using-local-models) to host your model with an OpenAI compatible API server.
 
-TGI Quick start
-```
-hf_pat=
-model=
-volume=/path/to/cache
-port=1996
+### Step 2. 모델 답변 생선
 
-huggingface-cli download $model
-sudo docker run --gpus 8 -e HUGGING_FACE_HUB_TOKEN=$hf_pat --shm-size 2000g -p $port:80 -v $volume:/data ghcr.io/huggingface/text-generation-inference:2.0.4 --model-id $model --max-input-length 8192 --max-batch-total-tokens 8193 --max-batch-prefill-tokens 8193 --max-total-tokens 8193
-```
-
-### Step 2. Generate Model Answers
-
-In `config/gen_answer_config.yaml`, add your model name in `model_list`.
+`config/gen_answer_config.yaml`에 모델 이름을 `model_list`에 추가하세요.
 ```yaml
 bench_name: ko-arena-hard-v0.1
 temperature: 0.0
@@ -136,18 +108,19 @@ num_choices: 1
 model_list:
   - [YOUR-MODEL-NAME]
 ```
-Run the command to generate answers:
+
+답변을 생성하려면 다음 명령어을 실행하세요.
 ```console
 python gen_answer.py
 ```
-Caching feature is implemented. The code will skip generating an answer when there is already an existing answer/judgment to the same prompt. 
+캐싱 기능이 구현되어 있어, 동일한 질문에 대한 답변이 이미 있는 경우 답변을 생성하지 않습니다.
 
-### Step 3. Generate Judgments
+### Step 3. 판단(Judgment) 생성
 
-In `config/judge_config.yaml`, add your model name in `model_list`.
+`config/judge_config.yaml`에 모델 이름을 `model_list`에 추가하세요.
 ```yaml
 ...
-# Add your model below for evaluation
+# 평가할 모델을 아래에 추가하세요
 model_list:
   - gpt-3.5-turbo-0125
   - [YOUR-MODEL-NAME]
@@ -157,43 +130,22 @@ Run the command to generate judgments:
 ```console
 python gen_judgment.py
 ```
-Judgment caching is also implemented. It will skip generating judgments that has already been generated or lacks one of the model answers.  
+판단 캐싱도 구현되어 있습니다. 이미 생성된 판단이 있는 경우 또는 모델 답변 중 하나가 없는 경우 판단을 생성하지 않습니다.
 
-### Step 4. Show result
-Output model win rates. To save a csv file of the model rankings, use `--output`
+### Step 4. 결과 보기
+모델 승률을 출력합니다. 모델 순위를 csv 파일로 저장하려면 `--output`을 사용하세요. 기본적으로 --style-control을 사용합니다. 
+이는 더 높은 인간의 선호도와 더 높은 상관관계를 가지고 있다고 알려져 있습니다.
 ```console
 > python show_result.py --style-control --num-rounds 1000
 ```
 
 ### Step 5. Arena Hard UI
-You can review individual judgment results using our UI code.
+UI 코드를 사용하여 개별 판단 결과를 검토할 수 있습니다.
 ```console
 > python qa_browser.py --share
 ```
 
-## Style Control
-Following the newly introduced Style Control on Chatbot Arena, we release Style Control on Arena Hard Auto! We employ the same Style Control methods as proposed in the [blogpost](https://lmsys.org/blog/2024-08-28-style-control/). Please refer to the blogpost for methodology and technical background.
-To control for style (token length and markdown elements), use `--style-control` when running `show_result.py`.
-
-```console
-> python show_result.py --style-control
-```
-
-## Evaluate Benchmarks
-We outline two key properties that the benchmark aiming to approximate human preference should possess to provide meaningful comparisons between models:
-1. Separability: the benchmark should separate models with high confidence.
-2. Alignment with Human Preference: the benchmark should agree with human preference.
-
-While previous works have focused on alignment, separability is also a crucial consideration when comparing models of similar quality (e.g., different checkpoints from the same training run). However, achieving high-confidence separability is challenging due to limitations in prompt design and inherent variances in LLM evaluations. Overly simplistic prompts fail to distinguish between models, while the randomness in human and LLM judgments leads to inconsistent predictions. As a result, it is often difficult to confidently determine if a model’s apparent performance reflects a genuine difference in capability or merely noisy observations, highlighting a need for methods to verify whether a benchmark can reliably separate similar models.
-
-Statistical measures like Pearson (Pearson, 1895) and Spearman Correlations (Spearman, 1961), commonly used in benchmarks such as AlpacaEval (Li et al., 2023) to measure correlation to human preference ranking, may fail to adequately address model separability and ranking instability. In addition, these measures only provide a coarse signal of ranking correlation without quantifying the magnitude of performance differences between model pairs. To address these shortcomings, we develop three novel metrics: **Separability with Confidence**, **Agreement with Confidence**, and **Pair Rank Brier Score**.
-
-**Separability with Confidence** quantifies the benchmark’s confidence by measuring its consistency in predicting the winner of a model pair across random seeds through bootstrapping. This is done by calculating the percentage of model pairs that have non-overlapping confidence intervals of their benchmark scores. A higher percentage indicates that the benchmark is more confident in distinguishing between the performance of different models, as the confidence intervals of their scores do not overlap.
-
-For **Agreement with Confidence**, and **Pair Rank Brier Score**, please refer to section 3 of our [paper](https://arxiv.org/abs/2406.11939). The code for calculating these metrics can be found in this [colab notebook](https://colab.research.google.com/drive/1ar6XLWREN_dXEh404WNOxroFVUe_4njp). 
-
-## Citation
-The code in this repository is developed from the papers below. Please cite it if you find the repository helpful.
+## 참고문헌
 ```
 @article{li2024crowdsourced,
   title={From Crowdsourced Data to High-Quality Benchmarks: Arena-Hard and BenchBuilder Pipeline},
