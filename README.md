@@ -14,7 +14,7 @@ ko-arena-hard-auto 데이터는 huggingface에 공개되어 있습니다. [ko-ar
 이 포크는 다음과 같은 주요 변경 사항이 있습니다. 
 
 1. 데이터셋 및 프롬프트: [ko-arena-hard-auto-v0.1](https://huggingface.co/datasets/qwopqwop/ko-arena-hard-auto-v0.1) 데이터셋과 심사할때 다른 [시스템 프롬프트](https://github.com/qwopqwop200/ko-arena-hard-auto/blob/main/config/judge_config.yaml#L23)를 사용합니다.
-2. judge 모델: gemini-2.0-flash-lite-001와 gpt-4o-mini을 사용하고 앙상블 합니다. ​​이는 자기 선호도 편향을 완화하기 위한것 입니다.
+2. judge 모델: gemini-2.0-flash-lite-001와 gpt-4o-mini을 사용하고 앙상블 합니다. 이는 자기 선호도 편향을 완화하기 위한것 입니다.
 3. baseline 모델: claude-3.7-sonnet을 사용합니다.
 
 ## 목차
@@ -25,53 +25,52 @@ ko-arena-hard-auto 데이터는 huggingface에 공개되어 있습니다. [ko-ar
 
 # 리더보드
  [style control](https://lmsys.org/blog/2024-08-28-style-control/)를 사용한 리더보드 입니다.
-단순히 gemini-2.0-flash-lite-001와 gpt-4o-mini의 평과결과를 단순히 평균한 결과입니다.
-
+gemini-2.0-flash-lite-001와 gpt-4o-mini을 앙상블한 결과입니다.
 gemini-2.0-flash-lite-001와 gpt-4o-mini는 자신의 답변을 선호하는 경향이 있기에 해석을 주의해야 합니다.
 
-(업데이트: 2025/03/12)
+(업데이트: 2025/03/13)
 ```console
-claude-3.7-sonnet                             | score:  50.00 | average #tokens: 1094
-o1-medium                                     | score:  43.10 | average #tokens: 1487
-o3-mini-high                                  | score:  42.80 | average #tokens: 1257
-gemini-2.0-flash-001(judge)                   | score:  32.52 | average #tokens: 1901
-claude-3.5-sonnet                             | score:  36.00 | average #tokens: 682
-o3-mini-medium                                | score:  36.73 | average #tokens: 1221
-gpt-4.5-preview                               | score:  38.26 | average #tokens: 1040
-gemini-2.0-flash-lite-001                     | score:  29.76 | average #tokens: 2196
-o3-mini-low                                   | score:  33.41 | average #tokens: 1205
-claude-3.5-haiku                              | score:  27.86 | average #tokens: 601
-gpt-4o-2024-11-20                             | score:  28.06 | average #tokens: 1216
-claude-3.5-sonnet-20240620                    | score:  23.70 | average #tokens: 628
-minimax-01                                    | score:  20.02 | average #tokens: 370
-grok-2-1212                                   | score:  19.20 | average #tokens: 898
-deepseek-v3                                   | score:  22.60 | average #tokens: 1007
-qwen-2.5-72b-instruct                         | score:  17.77 | average #tokens: 1097
-nova-pro-v1                                   | score:  17.93 | average #tokens: 905
-gemma-2-27b-it                                | score:  15.18 | average #tokens: 794
-gpt-4-1106-preview                            | score:  15.41 | average #tokens: 846
-mistral-large-2411                            | score:  16.68 | average #tokens: 906
-gpt-4o-mini(judge)                            | score:  16.39 | average #tokens: 890
-qwen2.5-32b-instruct                          | score:  11.38 | average #tokens: 795
-wizardlm-2-8x22b                              | score:  12.67 | average #tokens: 1028
-command-r-plus-08-2024                        | score:  12.64 | average #tokens: 969
-nova-lite-v1                                  | score:  12.16 | average #tokens: 994
-hermes-3-llama-3.1-405b                       | score:  10.57 | average #tokens: 771
-gemma-2-9b-it                                 | score:   9.48 | average #tokens: 751
-mistral-small-24b-instruct-2501               | score:  11.15 | average #tokens: 998
-hermes-3-llama-3.1-70b                        | score:   9.90 | average #tokens: 771
-lfm-7b                                        | score:  11.21 | average #tokens: 1011
-lfm-40b                                       | score:   8.49 | average #tokens: 863
-llama-3.3-70b-instruct                        | score:   7.38 | average #tokens: 809
-command-r-08-2024                             | score:   9.13 | average #tokens: 796
-nova-micro-v1                                 | score:   8.71 | average #tokens: 927
-lfm-3b                                        | score:   5.06 | average #tokens: 776
-command-r7b-12-2024                           | score:   6.47 | average #tokens: 882
-qwen-2.5-7b-instruct                          | score:   5.32 | average #tokens: 844
-llama-3.1-nemotron-70b-instruct               | score:   4.32 | average #tokens: 1854
-llama-3.1-405b-instruct                       | score:   2.45 | average #tokens: 1735
-llama-3.1-70b-instruct                        | score:   1.56 | average #tokens: 1923
-llama-3.1-8b-instruct                         | score:   0.42 | average #tokens: 5081                                                                                            
+claude-3.7-sonnet              | score: 50.0  | 95% CI:  (0.0, 0.0)  | average #tokens: 1094
+o3-mini-high                   | score: 38.9  | 95% CI: (-2.3, 2.2)  | average #tokens: 1257
+o1-medium                      | score: 38.3  | 95% CI: (-2.2, 2.2)  | average #tokens: 1487
+gpt-4.5-preview                | score: 35.9  | 95% CI: (-2.3, 2.2)  | average #tokens: 1040
+claude-3.5-sonnet              | score: 32.8  | 95% CI: (-2.5, 2.5)  | average #tokens: 682
+o3-mini-medium                 | score: 32.4  | 95% CI: (-2.1, 2.0)  | average #tokens: 1221
+o3-mini-low                    | score: 29.6  | 95% CI: (-1.8, 2.0)  | average #tokens: 1205
+gpt-4o-2024-11-20              | score: 25.1  | 95% CI: (-1.7, 1.9)  | average #tokens: 1216
+gemini-2.0-flash-001           | score: 25.0  | 95% CI: (-2.1, 1.8)  | average #tokens: 1901
+claude-3.5-haiku               | score: 24.8  | 95% CI: (-2.5, 2.5)  | average #tokens: 601
+gemini-2.0-flash-lite-001      | score: 22.5  | 95% CI: (-1.9, 1.9)  | average #tokens: 2196
+claude-3.5-sonnet-20240620     | score: 20.4  | 95% CI: (-2.1, 2.1)  | average #tokens: 628
+deepseek-v3                    | score: 20.1  | 95% CI: (-1.7, 1.8)  | average #tokens: 1007
+grok-2-1212                    | score: 14.8  | 95% CI: (-1.4, 1.6)  | average #tokens: 898
+minimax-01                     | score: 14.2  | 95% CI: (-1.8, 2.1)  | average #tokens: 370
+nova-pro-v1                    | score: 14.0  | 95% CI: (-1.4, 1.5)  | average #tokens: 905
+qwen-2.5-72b-instruct          | score: 13.8  | 95% CI: (-1.3, 1.2)  | average #tokens: 1097
+gpt-4o-mini                    | score: 13.2  | 95% CI: (-1.4, 1.3)  | average #tokens: 890
+mistral-large-2411             | score: 12.7  | 95% CI: (-1.2, 1.3)  | average #tokens: 906
+gpt-4-1106-preview             | score: 11.6  | 95% CI: (-1.3, 1.4)  | average #tokens: 846
+gemma-2-27b-it                 | score: 10.9  | 95% CI: (-1.3, 1.4)  | average #tokens: 794
+command-r-plus-08-2024         | score:  9.2  | 95% CI: (-1.0, 1.1)  | average #tokens: 969
+wizardlm-2-8x22b               | score:  8.7  | 95% CI: (-1.0, 1.1)  | average #tokens: 1028
+nova-lite-v1                   | score:  8.4  | 95% CI: (-1.0, 1.0)  | average #tokens: 994
+lfm-7b                         | score:  8.0  | 95% CI: (-0.9, 0.9)  | average #tokens: 1011
+qwen2.5-32b-instruct           | score:  7.9  | 95% CI: (-1.1, 1.2)  | average #tokens: 795
+mistral-small-24b-instruct-2501 | score:  7.4  | 95% CI: (-1.0, 1.0)  | average #tokens: 998
+hermes-3-llama-3.1-405b        | score:  7.2  | 95% CI: (-1.0, 1.1)  | average #tokens: 771
+hermes-3-llama-3.1-70b         | score:  6.8  | 95% CI: (-1.0, 1.0)  | average #tokens: 771
+gemma-2-9b-it                  | score:  6.4  | 95% CI: (-0.9, 1.0)  | average #tokens: 751
+command-r-08-2024              | score:  5.9  | 95% CI: (-1.0, 0.9)  | average #tokens: 796
+nova-micro-v1                  | score:  5.7  | 95% CI: (-0.8, 0.8)  | average #tokens: 927
+lfm-40b                        | score:  5.2  | 95% CI: (-0.7, 0.8)  | average #tokens: 863
+llama-3.3-70b-instruct         | score:  4.8  | 95% CI: (-1.0, 0.8)  | average #tokens: 809
+command-r7b-12-2024            | score:  4.4  | 95% CI: (-0.8, 0.7)  | average #tokens: 882
+qwen-2.5-7b-instruct           | score:  3.1  | 95% CI: (-0.8, 0.8)  | average #tokens: 844
+lfm-3b                         | score:  3.0  | 95% CI: (-0.5, 0.5)  | average #tokens: 776
+llama-3.1-nemotron-70b-instruct | score:  2.0  | 95% CI: (-0.3, 0.4)  | average #tokens: 1854
+llama-3.1-405b-instruct        | score:  0.9  | 95% CI: (-0.2, 0.2)  | average #tokens: 1735
+llama-3.1-70b-instruct         | score:  0.5  | 95% CI: (-0.1, 0.1)  | average #tokens: 1923
+llama-3.1-8b-instruct          | score:  0.1  | 95% CI: (-0.0, 0.0)  | average #tokens: 5081                                                                                       
 ```
 
 # 설치
@@ -141,17 +140,24 @@ python gen_judgment.py
 ```
 판단 캐싱도 구현되어 있습니다. 이미 생성된 판단이 있는 경우 또는 모델 답변 중 하나가 없는 경우 판단을 생성하지 않습니다.
 
-### Step 4. 결과 보기
+
+### step 4. 판단 앙상블 생성
+모델들을 앙상블하여 판단을 생성합니다.
+```console
+python gen_ensemble_judgment.py
+```
+
+### Step 5. 결과 보기
 모델 승률을 출력합니다. 모델 순위를 csv 파일로 저장하려면 `--output`을 사용하세요. 기본적으로 --style-control을 사용합니다. 
 이는 더 높은 인간의 선호도와 더 높은 상관관계를 가지고 있다고 알려져 있습니다.
 ```console
-> python show_result.py --style-control --num-rounds 1000
+python show_result.py --style-control --num-rounds 1000
 ```
 
-### Step 5. Arena Hard UI
+### Step 6. Arena Hard UI
 UI 코드를 사용하여 개별 판단 결과를 검토할 수 있습니다.
 ```console
-> python qa_browser.py --share
+python qa_browser.py --share
 ```
 
 ## 참고문헌

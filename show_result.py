@@ -138,7 +138,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--bench-name", type=str, default="ko-arena-hard-v0.1")
     # parser.add_argument("--judge-name", type=str, default="gpt-4o-mini")
-    parser.add_argument("--judge-name", type=str, default="gemini-2.0-flash-001")
+    parser.add_argument("--judge-name", type=str, default="ensemble")
     parser.add_argument("--baseline", type=str, default="claude-3.7-sonnet")
     parser.add_argument("--load-bootstrap", action="store_true")
     parser.add_argument("--show-elo", action="store_true")
