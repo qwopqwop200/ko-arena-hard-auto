@@ -2,14 +2,22 @@
 
 Ko-Arena-Hard-Auto는 한국어를 벤치마킹하기위한 자동 평가 도구입니다. 
 Arena-Hard-Auto-v0.1([논문](https://arxiv.org/abs/2406.11939))가 수집한 500개의 어려운 질문을 번역하여 사용합니다.
-gemini-2.0-flash-lite-001와 gpt-4o-mini를 심사위원(judge)으로 사용하고 모델의 응답을 기준 모델(기본값: claude-3.7-sonnet)과 비교합니다.
+gemini-2.0-flash-lite-001와 gpt-4o-mini를 judge(심사위원)으로 사용하고 모델의 응답을 baseline 모델(기본값: claude-3.7-sonnet)과 비교합니다.
+
 특히, 인간의 선호도와높은 상관관계와 분리력을 가지고 있는 Arena-Hard-Auto를 기반으로 두기에 실제로 높은 상관관계를 가지고 있을것으로 예상됩니다. 
 
 더 자세한 세부사항은 [arena-hard-auto 코드](https://github.com/lmarena/arena-hard-auto)를 참조하세요.
 
 ko-arena-hard-auto 데이터는 huggingface에 공개되어 있습니다. [ko-arena-hard-auto-v0.1](https://huggingface.co/datasets/qwopqwop/ko-arena-hard-auto-v0.1)
 
-## Content
+## 원래 구현과의 주요 차이점
+이 포크는 다음과 같은 주요 변경 사항이 있습니다. 
+
+1. 데이터셋 및 프롬프트: [ko-arena-hard-auto-v0.1](https://huggingface.co/datasets/qwopqwop/ko-arena-hard-auto-v0.1) 데이터셋과 심사할때 다른 [시스템 프롬프트](https://github.com/qwopqwop200/ko-arena-hard-auto/blob/main/config/judge_config.yaml#L23)를 사용합니다.
+2. judge 모델: gemini-2.0-flash-lite-001와 gpt-4o-mini을 사용하고 앙상블 합니다. ​​이는 자기 선호도 편향을 완화하기 위한것 입니다.
+3. baseline 모델: claude-3.7-sonnet을 사용합니다.
+
+## 목차
 - [리더보드](#리더보드)
 - [설치](#설치)
 - [평가](#평가)
@@ -17,7 +25,8 @@ ko-arena-hard-auto 데이터는 huggingface에 공개되어 있습니다. [ko-ar
 
 # 리더보드
  [style control](https://lmsys.org/blog/2024-08-28-style-control/)를 사용한 리더보드 입니다.
-단순히 gemini-2.0-flash-lite-001와 gpt-4o-mini의 평과결과를 단순 평균한 결과입니다.
+단순히 gemini-2.0-flash-lite-001와 gpt-4o-mini의 평과결과를 단순히 평균한 결과입니다.
+
 gemini-2.0-flash-lite-001와 gpt-4o-mini는 자신의 답변을 선호하는 경향이 있기에 해석을 주의해야 합니다.
 
 (업데이트: 2025/03/12)
@@ -25,11 +34,11 @@ gemini-2.0-flash-lite-001와 gpt-4o-mini는 자신의 답변을 선호하는 경
 claude-3.7-sonnet                             | score:  50.00 | average #tokens: 1094
 o1-medium                                     | score:  43.10 | average #tokens: 1487
 o3-mini-high                                  | score:  42.80 | average #tokens: 1257
-gemini-2.0-flash-001                          | score:  32.52 | average #tokens: 1901
+gemini-2.0-flash-001(judge)                   | score:  32.52 | average #tokens: 1901
 claude-3.5-sonnet                             | score:  36.00 | average #tokens: 682
 o3-mini-medium                                | score:  36.73 | average #tokens: 1221
 gpt-4.5-preview                               | score:  38.26 | average #tokens: 1040
-gemini-2.0-flash-lite-001(judge)              | score:  29.76 | average #tokens: 2196
+gemini-2.0-flash-lite-001                     | score:  29.76 | average #tokens: 2196
 o3-mini-low                                   | score:  33.41 | average #tokens: 1205
 claude-3.5-haiku                              | score:  27.86 | average #tokens: 601
 gpt-4o-2024-11-20                             | score:  28.06 | average #tokens: 1216
