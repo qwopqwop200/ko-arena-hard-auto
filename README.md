@@ -2,7 +2,7 @@
 
 Ko-Arena-Hard-Auto는 한국어를 벤치마킹하기위한 자동 평가 도구입니다. 
 Arena-Hard-Auto-v0.1([논문](https://arxiv.org/abs/2406.11939))가 수집한 500개의 어려운 질문을 번역하여 사용합니다.
-gemini-2.0-flash-lite-001와 gpt-4o-mini를 judge(심사위원)으로 사용하고 모델의 응답을 baseline 모델(기본값: claude-3.7-sonnet)과 비교합니다.
+gemini-2.0-flash와 gpt-4o-mini를 judge(심사위원)으로 사용하고 모델의 응답을 baseline 모델(기본값: claude-3.7-sonnet)과 비교합니다.
 
 특히, 인간의 선호도와높은 상관관계와 분리력을 가지고 있는 Arena-Hard-Auto를 기반으로 두기에 실제로 높은 상관관계를 가지고 있을것으로 예상됩니다. 
 
@@ -14,7 +14,7 @@ ko-arena-hard-auto 데이터는 huggingface에 공개되어 있습니다. [ko-ar
 이 포크는 다음과 같은 주요 변경 사항이 있습니다. 
 
 1. 데이터셋 및 프롬프트: [ko-arena-hard-auto-v0.1](https://huggingface.co/datasets/qwopqwop/ko-arena-hard-auto-v0.1) 데이터셋과 심사할때 다른 [시스템 프롬프트](https://github.com/qwopqwop200/ko-arena-hard-auto/blob/main/config/judge_config.yaml#L23)를 사용합니다.
-2. judge 모델: gemini-2.0-flash-lite-001와 gpt-4o-mini을 사용하고 앙상블 합니다. 이는 자기 선호도 편향을 완화하기 위한것 입니다.
+2. judge 모델: gemini-2.0-flash와 gpt-4o-mini을 사용하고 앙상블 합니다. 이는 자기 선호도 편향을 완화하기 위한것 입니다.
 3. baseline 모델: claude-3.7-sonnet을 사용합니다.
 
 ## 목차
@@ -25,8 +25,8 @@ ko-arena-hard-auto 데이터는 huggingface에 공개되어 있습니다. [ko-ar
 
 # 리더보드
  [style control](https://lmsys.org/blog/2024-08-28-style-control/)를 사용한 리더보드 입니다.
-gemini-2.0-flash-lite-001와 gpt-4o-mini을 앙상블한 결과입니다.
-gemini-2.0-flash-lite-001와 gpt-4o-mini는 자신의 답변을 선호하는 경향이 있기에 해석을 주의해야 합니다.
+gemini-2.0-flash와 gpt-4o-mini을 앙상블한 결과입니다.
+gemini-2.0-flash와 gpt-4o-mini는 자신의 답변을 선호하는 경향이 있기에 해석을 주의해야 합니다.
 
 (업데이트: 2025/03/13)
 ```console
@@ -38,7 +38,7 @@ claude-3.5-sonnet              | score: 32.8  | 95% CI: (-2.5, 2.5)  | average #
 o3-mini-medium                 | score: 32.4  | 95% CI: (-2.1, 2.0)  | average #tokens: 1221
 o3-mini-low                    | score: 29.6  | 95% CI: (-1.8, 2.0)  | average #tokens: 1205
 gpt-4o-2024-11-20              | score: 25.1  | 95% CI: (-1.7, 1.9)  | average #tokens: 1216
-gemini-2.0-flash-001           | score: 25.0  | 95% CI: (-2.1, 1.8)  | average #tokens: 1901
+gemini-2.0-flash-001(judge)    | score: 25.0  | 95% CI: (-2.1, 1.8)  | average #tokens: 1901
 claude-3.5-haiku               | score: 24.8  | 95% CI: (-2.5, 2.5)  | average #tokens: 601
 gemini-2.0-flash-lite-001      | score: 22.5  | 95% CI: (-1.9, 1.9)  | average #tokens: 2196
 claude-3.5-sonnet-20240620     | score: 20.4  | 95% CI: (-2.1, 2.1)  | average #tokens: 628
@@ -47,7 +47,7 @@ grok-2-1212                    | score: 14.8  | 95% CI: (-1.4, 1.6)  | average #
 minimax-01                     | score: 14.2  | 95% CI: (-1.8, 2.1)  | average #tokens: 370
 nova-pro-v1                    | score: 14.0  | 95% CI: (-1.4, 1.5)  | average #tokens: 905
 qwen-2.5-72b-instruct          | score: 13.8  | 95% CI: (-1.3, 1.2)  | average #tokens: 1097
-gpt-4o-mini                    | score: 13.2  | 95% CI: (-1.4, 1.3)  | average #tokens: 890
+gpt-4o-mini(judge)             | score: 13.2  | 95% CI: (-1.4, 1.3)  | average #tokens: 890
 mistral-large-2411             | score: 12.7  | 95% CI: (-1.2, 1.3)  | average #tokens: 906
 gpt-4-1106-preview             | score: 11.6  | 95% CI: (-1.3, 1.4)  | average #tokens: 846
 gemma-2-27b-it                 | score: 10.9  | 95% CI: (-1.3, 1.4)  | average #tokens: 794
