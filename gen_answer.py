@@ -41,11 +41,7 @@ def get_answer(
     api_type = endpoint_info["api_type"]
 
     conv = []
-
-    if "system_prompt" in endpoint_info.keys():
-        conv.append({"role": "system", "content": endpoint_info["system_prompt"]})
-    elif model in OPENAI_MODEL_LIST:
-        conv.append({"role": "system", "content": "You are a helpful assistant."})
+    conv.append({"role": "system", "content": "You are a helpful assistant. You provide clear and useful answers in Natural Korean to the user."})
 
     encoding = tiktoken.encoding_for_model("gpt-3.5-turbo")
     choices = []
