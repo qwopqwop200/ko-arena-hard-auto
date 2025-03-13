@@ -49,3 +49,4 @@ model_list:
   - qwen-2.5-72b-instruct
   - qwen-2.5-7b-instruct
   - o1-medium
+  - o1-low
