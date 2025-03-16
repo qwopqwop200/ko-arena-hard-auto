@@ -35,13 +35,11 @@ from utils import (
 def get_answer(
     question: dict, model: str, endpoint_info: dict, num_choices: int, max_tokens: int, temperature: float, answer_file: str, api_dict: dict
 ):
-    if question["category"] in temperature_config:
-        temperature = temperature_config[question["category"]]
-
     api_type = endpoint_info["api_type"]
 
     conv = []
-    conv.append({"role": "system", "content": "You are a helpful assistant. You provide clear and useful answers in Natural Korean to the user."})
+    # conv.append({"role": "system", "content": "You are a helpful assistant. You provide clear and useful answers in Natural Korean to the user."})
+    conv.append({"role": "system", "content": "당신은 도움이 되는 어시스턴트입니다. 당신은 사용자에게 자연스러운 한국어로 명확하고 유용한 답변을 제공합니다."})
 
     encoding = tiktoken.encoding_for_model("gpt-3.5-turbo")
     choices = []
