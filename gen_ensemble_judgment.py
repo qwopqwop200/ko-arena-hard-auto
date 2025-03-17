@@ -1,6 +1,7 @@
 import os
 import glob
 import json
+from tqdm import tqdm
 
 def read_jsonl(file_path: str) -> list[dict]:
     data = []
@@ -38,6 +39,8 @@ def get_score(score: float) -> str:
 if __name__ == "__main__":
     unique_model = None
     model_judgment_paths = glob.glob('./data/ko-arena-hard-v0.1/model_judgment/*')
+    model_judgment_paths = [path for path in model_judgment_paths if 'ensemble' not in path]
+
     # get model list
     for model_judgment_path in model_judgment_paths:
         if unique_model is None:
@@ -57,7 +60,7 @@ if __name__ == "__main__":
         "B>>A": -2,
     }
 
-    for model in unique_model:
+    for model in tqdm(unique_model):
         model_result = []
 
         # load data

@@ -50,3 +50,8 @@ model_list:
   - qwen-2.5-7b-instruct
   - o1-medium
   - o1-low
+  - gemma-3-27b-it
+  - jamba-1.6-large
+  - jamba-1.6-mini
+  - command-a
+  - olmo-2-0325-32b-instruct
