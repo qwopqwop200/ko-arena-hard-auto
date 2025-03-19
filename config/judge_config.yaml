@@ -71,3 +71,5 @@ model_list:
   - jamba-1.6-mini
   - command-a
   - olmo-2-0325-32b-instruct
+  - mistral-small-3.1-24b-instruct-2503
+  - o1-high

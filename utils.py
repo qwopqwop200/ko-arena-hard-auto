@@ -122,6 +122,8 @@ def chat_completion_openai(model, messages, temperature, max_tokens, api_dict=No
             completion = client.chat.completions.create(
                 model=model,
                 messages=messages,
+                # max_completion_tokens=max_tokens, # for reasoning model
+                # reasoning_effort="high",
                 temperature=temperature,
                 max_tokens=max_tokens,
                 )
