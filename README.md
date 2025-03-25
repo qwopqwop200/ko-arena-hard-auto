@@ -25,60 +25,61 @@ ko-arena-hard-auto 데이터는 huggingface에 공개되어 있습니다. [ko-ar
 
 # 리더보드
  [style control](https://lmsys.org/blog/2024-08-28-style-control/)를 사용한 리더보드 입니다.
-gemini-2.0-flash와 gpt-4o-mini을 앙상블한 결과입니다.
+ 
 gemini-2.0-flash와 gpt-4o-mini는 자신의 답변을 선호하는 경향이 있기에 해석을 주의해야 합니다.
 
-(업데이트: 2025/03/19)
+(업데이트: 2025/03/25)
 ```console
 claude-3.7-sonnet              | score: 50.0  | 95% CI:  (0.0, 0.0)  | average #tokens: 1094
-o1-high                        | score: 40.4  | 95% CI: (-2.2, 2.3)  | average #tokens: 1503
-o3-mini-high                   | score: 39.3  | 95% CI: (-2.1, 2.0)  | average #tokens: 1257
-o1-medium                      | score: 38.6  | 95% CI: (-2.3, 2.3)  | average #tokens: 1487
-gpt-4.5-preview                | score: 37.6  | 95% CI: (-2.5, 2.2)  | average #tokens: 1040
-o1-low                         | score: 34.8  | 95% CI: (-2.1, 2.3)  | average #tokens: 1513
-claude-3.5-sonnet              | score: 34.0  | 95% CI: (-2.2, 2.8)  | average #tokens: 682
-o3-mini-medium                 | score: 32.8  | 95% CI: (-2.0, 2.1)  | average #tokens: 1221
-command-a                      | score: 31.7  | 95% CI: (-2.0, 2.1)  | average #tokens: 1083
-o3-mini-low                    | score: 30.0  | 95% CI: (-1.9, 2.1)  | average #tokens: 1205
-gpt-4o-2024-11-20              | score: 26.9  | 95% CI: (-1.9, 1.8)  | average #tokens: 1216
-claude-3.5-haiku               | score: 25.9  | 95% CI: (-2.3, 2.8)  | average #tokens: 601
-gemini-2.0-flash-001           | score: 25.6  | 95% CI: (-1.8, 1.9)  | average #tokens: 1901
-gemma-3-27b-it                 | score: 24.5  | 95% CI: (-1.7, 1.9)  | average #tokens: 1654
-gemini-2.0-flash-lite-001      | score: 23.1  | 95% CI: (-1.8, 2.1)  | average #tokens: 2196
-deepseek-v3                    | score: 21.5  | 95% CI: (-1.8, 1.6)  | average #tokens: 1007
-claude-3.5-sonnet-20240620     | score: 21.1  | 95% CI: (-2.1, 2.4)  | average #tokens: 628
-jamba-1.6-large                | score: 15.7  | 95% CI: (-1.5, 1.6)  | average #tokens: 859
-grok-2-1212                    | score: 15.7  | 95% CI: (-1.7, 1.6)  | average #tokens: 898
-minimax-01                     | score: 15.1  | 95% CI: (-1.8, 2.2)  | average #tokens: 370
-nova-pro-v1                    | score: 14.8  | 95% CI: (-1.5, 1.4)  | average #tokens: 905
-qwen-2.5-72b-instruct          | score: 14.6  | 95% CI: (-1.3, 1.4)  | average #tokens: 1097
-gpt-4o-mini                    | score: 14.1  | 95% CI: (-1.5, 1.3)  | average #tokens: 890
-mistral-large-2411             | score: 13.4  | 95% CI: (-1.4, 1.5)  | average #tokens: 906
-gpt-4-1106-preview             | score: 12.0  | 95% CI: (-1.4, 1.3)  | average #tokens: 846
-gemma-2-27b-it                 | score: 11.7  | 95% CI: (-1.3, 1.4)  | average #tokens: 794
-mistral-small-3.1-24b-instruct-2503 | score:  9.8  | 95% CI: (-1.2, 1.0)  | average #tokens: 961
+deepseek-chat-v3-0324          | score: 46.5  | 95% CI: (-2.3, 2.3)  | average #tokens: 1085
+o1-high                        | score: 40.7  | 95% CI: (-2.2, 2.3)  | average #tokens: 1503
+o3-mini-high                   | score: 39.7  | 95% CI: (-2.2, 2.2)  | average #tokens: 1257
+o1-medium                      | score: 38.9  | 95% CI: (-2.4, 2.4)  | average #tokens: 1487
+gpt-4.5-preview                | score: 38.0  | 95% CI: (-2.4, 2.2)  | average #tokens: 1040
+o1-low                         | score: 35.1  | 95% CI: (-2.2, 2.3)  | average #tokens: 1513
+claude-3.5-sonnet              | score: 34.8  | 95% CI: (-2.5, 2.7)  | average #tokens: 682
+o3-mini-medium                 | score: 33.1  | 95% CI: (-2.2, 2.1)  | average #tokens: 1221
+command-a                      | score: 31.8  | 95% CI: (-2.0, 2.1)  | average #tokens: 1083
+o3-mini-low                    | score: 30.3  | 95% CI: (-2.0, 2.0)  | average #tokens: 1205
+gpt-4o-2024-11-20              | score: 27.0  | 95% CI: (-1.8, 1.8)  | average #tokens: 1216
+claude-3.5-haiku               | score: 26.7  | 95% CI: (-2.6, 2.6)  | average #tokens: 601
+gemini-2.0-flash-001           | score: 25.5  | 95% CI: (-2.0, 1.9)  | average #tokens: 1901
+gemma-3-27b-it                 | score: 24.4  | 95% CI: (-1.7, 1.8)  | average #tokens: 1654
+gemini-2.0-flash-lite-001      | score: 22.9  | 95% CI: (-1.8, 1.9)  | average #tokens: 2196
+claude-3.5-sonnet-20240620     | score: 21.8  | 95% CI: (-2.4, 2.1)  | average #tokens: 628
+deepseek-v3                    | score: 21.6  | 95% CI: (-1.8, 1.8)  | average #tokens: 1007
+jamba-1.6-large                | score: 15.8  | 95% CI: (-1.4, 1.6)  | average #tokens: 859
+grok-2-1212                    | score: 15.7  | 95% CI: (-1.6, 1.7)  | average #tokens: 898
+minimax-01                     | score: 15.2  | 95% CI: (-2.1, 2.2)  | average #tokens: 370
+nova-pro-v1                    | score: 14.9  | 95% CI: (-1.5, 1.5)  | average #tokens: 905
+qwen-2.5-72b-instruct          | score: 14.7  | 95% CI: (-1.3, 1.4)  | average #tokens: 1097
+gpt-4o-mini                    | score: 14.1  | 95% CI: (-1.4, 1.6)  | average #tokens: 890
+mistral-large-2411             | score: 13.4  | 95% CI: (-1.3, 1.5)  | average #tokens: 906
+gpt-4-1106-preview             | score: 11.9  | 95% CI: (-1.4, 1.4)  | average #tokens: 846
+gemma-2-27b-it                 | score: 11.8  | 95% CI: (-1.4, 1.3)  | average #tokens: 794
+mistral-small-3.1-24b-instruct-2503 | score:  9.8  | 95% CI: (-1.1, 1.3)  | average #tokens: 961
 command-r-plus-08-2024         | score:  9.4  | 95% CI: (-1.2, 1.1)  | average #tokens: 969
-nova-lite-v1                   | score:  8.9  | 95% CI: (-1.2, 1.0)  | average #tokens: 994
-wizardlm-2-8x22b               | score:  8.9  | 95% CI: (-1.2, 0.9)  | average #tokens: 1028
-lfm-7b                         | score:  8.5  | 95% CI: (-1.0, 0.9)  | average #tokens: 1011
-qwen2.5-32b-instruct           | score:  8.2  | 95% CI: (-1.2, 1.2)  | average #tokens: 795
-mistral-small-24b-instruct-2501 | score:  7.7  | 95% CI: (-1.1, 1.2)  | average #tokens: 998
-hermes-3-llama-3.1-405b        | score:  7.5  | 95% CI: (-1.1, 1.1)  | average #tokens: 771
-hermes-3-llama-3.1-70b         | score:  7.1  | 95% CI: (-0.9, 1.1)  | average #tokens: 771
-gemma-2-9b-it                  | score:  6.9  | 95% CI: (-1.0, 1.1)  | average #tokens: 751
-command-r-08-2024              | score:  6.1  | 95% CI: (-1.1, 1.0)  | average #tokens: 796
-nova-micro-v1                  | score:  5.9  | 95% CI: (-0.8, 0.9)  | average #tokens: 927
-lfm-40b                        | score:  5.3  | 95% CI: (-0.8, 0.8)  | average #tokens: 863
-llama-3.3-70b-instruct         | score:  4.9  | 95% CI: (-0.9, 0.9)  | average #tokens: 809
-command-r7b-12-2024            | score:  4.5  | 95% CI: (-0.8, 0.8)  | average #tokens: 882
-lfm-3b                         | score:  3.2  | 95% CI: (-0.5, 0.6)  | average #tokens: 776
-qwen-2.5-7b-instruct           | score:  3.2  | 95% CI: (-0.7, 1.0)  | average #tokens: 844
-olmo-2-0325-32b-instruct       | score:  3.0  | 95% CI: (-0.5, 0.7)  | average #tokens: 890
-jamba-1.6-mini                 | score:  2.2  | 95% CI: (-0.4, 0.6)  | average #tokens: 920
+nova-lite-v1                   | score:  8.8  | 95% CI: (-1.0, 1.0)  | average #tokens: 994
+wizardlm-2-8x22b               | score:  8.8  | 95% CI: (-1.0, 1.1)  | average #tokens: 1028
+lfm-7b                         | score:  8.4  | 95% CI: (-0.9, 1.0)  | average #tokens: 1011
+qwen2.5-32b-instruct           | score:  8.2  | 95% CI: (-1.1, 1.2)  | average #tokens: 795
+mistral-small-24b-instruct-2501 | score:  7.8  | 95% CI: (-1.1, 1.2)  | average #tokens: 998
+hermes-3-llama-3.1-405b        | score:  7.6  | 95% CI: (-1.0, 1.2)  | average #tokens: 771
+hermes-3-llama-3.1-70b         | score:  7.1  | 95% CI: (-1.0, 1.1)  | average #tokens: 771
+gemma-2-9b-it                  | score:  6.9  | 95% CI: (-1.0, 1.2)  | average #tokens: 751
+command-r-08-2024              | score:  6.1  | 95% CI: (-1.0, 1.1)  | average #tokens: 796
+nova-micro-v1                  | score:  6.0  | 95% CI: (-0.8, 0.8)  | average #tokens: 927
+lfm-40b                        | score:  5.3  | 95% CI: (-0.8, 0.9)  | average #tokens: 863
+llama-3.3-70b-instruct         | score:  4.9  | 95% CI: (-1.0, 1.0)  | average #tokens: 809
+command-r7b-12-2024            | score:  4.6  | 95% CI: (-0.8, 0.8)  | average #tokens: 882
+qwen-2.5-7b-instruct           | score:  3.2  | 95% CI: (-0.7, 0.9)  | average #tokens: 844
+lfm-3b                         | score:  3.2  | 95% CI: (-0.6, 0.6)  | average #tokens: 776
+olmo-2-0325-32b-instruct       | score:  3.0  | 95% CI: (-0.5, 0.6)  | average #tokens: 890
+jamba-1.6-mini                 | score:  2.3  | 95% CI: (-0.5, 0.5)  | average #tokens: 920
 llama-3.1-nemotron-70b-instruct | score:  2.1  | 95% CI: (-0.4, 0.4)  | average #tokens: 1854
 llama-3.1-405b-instruct        | score:  0.8  | 95% CI: (-0.2, 0.2)  | average #tokens: 1735
 llama-3.1-70b-instruct         | score:  0.5  | 95% CI: (-0.1, 0.1)  | average #tokens: 1923
-llama-3.1-8b-instruct          | score:  0.1  | 95% CI: (-0.0, 0.0)  | average #tokens: 5081                                                                             
+llama-3.1-8b-instruct          | score:  0.1  | 95% CI: (-0.0, 0.0)  | average #tokens: 5081                                                                      
 ```
 
 # 설치
