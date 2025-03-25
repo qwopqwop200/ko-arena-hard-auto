@@ -25,7 +25,6 @@ ko-arena-hard-auto 데이터는 huggingface에 공개되어 있습니다. [ko-ar
 
 # 리더보드
  [style control](https://lmsys.org/blog/2024-08-28-style-control/)를 사용한 리더보드 입니다.
-gemini-2.0-flash와 gpt-4o-mini을 앙상블한 결과입니다.
 gemini-2.0-flash와 gpt-4o-mini는 자신의 답변을 선호하는 경향이 있기에 해석을 주의해야 합니다.
 
 (업데이트: 2025/03/25)
