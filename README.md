@@ -8,7 +8,7 @@ gemini-2.0-flash와 gpt-4o-mini를 judge(심사위원)으로 사용하고 모델
 
 더 자세한 세부사항은 [arena-hard-auto 코드](https://github.com/lmarena/arena-hard-auto)를 참조하세요.
 
-ko-arena-hard-auto 데이터는 huggingface에 공개되어 있습니다. [ko-arena-hard-auto-v0.1](https://huggingface.co/datasets/qwopqwop/ko-arena-hard-auto-v0.1)
+ko-arena-hard-auto 데이터는 huggingface에 공개되어 있습니다. [ko-arena-hard-auto-v0.1](https://huggingface.co/datasets/qwopqwop/ko-arena-hard-auto-v0.1)<br>
 리더보드 사이트: https://qwopqwop200.github.io/ko-arena-hard-auto/leaderboard.html
 
 ## 원래 구현과의 주요 차이점
