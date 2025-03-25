@@ -70,14 +70,13 @@ gemini-2.0-flash-001:
     api_type: openai
     parallel: 128
 
-
-gemini-2.0-pro-exp-02-05: # TODO
-    model_name: google/gemini-2.0-pro-exp-02-05:free
+gemini-2.0-pro-exp-02-05:
+    model_name: gemini-2.0-pro-exp-02-05
     endpoints:
-        - api_base: https://openrouter.ai/api/v1
+        - api_base: https://generativelanguage.googleapis.com/v1beta/openai/
           api_key: # Place your api_key
     api_type: openai
-    parallel: 64
+    parallel: 1
 
 claude-3.5-sonnet:
     model_name: anthropic/claude-3.5-sonnet
@@ -395,6 +394,14 @@ o1-high:
     model_name: o1
     endpoints:
         - api_base: https://api.openai.com/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 32
+
+deepseek-chat-v3-0324:
+    model_name: deepseek/deepseek-chat-v3-0324
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
           api_key: # Place your api_key
     api_type: openai
     parallel: 32

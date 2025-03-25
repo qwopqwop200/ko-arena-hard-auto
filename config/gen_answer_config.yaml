@@ -57,3 +57,5 @@ model_list:
   - olmo-2-0325-32b-instruct
   - mistral-small-3.1-24b-instruct-2503
   - o1-high
+  - deepseek-chat-v3-0324
+  - gemini-2.0-pro-exp-02-05
