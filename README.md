@@ -1,5 +1,7 @@
 # Ko-Arena-Hard-Auto
 
+### [leaderboard](https://qwopqwop200.github.io/ko-arena-hard-auto/leaderboard.html)
+
 Ko-Arena-Hard-Auto는 한국어를 벤치마킹하기위한 자동 평가 도구입니다. 
 Arena-Hard-Auto-v0.1([논문](https://arxiv.org/abs/2406.11939))가 수집한 500개의 어려운 질문을 번역하여 사용합니다.
 gemini-2.0-flash와 gpt-4o-mini를 judge(심사위원)으로 사용하고 모델의 응답을 baseline 모델(기본값: claude-3.7-sonnet)과 비교합니다.
@@ -9,7 +11,6 @@ gemini-2.0-flash와 gpt-4o-mini를 judge(심사위원)으로 사용하고 모델
 더 자세한 세부사항은 [arena-hard-auto 코드](https://github.com/lmarena/arena-hard-auto)를 참조하세요.
 
 ko-arena-hard-auto 데이터는 huggingface에 공개되어 있습니다. [ko-arena-hard-auto-v0.1](https://huggingface.co/datasets/qwopqwop/ko-arena-hard-auto-v0.1)<br>
-리더보드 사이트: https://qwopqwop200.github.io/ko-arena-hard-auto/leaderboard.html
 
 ## 원래 구현과의 주요 차이점
 이 포크는 다음과 같은 주요 변경 사항이 있습니다. 
