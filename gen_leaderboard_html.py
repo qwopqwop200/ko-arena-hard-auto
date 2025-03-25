@@ -132,5 +132,6 @@ def deploy_leaderboard(csv_path: str, html_path: str) -> None:
 
 if __name__ == '__main__':
     csv_file = get_latest_leaderboard_csv('./leaderboard/')
-    output_html = 'leaderboard.html'
+    os.makedirs('dist', exist_ok=True)
+    output_html = 'dist/leaderboard.html'
     deploy_leaderboard(csv_file, output_html)
