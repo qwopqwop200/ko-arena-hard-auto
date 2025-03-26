@@ -1,384 +1,533 @@
 
-    <html>
+    <!DOCTYPE html>
+    <html lang="ko">
     <head>
       <meta charset="UTF-8">
-      <title>Leaderboard (Update 2025-03-25)</title>
-      <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Ko-Arena-Hard Leaderboard (2025-03-26)</title>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
       <style>
         :root {
-          --primary-color: #4CAF50;
-          --secondary-color: #fff;
-          --bg-gradient-start: #f0f0f0;
-          --bg-gradient-end: #ffffff;
+          --primary-color: #008080;
+          --secondary-color: #ffffff;
+          --accent-color: #FFD700;
           --text-color: #333;
+          --light-gray: #f8f9fa;
+          --medium-gray: #e9ecef;
+          --dark-gray: #6c757d;
+          --judge-color: #dc3545;
+          --judge-bg: #f8d7da;
+          --baseline-color: #007bff;
+          --baseline-bg: #cfe2ff;
+          --border-radius: 8px;
+          --box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
         }
+
         body {
-          font-family: 'Roboto', sans-serif;
-          background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+          font-family: 'Noto Sans KR', 'Roboto', sans-serif;
+          background: linear-gradient(135deg, #e0f2f1, #ffffff);
           margin: 0;
-          padding: 40px;
+          padding: 30px 15px;
           color: var(--text-color);
+          line-height: 1.6;
         }
+
         .container {
-          max-width: 1000px;
-          margin: 0 auto;
-          background: #fff;
-          padding: 20px 30px;
-          border-radius: 8px;
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+          max-width: 1100px;
+          margin: 30px auto;
+          background: var(--secondary-color);
+          padding: 30px 40px;
+          border-radius: var(--border-radius);
+          box-shadow: var(--box-shadow);
         }
+
         h1 {
           text-align: center;
-          margin-bottom: 20px;
+          margin-bottom: 25px;
+          color: var(--primary-color);
+          font-weight: 700;
         }
+        h1 a {
+             color: inherit;
+             text-decoration: none;
+             transition: color 0.3s ease;
+        }
+        h1 a:hover {
+            color: #005a5a;
+        }
+
+        .notice {
+          background-color: var(--judge-bg);
+          color: var(--judge-color);
+          border-left: 5px solid var(--judge-color);
+          padding: 15px 20px;
+          margin-bottom: 30px;
+          border-radius: 4px;
+          font-size: 0.95em;
+        }
+        .notice strong {
+            color: var(--judge-color);
+        }
+
         .table-container {
           overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
         }
-        table {
+
+        .leaderboard-table {
           width: 100%;
           border-collapse: collapse;
           margin-top: 20px;
+          font-size: 0.95em;
         }
+
         th, td {
-          padding: 15px;
-          text-align: center;
+          padding: 14px 18px;
+          text-align: left;
+          vertical-align: middle;
+          border-bottom: 1px solid var(--medium-gray);
         }
+
         th {
           background-color: var(--primary-color);
           color: var(--secondary-color);
+          font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 0.05em;
+          white-space: nowrap;
         }
+
+        th:first-child, td:first-child {
+          text-align: center;
+          min-width: 50px;
+        }
+        td:first-child {
+          font-weight: 700;
+          color: var(--primary-color);
+          font-size: 1.1em;
+        }
+
+         th:nth-child(3),
+         th:nth-child(4),
+         th:nth-child(5) {
+             text-align: center;
+         }
+         td:nth-child(3),
+         td:nth-child(4),
+         td:nth-child(5) {
+             text-align: center;
+             white-space: nowrap;
+         }
+
         tr {
-          border-bottom: 1px solid #e0e0e0;
-          transition: background-color 0.3s ease;
+          transition: background-color 0.2s ease-in-out;
         }
+
         tr:nth-child(even) {
-          background-color: #fafafa;
+          background-color: var(--light-gray);
         }
+
         tr:hover {
-          background-color: #f1f1f1;
+          background-color: var(--medium-gray);
         }
-        @media (max-width: 600px) {
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .model-tag {
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            white-space: nowrap;
+        }
+        .model-judge {
+            background-color: var(--judge-bg);
+            color: var(--judge-color);
+            border: 1px solid var(--judge-color);
+            font-weight: 700;
+        }
+        .model-baseline {
+            background-color: var(--baseline-bg);
+            color: var(--baseline-color);
+            border: 1px solid var(--baseline-color);
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+          .container {
+            padding: 20px;
+          }
           th, td {
-            padding: 10px;
+            padding: 10px 12px;
+          }
+          h1 {
+            font-size: 1.8em;
+          }
+          body {
+             padding: 20px 10px;
           }
         }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5em;
+            }
+            .notice {
+                font-size: 0.9em;
+                padding: 10px 15px;
+            }
+             .leaderboard-table {
+                 font-size: 0.85em;
+             }
+              th, td {
+                padding: 8px 10px;
+              }
+        }
+
       </style>
     </head>
     <body>
       <div class="container">
-        <h1><a href="https://github.com/qwopqwop200/ko-arena-hard-auto" target="_blank">Ko-Arena-Hard-Auto Leaderboard (Update 2025-03-25)</a></h1>
-        <p class="notice"><strong style="color: darkred">judge 모델(gemini-2.0-flash, gpt-4o-mini)들은 자기 답변을 선호하는 경향있으며 실제보다 더 높은 점수를 받았을 가능성이 있습니다.<br> 때문에 judge 모델들은 해석에 주의가 필요합니다.</strong></p>
+        <h1><a href="https://github.com/qwopqwop200/ko-arena-hard-auto" target="_blank" rel="noopener noreferrer">Ko-Arena-Hard-Auto Leaderboard (2025-03-26)</a></h1>
+
+        <p class="notice">
+          <strong style="color: var(--judge-color)">주의:</strong> judge 모델(gemini-2.0-flash, gpt-4o-mini)은 자체 답변 선호 경향으로 인해 실제 성능보다 점수가 높게 나타날 수 있습니다. 해당 모델들의 점수 해석 시 유의하시기 바랍니다.
+        </p>
+
         <div class="table-container">
-          <table class="dataframe">
+          <table class="dataframe leaderboard-table">
   <thead>
-    <tr style="text-align: center;">
-      <th></th>
-      <th>model</th>
-      <th>score</th>
-      <th>avg_tokens</th>
+    <tr style="text-align: right;">
+      <th>Rank</th>
+      <th>Model</th>
+      <th>Score (CI)</th>
+      <th>Avg. Tokens</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>1</th>
-      <td><strong>claude-3.7-sonnet (baseline)</strong></td>
+      <td>1</td>
+      <td><span class="model-tag model-baseline">claude-3.7-sonnet (baseline)</span></td>
       <td>50.0(-0.00, +0.00)</td>
       <td>1094</td>
     </tr>
     <tr>
-      <th>2</th>
+      <td>2</td>
       <td>deepseek-chat-v3-0324</td>
-      <td>46.48(-2.32, +2.26)</td>
+      <td>49.59(-2.33, +2.26)</td>
       <td>1085</td>
     </tr>
     <tr>
-      <th>3</th>
+      <td>3</td>
+      <td>gemini-2.0-pro-exp-02-05</td>
+      <td>47.56(-2.79, +3.16)</td>
+      <td>2372</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>gemini-2.5-pro-exp-03-25</td>
+      <td>47.45(-3.08, +3.04)</td>
+      <td>2577</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>deepseek-r1</td>
+      <td>44.07(-2.74, +2.80)</td>
+      <td>1211</td>
+    </tr>
+    <tr>
+      <td>6</td>
       <td>o1-high</td>
-      <td>40.68(-2.20, +2.27)</td>
+      <td>42.87(-2.49, +2.28)</td>
       <td>1503</td>
     </tr>
     <tr>
-      <th>4</th>
+      <td>7</td>
       <td>o3-mini-high</td>
-      <td>39.69(-2.17, +2.24)</td>
+      <td>41.86(-2.13, +2.46)</td>
       <td>1257</td>
     </tr>
     <tr>
-      <th>5</th>
+      <td>8</td>
       <td>o1-medium</td>
-      <td>38.86(-2.38, +2.41)</td>
+      <td>41.04(-2.43, +2.30)</td>
       <td>1487</td>
     </tr>
     <tr>
-      <th>6</th>
+      <td>9</td>
       <td>gpt-4.5-preview</td>
-      <td>37.96(-2.38, +2.20)</td>
+      <td>40.81(-2.41, +2.16)</td>
       <td>1040</td>
     </tr>
     <tr>
-      <th>7</th>
+      <td>10</td>
       <td>o1-low</td>
-      <td>35.13(-2.19, +2.30)</td>
+      <td>37.31(-2.22, +2.23)</td>
       <td>1513</td>
     </tr>
     <tr>
-      <th>8</th>
+      <td>11</td>
       <td>claude-3.5-sonnet</td>
-      <td>34.75(-2.45, +2.71)</td>
+      <td>37.04(-2.58, +2.83)</td>
       <td>682</td>
     </tr>
     <tr>
-      <th>9</th>
+      <td>12</td>
       <td>o3-mini-medium</td>
-      <td>33.08(-2.18, +2.14)</td>
+      <td>35.2(-2.31, +2.22)</td>
       <td>1221</td>
     </tr>
     <tr>
-      <th>10</th>
+      <td>13</td>
       <td>command-a</td>
-      <td>31.79(-2.00, +2.13)</td>
+      <td>34.31(-1.99, +2.21)</td>
       <td>1083</td>
     </tr>
     <tr>
-      <th>11</th>
+      <td>14</td>
+      <td>gemini-2.0-flash-thinking-exp-01-21</td>
+      <td>32.45(-2.50, +2.53)</td>
+      <td>2488</td>
+    </tr>
+    <tr>
+      <td>15</td>
       <td>o3-mini-low</td>
-      <td>30.3(-1.97, +2.02)</td>
+      <td>32.38(-2.02, +2.12)</td>
       <td>1205</td>
     </tr>
     <tr>
-      <th>12</th>
+      <td>16</td>
       <td>gpt-4o-2024-11-20</td>
-      <td>26.97(-1.77, +1.75)</td>
-      <td>1216</td>
+      <td>30.8(-1.96, +1.78)</td>
+      <td>1142</td>
     </tr>
     <tr>
-      <th>13</th>
+      <td>17</td>
       <td>claude-3.5-haiku</td>
-      <td>26.72(-2.62, +2.55)</td>
+      <td>28.67(-2.80, +2.67)</td>
       <td>601</td>
     </tr>
     <tr>
-      <th>14</th>
-      <td><strong style="color: darkred">gemini-2.0-flash-001 (judge)</strong></td>
-      <td>25.5(-2.02, +1.92)</td>
+      <td>18</td>
+      <td><span class="model-tag model-judge">gemini-2.0-flash-001 (judge)</span></td>
+      <td>27.65(-1.93, +1.94)</td>
       <td>1901</td>
     </tr>
     <tr>
-      <th>15</th>
+      <td>19</td>
       <td>gemma-3-27b-it</td>
-      <td>24.41(-1.74, +1.83)</td>
+      <td>26.53(-1.97, +2.03)</td>
       <td>1654</td>
     </tr>
     <tr>
-      <th>16</th>
+      <td>20</td>
       <td>gemini-2.0-flash-lite-001</td>
-      <td>22.94(-1.75, +1.92)</td>
+      <td>25.0(-1.96, +2.13)</td>
       <td>2196</td>
     </tr>
     <tr>
-      <th>17</th>
-      <td>claude-3.5-sonnet-20240620</td>
-      <td>21.8(-2.41, +2.10)</td>
-      <td>628</td>
-    </tr>
-    <tr>
-      <th>18</th>
+      <td>21</td>
       <td>deepseek-v3</td>
-      <td>21.62(-1.79, +1.75)</td>
+      <td>23.77(-1.84, +1.73)</td>
       <td>1007</td>
     </tr>
     <tr>
-      <th>19</th>
+      <td>22</td>
+      <td>claude-3.5-sonnet-20240620</td>
+      <td>23.46(-2.43, +2.33)</td>
+      <td>628</td>
+    </tr>
+    <tr>
+      <td>23</td>
       <td>jamba-1.6-large</td>
-      <td>15.8(-1.42, +1.55)</td>
+      <td>17.5(-1.53, +1.56)</td>
       <td>859</td>
     </tr>
     <tr>
-      <th>20</th>
+      <td>24</td>
       <td>grok-2-1212</td>
-      <td>15.67(-1.61, +1.65)</td>
+      <td>17.09(-1.58, +1.71)</td>
       <td>898</td>
     </tr>
     <tr>
-      <th>21</th>
+      <td>25</td>
       <td>minimax-01</td>
-      <td>15.18(-2.09, +2.23)</td>
+      <td>16.73(-2.13, +2.37)</td>
       <td>370</td>
     </tr>
     <tr>
-      <th>22</th>
+      <td>26</td>
+      <td><span class="model-tag model-judge">gpt-4o-mini (judge)</span></td>
+      <td>16.66(-1.74, +1.56)</td>
+      <td>830</td>
+    </tr>
+    <tr>
+      <td>27</td>
       <td>nova-pro-v1</td>
-      <td>14.87(-1.52, +1.52)</td>
+      <td>16.33(-1.57, +1.63)</td>
       <td>905</td>
     </tr>
     <tr>
-      <th>23</th>
+      <td>28</td>
       <td>qwen-2.5-72b-instruct</td>
-      <td>14.68(-1.28, +1.35)</td>
+      <td>16.15(-1.37, +1.46)</td>
       <td>1097</td>
     </tr>
     <tr>
-      <th>24</th>
-      <td><strong style="color: darkred">gpt-4o-mini (judge)</strong></td>
-      <td>14.09(-1.41, +1.55)</td>
-      <td>890</td>
-    </tr>
-    <tr>
-      <th>25</th>
+      <td>29</td>
       <td>mistral-large-2411</td>
-      <td>13.37(-1.29, +1.46)</td>
+      <td>14.65(-1.47, +1.56)</td>
       <td>906</td>
     </tr>
     <tr>
-      <th>26</th>
-      <td>gpt-4-1106-preview</td>
-      <td>11.94(-1.41, +1.36)</td>
-      <td>846</td>
-    </tr>
-    <tr>
-      <th>27</th>
+      <td>30</td>
       <td>gemma-2-27b-it</td>
-      <td>11.75(-1.40, +1.30)</td>
+      <td>12.89(-1.48, +1.50)</td>
       <td>794</td>
     </tr>
     <tr>
-      <th>28</th>
+      <td>31</td>
+      <td>gpt-4-1106-preview</td>
+      <td>12.65(-1.34, +1.43)</td>
+      <td>840</td>
+    </tr>
+    <tr>
+      <td>32</td>
       <td>mistral-small-3.1-24b-instruct-2503</td>
-      <td>9.79(-1.11, +1.30)</td>
+      <td>10.8(-1.19, +1.32)</td>
       <td>961</td>
     </tr>
     <tr>
-      <th>29</th>
+      <td>33</td>
       <td>command-r-plus-08-2024</td>
-      <td>9.38(-1.16, +1.15)</td>
+      <td>10.18(-1.24, +1.24)</td>
       <td>969</td>
     </tr>
     <tr>
-      <th>30</th>
+      <td>34</td>
       <td>nova-lite-v1</td>
-      <td>8.84(-0.99, +1.04)</td>
+      <td>9.78(-1.19, +1.11)</td>
       <td>994</td>
     </tr>
     <tr>
-      <th>31</th>
+      <td>35</td>
       <td>wizardlm-2-8x22b</td>
-      <td>8.79(-1.00, +1.09)</td>
+      <td>9.62(-1.10, +1.09)</td>
       <td>1028</td>
     </tr>
     <tr>
-      <th>32</th>
+      <td>36</td>
       <td>lfm-7b</td>
-      <td>8.4(-0.91, +1.00)</td>
+      <td>9.31(-1.01, +0.97)</td>
       <td>1011</td>
     </tr>
     <tr>
-      <th>33</th>
+      <td>37</td>
       <td>qwen2.5-32b-instruct</td>
-      <td>8.19(-1.13, +1.16)</td>
+      <td>8.85(-1.10, +1.29)</td>
       <td>795</td>
     </tr>
     <tr>
-      <th>34</th>
+      <td>38</td>
       <td>mistral-small-24b-instruct-2501</td>
-      <td>7.81(-1.12, +1.15)</td>
+      <td>8.57(-1.14, +1.20)</td>
       <td>998</td>
     </tr>
     <tr>
-      <th>35</th>
+      <td>39</td>
       <td>hermes-3-llama-3.1-405b</td>
-      <td>7.6(-1.03, +1.21)</td>
+      <td>8.28(-1.11, +1.28)</td>
       <td>771</td>
     </tr>
     <tr>
-      <th>36</th>
+      <td>40</td>
       <td>hermes-3-llama-3.1-70b</td>
-      <td>7.13(-1.04, +1.14)</td>
+      <td>7.77(-1.10, +1.18)</td>
       <td>771</td>
     </tr>
     <tr>
-      <th>37</th>
+      <td>41</td>
       <td>gemma-2-9b-it</td>
-      <td>6.9(-0.96, +1.15)</td>
+      <td>7.59(-1.06, +1.25)</td>
       <td>751</td>
     </tr>
     <tr>
-      <th>38</th>
+      <td>42</td>
       <td>command-r-08-2024</td>
-      <td>6.08(-1.04, +1.08)</td>
+      <td>6.61(-1.12, +1.20)</td>
       <td>796</td>
     </tr>
     <tr>
-      <th>39</th>
+      <td>43</td>
       <td>nova-micro-v1</td>
-      <td>6.0(-0.82, +0.84)</td>
+      <td>6.6(-0.90, +0.94)</td>
       <td>927</td>
     </tr>
     <tr>
-      <th>40</th>
+      <td>44</td>
       <td>lfm-40b</td>
-      <td>5.31(-0.82, +0.88)</td>
+      <td>5.81(-0.81, +0.89)</td>
       <td>863</td>
     </tr>
     <tr>
-      <th>41</th>
+      <td>45</td>
       <td>llama-3.3-70b-instruct</td>
-      <td>4.93(-0.99, +0.96)</td>
+      <td>5.37(-0.98, +1.03)</td>
       <td>809</td>
     </tr>
     <tr>
-      <th>42</th>
+      <td>46</td>
       <td>command-r7b-12-2024</td>
-      <td>4.56(-0.77, +0.82)</td>
+      <td>4.99(-0.85, +0.90)</td>
       <td>882</td>
     </tr>
     <tr>
-      <th>43</th>
-      <td>qwen-2.5-7b-instruct</td>
-      <td>3.23(-0.71, +0.90)</td>
-      <td>844</td>
-    </tr>
-    <tr>
-      <th>44</th>
+      <td>47</td>
       <td>lfm-3b</td>
-      <td>3.22(-0.56, +0.56)</td>
+      <td>3.59(-0.64, +0.67)</td>
       <td>776</td>
     </tr>
     <tr>
-      <th>45</th>
+      <td>48</td>
+      <td>qwen-2.5-7b-instruct</td>
+      <td>3.58(-0.76, +0.99)</td>
+      <td>844</td>
+    </tr>
+    <tr>
+      <td>49</td>
       <td>olmo-2-0325-32b-instruct</td>
-      <td>3.02(-0.53, +0.57)</td>
+      <td>3.33(-0.55, +0.63)</td>
       <td>890</td>
     </tr>
     <tr>
-      <th>46</th>
+      <td>50</td>
       <td>jamba-1.6-mini</td>
-      <td>2.26(-0.46, +0.53)</td>
+      <td>2.57(-0.53, +0.60)</td>
       <td>920</td>
     </tr>
     <tr>
-      <th>47</th>
+      <td>51</td>
       <td>llama-3.1-nemotron-70b-instruct</td>
-      <td>2.06(-0.36, +0.37)</td>
+      <td>2.34(-0.40, +0.42)</td>
       <td>1854</td>
     </tr>
     <tr>
-      <th>48</th>
+      <td>52</td>
       <td>llama-3.1-405b-instruct</td>
-      <td>0.81(-0.20, +0.24)</td>
+      <td>0.9(-0.22, +0.29)</td>
       <td>1735</td>
     </tr>
     <tr>
-      <th>49</th>
+      <td>53</td>
       <td>llama-3.1-70b-instruct</td>
-      <td>0.49(-0.12, +0.14)</td>
+      <td>0.54(-0.13, +0.15)</td>
       <td>1923</td>
     </tr>
     <tr>
-      <th>50</th>
+      <td>54</td>
       <td>llama-3.1-8b-instruct</td>
-      <td>0.07(-0.02, +0.02)</td>
+      <td>0.08(-0.03, +0.02)</td>
       <td>5081</td>
     </tr>
   </tbody>
