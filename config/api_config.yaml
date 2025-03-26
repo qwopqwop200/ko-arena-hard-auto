@@ -405,3 +405,27 @@ deepseek-chat-v3-0324:
           api_key: # Place your api_key
     api_type: openai
     parallel: 32
+
+gemini-2.0-flash-thinking-exp-01-21:
+    model_name: gemini-2.0-flash-thinking-exp-01-21
+    endpoints:
+        - api_base: https://generativelanguage.googleapis.com/v1beta/openai/
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 5
+
+gemini-2.5-pro-exp-03-25:
+    model_name: gemini-2.5-pro-exp-03-25
+    endpoints:
+        - api_base: https://generativelanguage.googleapis.com/v1beta/openai/
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 3
+
+deepseek-r1:
+    model_name: deepseek/deepseek-r1
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 32

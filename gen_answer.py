@@ -27,26 +27,15 @@ from utils import (
     http_completion_gemini,
     chat_completion_cohere,
     reorg_answer_file,
-    OPENAI_MODEL_LIST,
-    temperature_config,
 )
 
 
 def get_answer(
     question: dict, model: str, endpoint_info: dict, num_choices: int, max_tokens: int, temperature: float, answer_file: str, api_dict: dict
 ):
-    if question["category"] in temperature_config:
-        temperature = temperature_config[question["category"]]
-
     api_type = endpoint_info["api_type"]
 
     conv = []
-
-    if "system_prompt" in endpoint_info.keys():
-        conv.append({"role": "system", "content": endpoint_info["system_prompt"]})
-    elif model in OPENAI_MODEL_LIST:
-        conv.append({"role": "system", "content": "You are a helpful assistant."})
-
     encoding = tiktoken.encoding_for_model("gpt-3.5-turbo")
     choices = []
     for i in range(num_choices):
@@ -146,18 +135,13 @@ if __name__ == "__main__":
         # We want to maximizes the number of tokens generate per answer: max_tokens = specified token # - input tokens #
         if "tokenizer" in endpoint_info:
             question_list = [question["turns"][0]["content"] for question in questions]
-            if model in OPENAI_MODEL_LIST:
-                tokenizer = tiktoken.encoding_for_model(endpoint_info["model_name"])
-                tokens = [tokenizer.encode(prompt) for prompt in question_list]
-                max_tokens = [(settings["max_tokens"] - len(token) - 100) for token in tokens]
-            else:
-                from transformers import AutoTokenizer
+            from transformers import AutoTokenizer
                 
-                os.environ["TOKENIZERS_PARALLELISM"] = "false"
-                tokenizer = AutoTokenizer.from_pretrained(endpoint_info["tokenizer"])
+            os.environ["TOKENIZERS_PARALLELISM"] = "false"
+            tokenizer = AutoTokenizer.from_pretrained(endpoint_info["tokenizer"])
 
-                tokens = tokenizer(question_list)
-                max_tokens = [(settings["max_tokens"] - len(prompt) - 300) for prompt in tokens["input_ids"]]
+            tokens = tokenizer(question_list)
+            max_tokens = [(settings["max_tokens"] - len(prompt) - 300) for prompt in tokens["input_ids"]]
         else:
             max_tokens = [settings["max_tokens"]] * len(questions)
 

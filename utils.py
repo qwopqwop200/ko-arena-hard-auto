@@ -13,47 +13,6 @@ API_MAX_RETRY = 16
 API_RETRY_SLEEP = 10
 API_ERROR_OUTPUT = "$ERROR$"
 
-
-OPENAI_MODEL_LIST = (
-    "gpt-3.5-turbo",
-    "gpt-3.5-turbo-16k",
-    "gpt-3.5-turbo-0301",
-    "gpt-3.5-turbo-0613",
-    "gpt-3.5-turbo-0613-verbose",
-    "gpt-3.5-turbo-1106",
-    "gpt-3.5-turbo-0125",
-    "gpt-3.5-turbo-instruct",
-    "gpt-3.5-turbo-instruct-0914",
-    "gpt-4",
-    "gpt-4-0314",
-    "gpt-4-0613",
-    "gpt-4-turbo",
-    "gpt-4-turbo-preview",
-    "gpt-4-1106-preview",
-    "gpt-4-0125-preview",
-    "gpt-4-turbo-2024-04-09",
-    "gpt-4o",
-    "gpt-4o-2024-08-06",
-    "gpt-4o-2024-05-13",
-    "gpt-4o-2024-11-20",
-    "gpt-4o-mini",
-    "gpt-4o-mini-2024-07-18",
-    "chatgpt-4o-latest",
-)
-
-
-temperature_config = {
-    "writing": 0.7,
-    "roleplay": 0.7,
-    "extraction": 0.0,
-    "math": 0.0,
-    "coding": 0.0,
-    "reasoning": 0.0,
-    "stem": 0.1,
-    "humanities": 0.1,
-}
-
-
 def load_questions(question_file: str):
     """Load questions from a file."""
     questions = []
