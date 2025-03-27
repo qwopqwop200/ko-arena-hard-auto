@@ -65,16 +65,15 @@ model_to_organization = {
 }
 
 # --- Translation Data ---
-# Removed 'search_label', updated 'search_placeholder'
+# (Keep the existing translations dictionary)
 translations = {
     'ko': {
         'title': "Ko-Arena-Hard 리더보드 ({{update_date}})",
         'heading': "Ko-Arena-Hard-Auto 리더보드 ({{update_date}})",
         'notice': '<strong style="color: var(--judge-color-text)">주의:</strong> judge 모델(gemini-2.0-flash, gpt-4o-mini)은 자체 답변 선호 경향으로 인해 실제 성능보다 점수가 높게 나타날 수 있습니다. 해당 모델들의 점수 해석 시 유의하시기 바랍니다.', # Use variable for strong color
         'select_leaderboard_label': "리더보드 선택:",
-        'select_language_label': "언어 선택:",
-        # 'search_label': "모델 검색:", # Removed
-        'search_placeholder': "모델명 검색...", # Updated placeholder
+        'select_language_label': "Select Language:",
+        'search_placeholder': "모델명 검색...",
         'lang_ko': "한국어",
         'lang_en': "English",
         'col_rank': "순위",
@@ -94,8 +93,7 @@ translations = {
         'notice': '<strong style="color: var(--judge-color-text)">Caution:</strong> Judge models (gemini-2.0-flash, gpt-4o-mini) may show inflated scores due to self-preference bias. Please interpret their scores with caution.', # Use variable for strong color
         'select_leaderboard_label': "Select Leaderboard:",
         'select_language_label': "Select Language:",
-        # 'search_label': "Search Model:", # Removed
-        'search_placeholder': "Search model name...", # Updated placeholder
+        'search_placeholder': "Search model name...",
         'lang_ko': "한국어",
         'lang_en': "English",
         'col_rank': "Rank",
@@ -113,7 +111,7 @@ translations = {
 
 # --- Helper Functions ---
 
-# (Keep get_latest_leaderboard_dir, process_leaderboard_csv, generate_table_html as is)
+# (Keep get_latest_leaderboard_dir and process_leaderboard_csv as is)
 def get_latest_leaderboard_dir(base_directory: str) -> tuple[str, str]:
     dir_pattern = re.compile(r"arena_hard_leaderboard_(\d{8})_ensemble")
     latest_date = None
@@ -160,6 +158,8 @@ def process_leaderboard_csv(csv_path: str) -> pd.DataFrame | None:
         return df_html
     except Exception as e: print(f"Error processing CSV {csv_path}: {e}"); import traceback; traceback.print_exc(); return None
 
+
+# --- MODIFIED FUNCTION ---
 def generate_table_html(df: pd.DataFrame) -> str:
     numeric_cols = ['col_rank', 'col_score', 'col_elo', 'col_tokens']
     header_keys = ['col_rank', 'col_model', 'col_org', 'col_score', 'col_elo', 'col_tokens']
@@ -179,10 +179,26 @@ def generate_table_html(df: pd.DataFrame) -> str:
             data_value = row[data_col]
             # Ensure data_value is properly escaped for the attribute
             data_value_attr = html.escape(str(data_value), quote=True)
-            html_string += f'<td data-sort-value="{data_value_attr}">{display_value}</td>\n'
+
+            # --- Add medal emojis for Rank column display ---
+            cell_content = display_value # Default content is the original display value
+            if key == 'col_rank':
+                rank_num = row[key] # Get the actual numeric rank
+                if rank_num == 1:
+                    cell_content = f'🥇' # Prepend gold medal
+                elif rank_num == 2:
+                    cell_content = f'🥈' # Prepend silver medal
+                elif rank_num == 3:
+                    cell_content = f'🥉' # Prepend bronze medal
+                # For ranks > 3, cell_content remains the original rank number
+            # --- End medal emoji logic ---
+
+            # Use the modified cell_content for display, but keep original data_value for sorting
+            html_string += f'<td data-sort-value="{data_value_attr}">{cell_content}</td>\n'
         html_string += '</tr>\n'
     html_string += '</tbody>\n</table>'
     return html_string
+# --- END MODIFIED FUNCTION ---
 
 
 # --- Main Execution ---
@@ -215,6 +231,7 @@ if __name__ == '__main__':
             csv_path = os.path.join(latest_dir, lb_type['filename'])
             df_processed = process_leaderboard_csv(csv_path)
             if df_processed is not None:
+                # Use the MODIFIED generate_table_html function
                 table_html = generate_table_html(df_processed)
                 processed_data[lb_type['id']] = {'translate_key': lb_type['translate_key'], 'table_html': table_html}
                 selected_attr = ' selected' if lb_type['id'] == default_leaderboard_id else ''
@@ -227,7 +244,7 @@ if __name__ == '__main__':
         if not processed_data: raise ValueError(f"No valid leaderboard CSV files found in {latest_dir}")
 
         # --- Generate Dropdown/Search HTML ---
-        # Language Dropdown
+        # (Keep this section as is)
         language_dropdown_html = f"""
           <label for="language-select" data-translate-key="select_language_label"></label>
           <select id="language-select">
@@ -235,16 +252,14 @@ if __name__ == '__main__':
             <option value="en" data-translate-key="lang_en"{' selected' if default_lang == 'en' else ''}></option>
           </select>
         """
-        # Search Input (Only the input field, label removed)
         search_input_html = f"""
          <input type="text" id="model-search-input" placeholder="" data-translate-key-placeholder="search_placeholder">
         """
-        # Translations JSON
         translations_json = json.dumps(translations, ensure_ascii=False, indent=None)
 
 
         # --- HTML Template ---
-        # Applied various CSS enhancements for a "prettier" look. Removed search label.
+        # (Keep the HTML template string as is, including the <style> block)
         html_template = """
         <!DOCTYPE html>
         <html lang="{default_lang}">
@@ -335,7 +350,6 @@ if __name__ == '__main__':
                 font-weight: 700;
                 color: var(--text-muted);
                 font-size: 0.8em; /* Smaller label */
-                text-transform: uppercase;
                 letter-spacing: 0.05em;
                 padding-left: 2px; /* Slight indent */
             }}
@@ -621,9 +635,7 @@ if __name__ == '__main__':
         """
 
         # --- JavaScript Section ---
-        # Moved JS into its own placeholder for better readability
-        # Moved JS into its own placeholder for better readability
-        # NOTE: Escaped curly braces in JSDoc comments (e.g., {{HTMLTableElement}}) to prevent Python format errors
+        # (Keep the scripts_section_html string as is)
         scripts_section_html = f"""
           <script>
             // --- Configuration ---
@@ -643,7 +655,7 @@ if __name__ == '__main__':
 
             /**
              * Gets the currently visible table element.
-             * @returns {{HTMLTableElement | null}} The visible table or null. <--- CORRECTED
+             * @returns {{HTMLTableElement | null}} The visible table or null.
              */
             function getVisibleTable() {{
               var visibleContainer = document.querySelector('.table-container[style*="display: block"]');
@@ -652,7 +664,7 @@ if __name__ == '__main__':
 
             /**
              * Updates text content and placeholders based on the selected language.
-             * @param {{string}} lang - The language code (e.g., 'ko', 'en'). <--- CORRECTED
+             * @param {{string}} lang - The language code (e.g., 'ko', 'en').
              */
             function updateTranslations(lang) {{
               document.documentElement.lang = lang; // Update html lang attribute
@@ -679,7 +691,7 @@ if __name__ == '__main__':
                   translatedText = key; // Use key as fallback text
                 }}
 
-                // Replace dynamic values like update_date - Use double braces {{}} for literal braces
+                // Replace dynamic values like update_date - Use double braces {{{{}}}} for literal braces
                 translatedText = translatedText.replace('{{{{update_date}}}}', updateDate); // Correctly escape for JS replace inside f-string
 
                 // Update element content or attribute
@@ -735,7 +747,7 @@ if __name__ == '__main__':
 
             /**
              * Updates the visual indicators (arrows) on sortable table headers.
-             * @param {{HTMLTableElement}} table - The table to update indicators for. <--- CORRECTED
+             * @param {{HTMLTableElement}} table - The table to update indicators for.
              */
             function updateSortIndicators(table) {{
                 if (!table) table = getVisibleTable();
@@ -752,9 +764,9 @@ if __name__ == '__main__':
 
             /**
              * Sorts the table rows based on a column key and type.
-             * @param {{string}} key - The data-col-key of the header clicked. <--- CORRECTED
-             * @param {{string}} type - The sort type ('numeric' or 'text'). <--- CORRECTED
-             * @param {{HTMLTableElement}} table - The table to sort. <--- CORRECTED
+             * @param {{string}} key - The data-col-key of the header clicked.
+             * @param {{string}} type - The sort type ('numeric' or 'text').
+             * @param {{HTMLTableElement}} table - The table to sort.
              */
             function sortTable(key, type, table) {{
                 if (!table) table = getVisibleTable();
@@ -826,9 +838,9 @@ if __name__ == '__main__':
 
             /**
              * Gets the 0-based index of a header column by its key.
-             * @param {{HTMLTableElement}} table - The table element. <--- CORRECTED
-             * @param {{string}} key - The data-col-key to find. <--- CORRECTED
-             * @returns {{number}} The index or -1 if not found. <--- CORRECTED
+             * @param {{HTMLTableElement}} table - The table element.
+             * @param {{string}} key - The data-col-key to find.
+             * @returns {{number}} The index or -1 if not found.
              */
             function getHeaderIndex(table, key) {{
                 var headers = table.querySelectorAll('thead th');
@@ -842,9 +854,9 @@ if __name__ == '__main__':
 
             /**
              * Gets the sort type ('numeric' or 'text') for a given column key.
-             * @param {{HTMLTableElement}} table - The table element. <--- CORRECTED
-             * @param {{string}} key - The data-col-key. <--- CORRECTED
-             * @returns {{string}} The sort type ('numeric' or 'text'). <--- CORRECTED
+             * @param {{HTMLTableElement}} table - The table element.
+             * @param {{string}} key - The data-col-key.
+             * @returns {{string}} The sort type ('numeric' or 'text').
              */
             function getHeaderSortType(table, key) {{
                 if (!table || !key) return 'text';
@@ -911,7 +923,7 @@ if __name__ == '__main__':
                 // Apply initial sort to the default visible table
                 var initialTable = getVisibleTable();
                 if (initialTable) {{
-                    // currentSort is already set to default {{ key: 'col_rank', dir: 'desc' }}
+                    // currentSort is already set to default {{{{ key: 'col_rank', dir: 'desc' }}}}
                     sortTable(currentSort.key, getHeaderSortType(initialTable, currentSort.key), initialTable);
                 }}
                 // Apply initial filter (if any search term is pre-filled, though unlikely here)
@@ -921,11 +933,10 @@ if __name__ == '__main__':
           """
 
         # --- Generate Final HTML ---
-        # Format the final HTML with the updated template structure and scripts
+        # (Keep this section as is)
         final_html = html_template.format(
             default_lang=default_lang,
             update_date=update_date,
-            # title_placeholder, heading_placeholder etc are now handled by JS
             leaderboard_dropdown_options=leaderboard_dropdown_options_html,
             language_dropdown=language_dropdown_html,
             search_input_html=search_input_html,
@@ -935,7 +946,7 @@ if __name__ == '__main__':
 
         with open(output_html_path, 'w', encoding='utf-8') as f:
             f.write(final_html)
-        print(f"Leaderboard HTML successfully generated with enhanced styling and structure at: {output_html_path}")
+        print(f"Leaderboard HTML successfully generated with medal emojis at: {output_html_path}")
 
     except FileNotFoundError as e: print(f"Error: {e}")
     except ValueError as e: print(f"Error: {e}")
