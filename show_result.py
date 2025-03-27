@@ -7,7 +7,7 @@ import os
 
 from glob import glob
 from tqdm import tqdm
-
+from warnings import warn
 from utils import load_model_answers
 from utils_math import (
     compute_mle_elo, 
@@ -133,67 +133,53 @@ def get_battles_from_judgment(bench_name,
     battles.to_json("data/arena_hard_battles.jsonl", orient="records", lines=True)
     return battles
 
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--bench-name", type=str, default="ko-arena-hard-v0.1")
-    # parser.add_argument("--judge-name", type=str, default="gpt-4o-mini")
-    parser.add_argument("--judge-name", type=str, default="ensemble")
-    parser.add_argument("--baseline", type=str, default="claude-3.7-sonnet")
-    parser.add_argument("--load-bootstrap", action="store_true")
-    parser.add_argument("--show-elo", action="store_true")
-    parser.add_argument("--weight", type=int, default=3)
-    parser.add_argument("--num-rounds", type=int, default=100)
-    parser.add_argument("--output", action="store_true")
-    parser.add_argument("--first-game-only", action="store_true")
-    parser.add_argument("--style-control", action="store_true")
-    parser.add_argument("--length-control-only", action="store_true")
-    parser.add_argument("--markdown-control-only", action="store_true")
-    args = parser.parse_args()
-    print(args)
+def gen_leaderboard(args):
     assert not args.load_bootstrap or (args.load_battles and args.load_bootstrap), "If loading prexisting bootstrapping data, you must also load preexisting battles."
     assert sum([args.style_control, args.length_control_only, args.markdown_control_only]) < 2, "You can only control one of the three: length, markdown, or both style."
 
     answer_dir = os.path.join("data", args.bench_name, "model_answer")
     model_answers = load_model_answers(answer_dir)
-    
-    battles = get_battles_from_judgment(args.bench_name, 
-                                        args.judge_name, 
-                                        args.first_game_only, 
-                                        args.weight, 
+
+    battles = get_battles_from_judgment(args.bench_name,
+                                        args.judge_name,
+                                        args.first_game_only,
+                                        args.weight,
                                         args.baseline,
                                         args.style_control or args.length_control_only or args.markdown_control_only)
-    
+
     if args.style_control:
         X, Y, models = construct_style_matrices(battles)
         bt_model_coef, style_coef = fit_bt(X, Y, models, baseline_model=args.baseline)
-        bootstrap_model_coef, _ = get_bootstrap_result_style_control(X, Y, battles, models, 
-                                                                     fit_bt, 
-                                                                     num_round=args.num_rounds, 
+        bootstrap_model_coef, _ = get_bootstrap_result_style_control(X, Y, battles, models,
+                                                                     fit_bt,
+                                                                     num_round=args.num_rounds,
                                                                      baseline_model=args.baseline)
-        display_coefs = {STYLE_CONTROL_ELEMENTS[i]: round(style_coef[i], 3) for i in range(len(STYLE_CONTROL_ELEMENTS) // 2)}
+        display_coefs = {STYLE_CONTROL_ELEMENTS[i]: round(style_coef[i], 3) for i in
+                         range(len(STYLE_CONTROL_ELEMENTS) // 2)}
         print(f"Style Coefficients: {display_coefs}")
     elif args.length_control_only:
-        X, Y, models = construct_style_matrices(battles, 
-                                                apply_ratio=[1], 
+        X, Y, models = construct_style_matrices(battles,
+                                                apply_ratio=[1],
                                                 style_elements=LENGTH_CONTROL_ELEMENTS)
         bt_model_coef, style_coef = fit_bt(X, Y, models, baseline_model=args.baseline)
-        bootstrap_model_coef, _ = get_bootstrap_result_style_control(X, Y, battles, models, 
-                                                                     fit_bt, 
-                                                                     num_round=args.num_rounds, 
+        bootstrap_model_coef, _ = get_bootstrap_result_style_control(X, Y, battles, models,
+                                                                     fit_bt,
+                                                                     num_round=args.num_rounds,
                                                                      baseline_model=args.baseline)
-        display_coefs = {LENGTH_CONTROL_ELEMENTS[i]: round(style_coef[i], 3) for i in range(len(LENGTH_CONTROL_ELEMENTS) // 2)}
+        display_coefs = {LENGTH_CONTROL_ELEMENTS[i]: round(style_coef[i], 3) for i in
+                         range(len(LENGTH_CONTROL_ELEMENTS) // 2)}
         print(f"Style Coefficients: {display_coefs}")
     elif args.markdown_control_only:
-        X, Y, models = construct_style_matrices(battles, 
-                                                apply_ratio=[1, 1, 1], 
+        X, Y, models = construct_style_matrices(battles,
+                                                apply_ratio=[1, 1, 1],
                                                 style_elements=MARKDOWN_CONTROL_ELEMENTS)
         bt_model_coef, style_coef = fit_bt(X, Y, models, baseline_model=args.baseline)
-        bootstrap_model_coef, _ = get_bootstrap_result_style_control(X, Y, battles, models, 
-                                                                     fit_bt, 
-                                                                     num_round=args.num_rounds, 
+        bootstrap_model_coef, _ = get_bootstrap_result_style_control(X, Y, battles, models,
+                                                                     fit_bt,
+                                                                     num_round=args.num_rounds,
                                                                      baseline_model=args.baseline)
-        display_coefs = {MARKDOWN_CONTROL_ELEMENTS[i]: round(style_coef[i], 3) for i in range(len(MARKDOWN_CONTROL_ELEMENTS) // 2)}
+        display_coefs = {MARKDOWN_CONTROL_ELEMENTS[i]: round(style_coef[i], 3) for i in
+                         range(len(MARKDOWN_CONTROL_ELEMENTS) // 2)}
         print(f"Style Coefficients: {display_coefs}")
     else:
         bt_model_coef = compute_mle_elo(battles, baseline_model=args.baseline)
@@ -223,42 +209,90 @@ if __name__ == "__main__":
 
         stats.at[i, "avg_tokens"] = int(length)
         stats.at[i, "results"] = bootstrap_model_coef[model].tolist()
-    
-    if not args.show_elo:
-        stats.sort_values(by="model", inplace=True)
-        stats["score"] = get_win_rate_column(stats, "score", args.baseline).tolist()
-        stats["lower"] = get_win_rate_column(stats, "lower", args.baseline).tolist()
-        stats["upper"] = get_win_rate_column(stats, "upper", args.baseline).tolist()
-        decimal = 1
-    else:
-        decimal = 0
-        stats = stats.astype({"score" : int, "lower" : int, "upper" : int})
-    
+
+    stats.sort_values(by="model", inplace=True)
+    stats["elo_score"] = stats["score"]
+    stats["elo_lower"] = stats["lower"]
+    stats["elo_upper"] = stats["upper"]
+
+    stats["score"] = get_win_rate_column(stats, "score", args.baseline).tolist()
+    stats["lower"] = get_win_rate_column(stats, "lower", args.baseline).tolist()
+    stats["upper"] = get_win_rate_column(stats, "upper", args.baseline).tolist()
+
     stats.sort_values(by="score", ascending=False, inplace=True)
-    for _, row in stats.iterrows():
-        interval = str((round(row['lower'] - row['score'], decimal), round(row['upper'] - row['score'], decimal)))
-        print(f"{row['model'] : <30} | score: {round(row['score'], decimal) : ^5} | 95% CI: {interval : ^12} | average #tokens: {int(row['avg_tokens'])}")
+    cur_date = datetime.datetime.now()
+    date_str = cur_date.strftime("%Y%m%d")
+    stats = stats.drop(columns=['results'])
+    CI = []
+    for i in range(len(stats)):
+        score = stats.iloc[i]['score']
+        upper = stats.iloc[i]['upper']
+        lower = stats.iloc[i]['lower']
+        CI.append(f"(-{(score - lower):.2f}, +{(upper - score):.2f})")
 
-    # If outputting leaderboard to a csv file.
-    if args.output:
-        cur_date = datetime.datetime.now()
-        date_str = cur_date.strftime("%Y%m%d")
-        stats = stats.drop(columns=['results'])
-        CI = []
-        for i in range(len(stats)):
-            score = stats.iloc[i]['score']
-            upper = stats.iloc[i]['upper']
-            lower = stats.iloc[i]['lower']
-            CI.append(f"(-{(score-lower):.2f}, +{(upper-score):.2f})")
+    stats["CI"] = CI
+    col_list = list(stats)
+    stats = stats.loc[:, col_list]
+    stats.rename(columns={'upper': 'rating_q975'}, inplace=True)
+    stats.rename(columns={'lower': 'rating_q025'}, inplace=True)
 
-        stats["CI"] = CI
-        col_list = list(stats)
-        stats = stats.loc[:,col_list]
-        stats.rename(columns={'upper': 'rating_q975'}, inplace=True)
-        stats.rename(columns={'lower': 'rating_q025'}, inplace=True)
+    elo_CI = []
+    for i in range(len(stats)):
+        score = stats.iloc[i]['elo_score']
+        upper = stats.iloc[i]['elo_upper']
+        lower = stats.iloc[i]['elo_lower']
+        elo_CI.append(f"(-{(score - lower):.2f}, +{(upper - score):.2f})")
 
-        col_list = list(stats)
-        col_list[-2], col_list[-1] = col_list[-1], col_list[-2]
-        stats = stats.loc[:,col_list]
-        stats['date'] = date_str[:4] + '-' + date_str[4:6] + '-' + date_str[6:]
-        stats.to_csv(f"leaderboard/arena_hard_leaderboard_{date_str}_{args.judge_name}.csv", index=False)
+    stats["elo_CI"] = elo_CI
+    stats.rename(columns={'elo_upper': 'elo_rating_q975'}, inplace=True)
+    stats.rename(columns={'elo_lower': 'elo_rating_q025'}, inplace=True)
+
+    col_list = list(stats)
+    col_list[-2], col_list[-1] = col_list[-1], col_list[-2]
+    stats = stats.loc[:, col_list]
+    stats['date'] = date_str[:4] + '-' + date_str[4:6] + '-' + date_str[6:]
+
+    if args.style_control:
+        control = "style_control"
+    elif args.length_control_only:
+        control = "length_control"
+    elif args.markdown_control_only:
+        control = "markdown_control"
+    else:
+        control = "no_control"
+
+    os.makedirs(f"leaderboard/arena_hard_leaderboard_{date_str}_{args.judge_name}", exist_ok=True)
+    output_path = f"leaderboard/arena_hard_leaderboard_{date_str}_{args.judge_name}/{control}.csv"
+    stats.to_csv(output_path, index=False)
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--bench-name", type=str, default="ko-arena-hard-v0.1")
+    parser.add_argument("--judge-name", type=str, default="ensemble")
+    parser.add_argument("--baseline", type=str, default="claude-3.7-sonnet")
+    parser.add_argument("--load-bootstrap", action="store_true")
+    parser.add_argument("--weight", type=int, default=3)
+    parser.add_argument("--num-rounds", type=int, default=100)
+    parser.add_argument("--first-game-only", action="store_true")
+    args = parser.parse_args()
+
+    # no control
+    args.style_control = False
+    args.length_control_only = False
+    args.markdown_control_only = False
+    gen_leaderboard(args)
+
+    # style control
+    args.style_control = True
+    gen_leaderboard(args)
+
+    # length control
+    args.style_control = False
+    args.length_control_only = True
+    gen_leaderboard(args)
+
+    # markdown control
+    args.length_control_only = False
+    args.markdown_control_only = True
+    gen_leaderboard(args)
