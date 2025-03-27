@@ -1,4 +1,5 @@
 # Ko-Arena-Hard-Auto
+한국어 / [English](README_EN.md)
 
 [리더보드](https://qwopqwop200.github.io/ko-arena-hard-auto/leaderboard.html) / [데이터셋](https://huggingface.co/datasets/qwopqwop/ko-arena-hard-auto-v0.1)
 
