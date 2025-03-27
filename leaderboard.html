@@ -1,539 +1,2460 @@
 
-    <!DOCTYPE html>
-    <html lang="ko">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Ko-Arena-Hard Leaderboard (2025-03-26)</title>
-      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-      <style>
-        :root {
-          --primary-color: #008080;
-          --secondary-color: #ffffff;
-          --accent-color: #FFD700;
-          --text-color: #333;
-          --light-gray: #f8f9fa;
-          --medium-gray: #e9ecef;
-          --dark-gray: #6c757d;
-          --judge-color: #dc3545;
-          --judge-bg: #f8d7da;
-          --baseline-color: #007bff;
-          --baseline-bg: #cfe2ff;
-          --border-radius: 8px;
-          --box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-        }
+        <!DOCTYPE html>
+        <html lang="ko">
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title data-translate-key="title"></title>
+          <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+          <style>
+            /* --- Professional Frontend/Artist CSS Enhancements --- */
+            :root {
+              --primary-color: #00796b; /* Teal */
+              --primary-darker: #004d40;
+              --secondary-color: #ffffff; /* White */
+              --accent-color: #ffc107; /* Amber */
+              --text-color: #212529; /* Dark Gray - Good contrast */
+              --text-muted: #6c757d; /* Medium Gray */
+              --light-gray: #f8f9fa; /* Very Light Gray */
+              --medium-gray: #e9ecef; /* Light Gray */
+              --border-color: #dee2e6; /* Standard Border Gray */
+              --judge-color-border: #e3342f; /* Red */
+              --judge-color-text: #cc1f1a;
+              --judge-bg: #fcebea;
+              --baseline-color-border: #3490dc; /* Blue */
+              --baseline-color-text: #2779bd;
+              --baseline-bg: #eaf4fc;
+              --border-radius: 6px;
+              --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+              --box-shadow-focus: 0 0 0 3px rgba(0, 121, 107, 0.25); /* Focus shadow using primary color */
+              --input-bg: #fff;
+              --sort-indicator-active: var(--primary-color);
+              --sort-indicator-inactive: #adb5bd; /* Lighter gray for inactive arrows */
+            }
 
-        body {
-          font-family: 'Noto Sans KR', 'Roboto', sans-serif;
-          background: linear-gradient(135deg, #e0f2f1, #ffffff);
-          margin: 0;
-          padding: 30px 15px;
-          color: var(--text-color);
-          line-height: 1.6;
-        }
+            /* --- Base & Layout --- */
+            *, *::before, *::after { box-sizing: border-box; }
 
-        .container {
-          max-width: 1100px;
-          margin: 30px auto;
-          background: var(--secondary-color);
-          padding: 30px 40px;
-          border-radius: var(--border-radius);
-          box-shadow: var(--box-shadow);
-        }
+            body {
+              font-family: 'Noto Sans KR', 'Roboto', sans-serif;
+              background-color: var(--light-gray);
+              margin: 0;
+              padding: 25px 15px; /* More vertical padding */
+              color: var(--text-color);
+              line-height: 1.6;
+              -webkit-font-smoothing: antialiased;
+              -moz-osx-font-smoothing: grayscale;
+            }
 
-        h1 {
-          text-align: center;
-          margin-bottom: 25px;
-          color: var(--primary-color);
-          font-weight: 700;
-        }
-        h1 a {
-             color: inherit;
-             text-decoration: none;
-             transition: color 0.3s ease;
-        }
-        h1 a:hover {
-            color: #005a5a;
-        }
+            .container {
+              max-width: 1200px; /* Slightly wider */
+              margin: 20px auto;
+              background: var(--secondary-color);
+              padding: 40px 50px; /* Generous padding */
+              border-radius: var(--border-radius);
+              box-shadow: var(--box-shadow);
+              border: 1px solid var(--border-color);
+            }
 
-        .notice {
-          background-color: var(--judge-bg);
-          color: var(--judge-color);
-          border-left: 5px solid var(--judge-color);
-          padding: 15px 20px;
-          margin-bottom: 30px;
-          border-radius: 4px;
-          font-size: 0.95em;
-        }
-        .notice strong {
-            color: var(--judge-color);
-        }
-
-        .table-container {
-          overflow-x: auto;
-          -webkit-overflow-scrolling: touch;
-        }
-
-        .leaderboard-table {
-          width: 100%;
-          border-collapse: collapse;
-          margin-top: 20px;
-          font-size: 0.95em;
-        }
-
-        th, td {
-          padding: 14px 18px;
-          text-align: left;
-          vertical-align: middle;
-          border-bottom: 1px solid var(--medium-gray);
-        }
-
-        th {
-          background-color: var(--primary-color);
-          color: var(--secondary-color);
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-          white-space: nowrap;
-        }
-
-        th:first-child, td:first-child {
-          text-align: center;
-          min-width: 50px;
-        }
-        td:first-child {
-          font-weight: 700;
-          color: var(--primary-color);
-          font-size: 1.1em;
-        }
-
-         th:nth-child(3),
-         th:nth-child(4),
-         th:nth-child(5) {
-             text-align: center;
-         }
-         td:nth-child(3),
-         td:nth-child(4),
-         td:nth-child(5) {
-             text-align: center;
-             white-space: nowrap;
-         }
-
-        tr {
-          transition: background-color 0.2s ease-in-out;
-        }
-
-        tr:nth-child(even) {
-          background-color: var(--light-gray);
-        }
-
-        tr:hover {
-          background-color: var(--medium-gray);
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        .model-tag {
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 0.9em;
-            white-space: nowrap;
-        }
-        .model-judge {
-            background-color: var(--judge-bg);
-            color: var(--judge-color);
-            border: 1px solid var(--judge-color);
-            font-weight: 700;
-        }
-        .model-baseline {
-            background-color: var(--baseline-bg);
-            color: var(--baseline-color);
-            border: 1px solid var(--baseline-color);
-            font-weight: 700;
-        }
-
-        @media (max-width: 768px) {
-          .container {
-            padding: 20px;
-          }
-          th, td {
-            padding: 10px 12px;
-          }
-          h1 {
-            font-size: 1.8em;
-          }
-          body {
-             padding: 20px 10px;
-          }
-        }
-
-        @media (max-width: 480px) {
+            /* --- Typography --- */
             h1 {
-                font-size: 1.5em;
+              text-align: center;
+              margin-top: 0;
+              margin-bottom: 35px; /* More space below heading */
+              color: var(--primary-darker);
+              font-weight: 700;
+              font-size: 2.4em; /* Larger heading */
             }
+            h1 a { color: inherit; text-decoration: none; transition: color 0.3s ease; }
+            h1 a:hover { color: var(--primary-color); }
+
+            /* --- Controls (Dropdowns, Search) --- */
+            .controls-container {
+                display: grid;
+                /* Responsive columns: 2 cols default, 1 col on smaller screens */
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 20px 30px; /* Row and column gap */
+                margin-bottom: 30px;
+                align-items: end; /* Align items to the bottom of the grid cell */
+            }
+
+            .control-group {
+                display: flex;
+                flex-direction: column;
+                gap: 8px; /* Space between label and input/select */
+            }
+
+            .control-group label {
+                font-weight: 700;
+                color: var(--text-muted);
+                font-size: 0.8em; /* Smaller label */
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                padding-left: 2px; /* Slight indent */
+            }
+
+            /* Common style for select and text input */
+            .control-group select,
+            .control-group input[type="text"] {
+                padding: 12px 15px; /* Comfortable padding */
+                border-radius: var(--border-radius);
+                border: 1px solid var(--border-color);
+                font-size: 1rem; /* Standard input font size */
+                font-family: inherit;
+                width: 100%;
+                background-color: var(--input-bg);
+                transition: border-color 0.2s ease, box-shadow 0.2s ease;
+                color: var(--text-color);
+                appearance: none; /* Remove default styling */
+                -webkit-appearance: none;
+                -moz-appearance: none;
+            }
+
+             /* Style placeholder text */
+            .control-group input[type="text"]::placeholder {
+                color: var(--text-muted);
+                opacity: 0.7;
+            }
+
+            /* Custom dropdown arrow */
+            .control-group select {
+                cursor: pointer;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%236c757d' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3E%3C/svg%3E");
+                background-repeat: no-repeat;
+                background-position: right 15px center;
+                background-size: 1em;
+                padding-right: 40px; /* Space for arrow */
+            }
+
+            /* Focus styles */
+            .control-group select:focus,
+            .control-group input[type="text"]:focus {
+                outline: none;
+                border-color: var(--primary-color);
+                box-shadow: var(--box-shadow-focus);
+            }
+
+            /* --- Notice --- */
             .notice {
-                font-size: 0.9em;
-                padding: 10px 15px;
+              background-color: var(--judge-bg);
+              color: var(--judge-color-text); /* Use specific text color for better contrast */
+              border-left: 5px solid var(--judge-color-border);
+              padding: 15px 20px;
+              margin-bottom: 30px;
+              border-radius: var(--border-radius);
+              font-size: 0.95em;
             }
-             .leaderboard-table {
-                 font-size: 0.85em;
-             }
-              th, td {
-                padding: 8px 10px;
+            /* Strong tag color already set via variable in translation */
+
+            /* --- Search Container --- */
+            .search-container {
+                margin-bottom: 30px;
+                max-width: 450px; /* Limit width */
+            }
+            /* No label needed here */
+            .search-container .control-group { gap: 0; }
+
+
+            /* --- Table Styling --- */
+            .table-container {
+                overflow-x: auto; /* Essential for responsiveness */
+                -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+                margin-top: 0;
+                border: 1px solid var(--border-color);
+                border-radius: var(--border-radius);
+                box-shadow: 0 2px 6px rgba(0,0,0,0.05); /* Subtle shadow on container */
+            }
+
+            .leaderboard-table {
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 0.95rem; /* Slightly larger base font for table */
+                background-color: var(--secondary-color);
+                min-width: 800px; /* Prevent excessive squishing on small screens */
+            }
+
+            th, td {
+                padding: 15px 20px; /* Generous padding */
+                text-align: left;
+                vertical-align: middle;
+                border-bottom: 1px solid var(--border-color);
+                white-space: nowrap; /* Prevent wrapping by default */
+            }
+            td { padding: 13px 20px; } /* Slightly less vertical padding for data rows */
+
+            th {
+              background-color: var(--light-gray);
+              color: var(--text-color);
+              font-weight: 700;
+              letter-spacing: 0.02em;
+              position: sticky; /* Sticky header */
+              top: 0;
+              z-index: 10;
+              border-bottom: 2px solid var(--border-color); /* Stronger header bottom border */
+              border-top: none;
+              border-left: none;
+              border-right: none;
+            }
+
+            /* Sortable Header Styles */
+            th.sortable {
+                cursor: pointer;
+                position: relative;
+                padding-right: 35px; /* More space for arrows */
+                transition: background-color 0.2s ease;
+            }
+            th.sortable:hover { background-color: var(--medium-gray); }
+
+            /* Sort Arrows */
+            th.sortable::before,
+            th.sortable::after {
+              content: "";
+              position: absolute;
+              right: 15px; /* Position arrows */
+              opacity: 0.3; /* Dim inactive arrows */
+              border: 5px solid transparent; /* Arrow size */
+              transition: opacity 0.2s ease, border-color 0.2s ease;
+            }
+            th.sortable::before { /* Up arrow */
+                top: calc(50% - 11px); /* Position */
+                border-bottom-color: var(--sort-indicator-inactive);
+            }
+            th.sortable::after { /* Down arrow */
+                bottom: calc(50% - 11px); /* Position */
+                border-top-color: var(--sort-indicator-inactive);
+            }
+            /* Active sort states */
+            th.sortable.sorted-asc::before,
+            th.sortable.sorted-desc::after {
+                opacity: 1; /* Full opacity for active arrow */
+            }
+            th.sortable.sorted-asc::before { border-bottom-color: var(--sort-indicator-active); }
+            th.sortable.sorted-desc::after { border-top-color: var(--sort-indicator-active); }
+
+
+            /* Column Specific Styles */
+            th[data-col-key="col_rank"], td:nth-child(1) {
+                text-align: center;
+                min-width: 60px;
+                width: 60px; /* Fixed width for rank */
+            }
+            td:nth-child(1) { /* Rank cell */
+                font-weight: 700;
+                color: var(--primary-color);
+                font-size: 1.05em;
+            }
+            th[data-col-key="col_model"], td:nth-child(2) {
+                text-align: left;
+                min-width: 300px; /* Ensure model name has space */
+                white-space: normal; /* Allow model name to wrap if needed */
+            }
+            th[data-col-key="col_org"], td:nth-child(3) {
+                min-width: 150px;
+                white-space: normal; /* Allow org name to wrap */
+            }
+            th[data-col-key="col_score"], td:nth-child(4),
+            th[data-col-key="col_elo"], td:nth-child(5),
+            th[data-col-key="col_tokens"], td:nth-child(6) {
+                text-align: center;
+                min-width: 110px;
+            }
+
+
+            /* Row Styles */
+            tr { transition: background-color 0.15s ease-in-out; }
+            /* tr:nth-child(even) { background-color: var(--light-gray); } */ /* Removed alternating color */
+            tr:hover { background-color: #f1f3f5; } /* Slightly darker hover than light-gray */
+            tr:last-child td { border-bottom: none; } /* Remove border on last row */
+            tr.filtered-out { display: none; } /* Hide filtered rows */
+
+            /* Model Tag Styles */
+            .model-tag {
+                padding: 3px 9px; /* Adjust padding */
+                border-radius: 4px;
+                font-size: 0.85em; /* Slightly larger tag text */
+                white-space: nowrap;
+                display: inline-block;
+                vertical-align: middle;
+                line-height: 1.3;
+                font-weight: 700;
+                border: 1px solid; /* Use border instead of just background */
+                margin-left: 5px; /* Add space before tag */
+            }
+            .model-judge {
+                background-color: var(--judge-bg);
+                color: var(--judge-color-text);
+                border-color: var(--judge-color-border);
+            }
+            .model-baseline {
+                background-color: var(--baseline-bg);
+                color: var(--baseline-color-text);
+                border-color: var(--baseline-color-border);
+            }
+
+            /* --- Media Queries for Responsiveness --- */
+            @media (max-width: 992px) {
+                 .container { padding: 30px; }
+                 th, td { padding: 12px 15px; }
+                 th[data-col-key="col_model"], td:nth-child(2) { min-width: 250px; }
+            }
+
+            @media (max-width: 768px) {
+              .container { padding: 25px 20px; }
+              h1 { font-size: 2em; margin-bottom: 30px; }
+              body { padding: 20px 10px; }
+              .controls-container { grid-template-columns: 1fr; gap: 20px; } /* Stack controls */
+              .search-container { max-width: 100%; }
+              th, td { padding: 10px 12px; font-size: 0.9rem; }
+              th.sortable { padding-right: 30px; }
+              th.sortable::before, th.sortable::after { right: 10px; border-width: 4px; }
+              th.sortable::before { top: calc(50% - 9px); }
+              th.sortable::after { bottom: calc(50% - 9px); }
+              th[data-col-key="col_model"], td:nth-child(2) { min-width: 200px; }
+              th[data-col-key="col_org"], td:nth-child(3) { min-width: 120px; }
+              .leaderboard-table { min-width: 600px; } /* Adjust min-width */
+            }
+
+            @media (max-width: 480px) {
+                .container { padding: 20px 15px; }
+                h1 { font-size: 1.7em; }
+                .notice { font-size: 0.9em; padding: 12px 15px; }
+                .leaderboard-table { font-size: 0.85rem; }
+                th, td { padding: 9px 10px; }
+                th.sortable { padding-right: 25px; }
+                th.sortable::before, th.sortable::after { right: 8px; border-width: 4px; }
+                th.sortable::before { top: calc(50% - 8px); }
+                th.sortable::after { bottom: calc(50% - 8px); }
+                .control-group label { font-size: 0.75em; }
+                .control-group select, .control-group input[type="text"] { font-size: 0.95rem; padding: 10px 12px; }
+                .control-group select { padding-right: 35px; background-position: right 12px center; }
+                th[data-col-key="col_model"], td:nth-child(2) { min-width: 160px; }
+                .model-tag { font-size: 0.8em; padding: 2px 6px; }
+                .leaderboard-table { min-width: 500px; } /* Further adjust min-width */
+            }
+
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <!-- Heading (Link added) -->
+            <h1><a href="https://github.com/qwopqwop200/ko-arena-hard-auto" target="_blank" rel="noopener noreferrer" data-translate-key="heading"></a></h1>
+
+            <!-- Top Controls: Leaderboard and Language -->
+            <div class="controls-container">
+              <div class="control-group">
+                <label for="leaderboard-select" data-translate-key="select_leaderboard_label"></label>
+                <select id="leaderboard-select">
+                  <option value="style-control" data-translate-key="lb_type_style_control" selected></option>
+<option value="markdown-control" data-translate-key="lb_type_markdown_control"></option>
+<option value="length-control" data-translate-key="lb_type_length_control"></option>
+<option value="no-control" data-translate-key="lb_type_no_control"></option>
+
+                </select>
+              </div>
+              <div class="control-group">
+                 
+          <label for="language-select" data-translate-key="select_language_label"></label>
+          <select id="language-select">
+            <option value="ko" data-translate-key="lang_ko" selected></option>
+            <option value="en" data-translate-key="lang_en"></option>
+          </select>
+        
+              </div>
+            </div>
+
+            <!-- Notice -->
+            <p class="notice" data-translate-key="notice"></p>
+
+            <!-- Search Input -->
+            <div class="search-container">
+                <div class="control-group">
+                    <!-- Label removed, input only -->
+                    
+         <input type="text" id="model-search-input" placeholder="" data-translate-key-placeholder="search_placeholder">
+        
+                </div>
+            </div>
+
+            <!-- Table Containers -->
+            <div class="table-container" id="table-style-control" data-id="style-control" style="display: block;"><table class="leaderboard-table" border="0">
+<thead>
+<tr>
+<th class="sortable" data-col-key="col_rank" data-sort-type="numeric">col_rank</th>
+<th class="sortable" data-col-key="col_model" data-sort-type="text">col_model</th>
+<th class="sortable" data-col-key="col_org" data-sort-type="text">col_org</th>
+<th class="sortable" data-col-key="col_score" data-sort-type="numeric">col_score</th>
+<th class="sortable" data-col-key="col_elo" data-sort-type="numeric">col_elo</th>
+<th class="sortable" data-col-key="col_tokens" data-sort-type="numeric">col_tokens</th>
+</tr>
+</thead>
+<tbody>
+<tr data-model-name="claude-3.7-sonnet">
+<td data-sort-value="1">1</td>
+<td data-sort-value="claude-3.7-sonnet"><span class="model-tag model-baseline">claude-3.7-sonnet (baseline)</span></td>
+<td data-sort-value="Anthropic">Anthropic</td>
+<td data-sort-value="50.0">50.0(-0.00, +0.00)</td>
+<td data-sort-value="1114.0">1114(-0.00, +0.00)</td>
+<td data-sort-value="1094">1094</td>
+</tr>
+<tr data-model-name="deepseek-chat-v3-0324">
+<td data-sort-value="2">2</td>
+<td data-sort-value="deepseek-chat-v3-0324">deepseek-chat-v3-0324</td>
+<td data-sort-value="Deepseek">Deepseek</td>
+<td data-sort-value="49.59">49.59(-2.34, +1.75)</td>
+<td data-sort-value="1111.1603981185124">1111(-16.26, +12.18)</td>
+<td data-sort-value="1085">1085</td>
+</tr>
+<tr data-model-name="gemini-2.0-pro-exp-02-05">
+<td data-sort-value="3">3</td>
+<td data-sort-value="gemini-2.0-pro-exp-02-05">gemini-2.0-pro-exp-02-05</td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="47.56">47.56(-1.83, +3.21)</td>
+<td data-sort-value="1097.0650540147362">1097(-12.82, +22.26)</td>
+<td data-sort-value="2372">2372</td>
+</tr>
+<tr data-model-name="gemini-2.5-pro-exp-03-25">
+<td data-sort-value="4">4</td>
+<td data-sort-value="gemini-2.5-pro-exp-03-25">gemini-2.5-pro-exp-03-25</td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="47.45">47.45(-3.08, +2.47)</td>
+<td data-sort-value="1096.2613763077588">1096(-21.53, +17.22)</td>
+<td data-sort-value="2577">2577</td>
+</tr>
+<tr data-model-name="deepseek-r1">
+<td data-sort-value="5">5</td>
+<td data-sort-value="deepseek-r1">deepseek-r1</td>
+<td data-sort-value="Deepseek">Deepseek</td>
+<td data-sort-value="44.07">44.07(-2.67, +2.95)</td>
+<td data-sort-value="1072.5656380391429">1073(-18.91, +20.72)</td>
+<td data-sort-value="1211">1211</td>
+</tr>
+<tr data-model-name="o1-high">
+<td data-sort-value="6">6</td>
+<td data-sort-value="o1-high">o1-high</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="42.87">42.87(-2.57, +2.32)</td>
+<td data-sort-value="1064.1486499469834">1064(-18.43, +16.35)</td>
+<td data-sort-value="1503">1503</td>
+</tr>
+<tr data-model-name="o3-mini-high">
+<td data-sort-value="7">7</td>
+<td data-sort-value="o3-mini-high">o3-mini-high</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="41.86">41.86(-1.86, +2.80)</td>
+<td data-sort-value="1056.9084488806852">1057(-13.34, +19.82)</td>
+<td data-sort-value="1257">1257</td>
+</tr>
+<tr data-model-name="o1-medium">
+<td data-sort-value="8">8</td>
+<td data-sort-value="o1-medium">o1-medium</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="41.04">41.04(-1.90, +2.57)</td>
+<td data-sort-value="1051.0256203585864">1051(-13.74, +18.36)</td>
+<td data-sort-value="1487">1487</td>
+</tr>
+<tr data-model-name="gpt-4.5-preview">
+<td data-sort-value="9">9</td>
+<td data-sort-value="gpt-4.5-preview">gpt-4.5-preview</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="40.81">40.81(-1.79, +1.43)</td>
+<td data-sort-value="1049.3884784324011">1049(-12.96, +10.22)</td>
+<td data-sort-value="1040">1040</td>
+</tr>
+<tr data-model-name="o1-low">
+<td data-sort-value="10">10</td>
+<td data-sort-value="o1-low">o1-low</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="37.31">37.31(-2.21, +1.91)</td>
+<td data-sort-value="1023.8277444077208">1024(-16.57, +14.08)</td>
+<td data-sort-value="1513">1513</td>
+</tr>
+<tr data-model-name="claude-3.5-sonnet">
+<td data-sort-value="11">11</td>
+<td data-sort-value="claude-3.5-sonnet">claude-3.5-sonnet</td>
+<td data-sort-value="Anthropic">Anthropic</td>
+<td data-sort-value="37.04">37.04(-2.37, +2.59)</td>
+<td data-sort-value="1021.8729918614592">1022(-17.93, +19.03)</td>
+<td data-sort-value="682">682</td>
+</tr>
+<tr data-model-name="o3-mini-medium">
+<td data-sort-value="12">12</td>
+<td data-sort-value="o3-mini-medium">o3-mini-medium</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="35.2">35.2(-2.49, +1.87)</td>
+<td data-sort-value="1007.9619450698012">1008(-19.30, +14.08)</td>
+<td data-sort-value="1221">1221</td>
+</tr>
+<tr data-model-name="command-a">
+<td data-sort-value="13">13</td>
+<td data-sort-value="command-a">command-a</td>
+<td data-sort-value="Cohere">Cohere</td>
+<td data-sort-value="34.31">34.31(-2.05, +2.33)</td>
+<td data-sort-value="1001.198146489758">1001(-16.09, +17.63)</td>
+<td data-sort-value="1083">1083</td>
+</tr>
+<tr data-model-name="gemini-2.0-flash-thinking-exp-01-21">
+<td data-sort-value="14">14</td>
+<td data-sort-value="gemini-2.0-flash-thinking-exp-01-21">gemini-2.0-flash-thinking-exp-01-21</td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="32.45">32.45(-2.76, +1.66)</td>
+<td data-sort-value="986.6164161423942">987(-22.36, +13.04)</td>
+<td data-sort-value="2488">2488</td>
+</tr>
+<tr data-model-name="o3-mini-low">
+<td data-sort-value="15">15</td>
+<td data-sort-value="o3-mini-low">o3-mini-low</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="32.38">32.38(-2.40, +1.97)</td>
+<td data-sort-value="986.043785738585">986(-19.41, +15.45)</td>
+<td data-sort-value="1205">1205</td>
+</tr>
+<tr data-model-name="gpt-4o-2024-11-20">
+<td data-sort-value="16">16</td>
+<td data-sort-value="gpt-4o-2024-11-20">gpt-4o-2024-11-20</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="30.8">30.8(-2.01, +2.00)</td>
+<td data-sort-value="973.356431815408">973(-16.69, +16.05)</td>
+<td data-sort-value="1142">1142</td>
+</tr>
+<tr data-model-name="claude-3.5-haiku">
+<td data-sort-value="17">17</td>
+<td data-sort-value="claude-3.5-haiku">claude-3.5-haiku</td>
+<td data-sort-value="Anthropic">Anthropic</td>
+<td data-sort-value="28.67">28.67(-2.30, +3.13)</td>
+<td data-sort-value="955.6394790353634">956(-20.03, +25.79)</td>
+<td data-sort-value="601">601</td>
+</tr>
+<tr data-model-name="gemini-2.0-flash-001">
+<td data-sort-value="18">18</td>
+<td data-sort-value="gemini-2.0-flash-001"><span class="model-tag model-judge">gemini-2.0-flash-001 (judge)</span></td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="27.65">27.65(-1.77, +1.75)</td>
+<td data-sort-value="946.9132885934948">947(-15.70, +14.90)</td>
+<td data-sort-value="1901">1901</td>
+</tr>
+<tr data-model-name="gemma-3-27b-it">
+<td data-sort-value="19">19</td>
+<td data-sort-value="gemma-3-27b-it">gemma-3-27b-it</td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="26.53">26.53(-1.95, +1.92)</td>
+<td data-sort-value="937.0592150237368">937(-17.86, +16.71)</td>
+<td data-sort-value="1654">1654</td>
+</tr>
+<tr data-model-name="gemini-2.0-flash-lite-001">
+<td data-sort-value="20">20</td>
+<td data-sort-value="gemini-2.0-flash-lite-001">gemini-2.0-flash-lite-001</td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="25.0">25.0(-1.78, +1.94)</td>
+<td data-sort-value="923.1099508866116">923(-16.86, +17.60)</td>
+<td data-sort-value="2196">2196</td>
+</tr>
+<tr data-model-name="deepseek-v3">
+<td data-sort-value="21">21</td>
+<td data-sort-value="deepseek-v3">deepseek-v3</td>
+<td data-sort-value="Deepseek">Deepseek</td>
+<td data-sort-value="23.77">23.77(-1.72, +1.49)</td>
+<td data-sort-value="911.5135896183242">912(-16.85, +14.05)</td>
+<td data-sort-value="1007">1007</td>
+</tr>
+<tr data-model-name="claude-3.5-sonnet-20240620">
+<td data-sort-value="22">22</td>
+<td data-sort-value="claude-3.5-sonnet-20240620">claude-3.5-sonnet-20240620</td>
+<td data-sort-value="Anthropic">Anthropic</td>
+<td data-sort-value="23.46">23.46(-2.25, +2.71)</td>
+<td data-sort-value="908.5732141363457">909(-22.57, +25.29)</td>
+<td data-sort-value="628">628</td>
+</tr>
+<tr data-model-name="jamba-1.6-large">
+<td data-sort-value="23">23</td>
+<td data-sort-value="jamba-1.6-large">jamba-1.6-large</td>
+<td data-sort-value="AI21">AI21</td>
+<td data-sort-value="17.5">17.5(-1.48, +1.49)</td>
+<td data-sort-value="844.6473387377907">845(-18.50, +17.33)</td>
+<td data-sort-value="859">859</td>
+</tr>
+<tr data-model-name="grok-2-1212">
+<td data-sort-value="24">24</td>
+<td data-sort-value="grok-2-1212">grok-2-1212</td>
+<td data-sort-value="xAI">xAI</td>
+<td data-sort-value="17.09">17.09(-1.54, +1.70)</td>
+<td data-sort-value="839.6603031842822">840(-19.56, +20.05)</td>
+<td data-sort-value="898">898</td>
+</tr>
+<tr data-model-name="minimax-01">
+<td data-sort-value="25">25</td>
+<td data-sort-value="minimax-01">minimax-01</td>
+<td data-sort-value="MiniMax">MiniMax</td>
+<td data-sort-value="16.73">16.73(-2.04, +1.83)</td>
+<td data-sort-value="835.2360380998431">835(-26.85, +21.90)</td>
+<td data-sort-value="370">370</td>
+</tr>
+<tr data-model-name="gpt-4o-mini">
+<td data-sort-value="26">26</td>
+<td data-sort-value="gpt-4o-mini"><span class="model-tag model-judge">gpt-4o-mini (judge)</span></td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="16.66">16.66(-1.29, +1.41)</td>
+<td data-sort-value="834.2890203929043">834(-16.67, +17.16)</td>
+<td data-sort-value="830">830</td>
+</tr>
+<tr data-model-name="nova-pro-v1">
+<td data-sort-value="27">27</td>
+<td data-sort-value="nova-pro-v1">nova-pro-v1</td>
+<td data-sort-value="Amazon">Amazon</td>
+<td data-sort-value="16.33">16.33(-1.60, +1.44)</td>
+<td data-sort-value="830.2185064804105">830(-21.22, +17.70)</td>
+<td data-sort-value="905">905</td>
+</tr>
+<tr data-model-name="qwen-2.5-72b-instruct">
+<td data-sort-value="28">28</td>
+<td data-sort-value="qwen-2.5-72b-instruct">qwen-2.5-72b-instruct</td>
+<td data-sort-value="Alibaba">Alibaba</td>
+<td data-sort-value="16.15">16.15(-1.50, +1.41)</td>
+<td data-sort-value="827.88492018389">828(-20.06, +17.45)</td>
+<td data-sort-value="1097">1097</td>
+</tr>
+<tr data-model-name="mistral-large-2411">
+<td data-sort-value="29">29</td>
+<td data-sort-value="mistral-large-2411">mistral-large-2411</td>
+<td data-sort-value="Mistral">Mistral</td>
+<td data-sort-value="14.65">14.65(-1.34, +1.46)</td>
+<td data-sort-value="807.7848771035563">808(-19.34, +19.51)</td>
+<td data-sort-value="906">906</td>
+</tr>
+<tr data-model-name="gemma-2-27b-it">
+<td data-sort-value="30">30</td>
+<td data-sort-value="gemma-2-27b-it">gemma-2-27b-it</td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="12.89">12.89(-1.41, +1.68)</td>
+<td data-sort-value="782.0738707982575">782(-22.94, +24.67)</td>
+<td data-sort-value="794">794</td>
+</tr>
+<tr data-model-name="gpt-4-1106-preview">
+<td data-sort-value="31">31</td>
+<td data-sort-value="gpt-4-1106-preview">gpt-4-1106-preview</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="12.65">12.65(-1.14, +1.31)</td>
+<td data-sort-value="778.3795492620599">778(-18.76, +19.68)</td>
+<td data-sort-value="840">840</td>
+</tr>
+<tr data-model-name="mistral-small-3.1-24b-instruct-2503">
+<td data-sort-value="32">32</td>
+<td data-sort-value="mistral-small-3.1-24b-instruct-2503">mistral-small-3.1-24b-instruct-2503</td>
+<td data-sort-value="Mistral">Mistral</td>
+<td data-sort-value="10.8">10.8(-1.10, +0.97)</td>
+<td data-sort-value="747.24510019743">747(-20.87, +16.89)</td>
+<td data-sort-value="961">961</td>
+</tr>
+<tr data-model-name="command-r-plus-08-2024">
+<td data-sort-value="33">33</td>
+<td data-sort-value="command-r-plus-08-2024">command-r-plus-08-2024</td>
+<td data-sort-value="Cohere">Cohere</td>
+<td data-sort-value="10.18">10.18(-1.21, +1.07)</td>
+<td data-sort-value="735.8124541138145">736(-24.31, +19.38)</td>
+<td data-sort-value="969">969</td>
+</tr>
+<tr data-model-name="nova-lite-v1">
+<td data-sort-value="34">34</td>
+<td data-sort-value="nova-lite-v1">nova-lite-v1</td>
+<td data-sort-value="Amazon">Amazon</td>
+<td data-sort-value="9.78">9.78(-1.12, +0.99)</td>
+<td data-sort-value="728.0453456879802">728(-23.35, +18.67)</td>
+<td data-sort-value="994">994</td>
+</tr>
+<tr data-model-name="wizardlm-2-8x22b">
+<td data-sort-value="35">35</td>
+<td data-sort-value="wizardlm-2-8x22b">wizardlm-2-8x22b</td>
+<td data-sort-value="Microsoft">Microsoft</td>
+<td data-sort-value="9.62">9.62(-1.06, +0.95)</td>
+<td data-sort-value="724.7833064391709">725(-22.23, +18.25)</td>
+<td data-sort-value="1028">1028</td>
+</tr>
+<tr data-model-name="lfm-7b">
+<td data-sort-value="36">36</td>
+<td data-sort-value="lfm-7b">lfm-7b</td>
+<td data-sort-value="Liquid AI">Liquid AI</td>
+<td data-sort-value="9.31">9.31(-1.00, +0.91)</td>
+<td data-sort-value="718.5060596430791">719(-21.64, +17.97)</td>
+<td data-sort-value="1011">1011</td>
+</tr>
+<tr data-model-name="qwen2.5-32b-instruct">
+<td data-sort-value="37">37</td>
+<td data-sort-value="qwen2.5-32b-instruct">qwen2.5-32b-instruct</td>
+<td data-sort-value="Alibaba">Alibaba</td>
+<td data-sort-value="8.85">8.85(-1.05, +1.21)</td>
+<td data-sort-value="708.9652787435982">709(-24.02, +24.51)</td>
+<td data-sort-value="795">795</td>
+</tr>
+<tr data-model-name="mistral-small-24b-instruct-2501">
+<td data-sort-value="38">38</td>
+<td data-sort-value="mistral-small-24b-instruct-2501">mistral-small-24b-instruct-2501</td>
+<td data-sort-value="Mistral">Mistral</td>
+<td data-sort-value="8.57">8.57(-0.95, +1.28)</td>
+<td data-sort-value="702.7524009780116">703(-22.23, +26.57)</td>
+<td data-sort-value="998">998</td>
+</tr>
+<tr data-model-name="hermes-3-llama-3.1-405b">
+<td data-sort-value="39">39</td>
+<td data-sort-value="hermes-3-llama-3.1-405b">hermes-3-llama-3.1-405b</td>
+<td data-sort-value="NousResearch">NousResearch</td>
+<td data-sort-value="8.28">8.28(-1.25, +1.38)</td>
+<td data-sort-value="696.2744132212058">696(-30.93, +29.34)</td>
+<td data-sort-value="771">771</td>
+</tr>
+<tr data-model-name="hermes-3-llama-3.1-70b">
+<td data-sort-value="40">40</td>
+<td data-sort-value="hermes-3-llama-3.1-70b">hermes-3-llama-3.1-70b</td>
+<td data-sort-value="NousResearch">NousResearch</td>
+<td data-sort-value="7.77">7.77(-1.06, +1.14)</td>
+<td data-sort-value="684.1933083127948">684(-27.55, +25.97)</td>
+<td data-sort-value="771">771</td>
+</tr>
+<tr data-model-name="gemma-2-9b-it">
+<td data-sort-value="41">41</td>
+<td data-sort-value="gemma-2-9b-it">gemma-2-9b-it</td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="7.59">7.59(-1.05, +1.06)</td>
+<td data-sort-value="679.8933386843032">680(-27.86, +24.72)</td>
+<td data-sort-value="751">751</td>
+</tr>
+<tr data-model-name="command-r-08-2024">
+<td data-sort-value="42">42</td>
+<td data-sort-value="command-r-08-2024">command-r-08-2024</td>
+<td data-sort-value="Cohere">Cohere</td>
+<td data-sort-value="6.61">6.61(-1.14, +1.01)</td>
+<td data-sort-value="653.9454067658473">654(-35.11, +26.69)</td>
+<td data-sort-value="796">796</td>
+</tr>
+<tr data-model-name="nova-micro-v1">
+<td data-sort-value="43">43</td>
+<td data-sort-value="nova-micro-v1">nova-micro-v1</td>
+<td data-sort-value="Amazon">Amazon</td>
+<td data-sort-value="6.6">6.6(-0.66, +0.96)</td>
+<td data-sort-value="653.8067191033407">654(-19.59, +25.35)</td>
+<td data-sort-value="927">927</td>
+</tr>
+<tr data-model-name="lfm-40b">
+<td data-sort-value="44">44</td>
+<td data-sort-value="lfm-40b">lfm-40b</td>
+<td data-sort-value="Liquid AI">Liquid AI</td>
+<td data-sort-value="5.81">5.81(-0.95, +0.98)</td>
+<td data-sort-value="630.2041444098412">630(-33.06, +28.85)</td>
+<td data-sort-value="863">863</td>
+</tr>
+<tr data-model-name="llama-3.3-70b-instruct">
+<td data-sort-value="45">45</td>
+<td data-sort-value="llama-3.3-70b-instruct">llama-3.3-70b-instruct</td>
+<td data-sort-value="Meta">Meta</td>
+<td data-sort-value="5.37">5.37(-0.89, +0.90)</td>
+<td data-sort-value="615.700442038729">616(-33.32, +28.53)</td>
+<td data-sort-value="809">809</td>
+</tr>
+<tr data-model-name="command-r7b-12-2024">
+<td data-sort-value="46">46</td>
+<td data-sort-value="command-r7b-12-2024">command-r7b-12-2024</td>
+<td data-sort-value="Cohere">Cohere</td>
+<td data-sort-value="4.99">4.99(-0.88, +0.72)</td>
+<td data-sort-value="602.2441432525821">602(-35.61, +24.71)</td>
+<td data-sort-value="882">882</td>
+</tr>
+<tr data-model-name="lfm-3b">
+<td data-sort-value="47">47</td>
+<td data-sort-value="lfm-3b">lfm-3b</td>
+<td data-sort-value="Liquid AI">Liquid AI</td>
+<td data-sort-value="3.59">3.59(-0.51, +0.70)</td>
+<td data-sort-value="542.3183436045301">542(-27.64, +32.21)</td>
+<td data-sort-value="776">776</td>
+</tr>
+<tr data-model-name="qwen-2.5-7b-instruct">
+<td data-sort-value="48">48</td>
+<td data-sort-value="qwen-2.5-7b-instruct">qwen-2.5-7b-instruct</td>
+<td data-sort-value="Alibaba">Alibaba</td>
+<td data-sort-value="3.58">3.58(-0.68, +1.09)</td>
+<td data-sort-value="541.8794012740907">542(-37.77, +48.24)</td>
+<td data-sort-value="844">844</td>
+</tr>
+<tr data-model-name="olmo-2-0325-32b-instruct">
+<td data-sort-value="49">49</td>
+<td data-sort-value="olmo-2-0325-32b-instruct">olmo-2-0325-32b-instruct</td>
+<td data-sort-value="Allen AI">Allen AI</td>
+<td data-sort-value="3.33">3.33(-0.61, +0.43)</td>
+<td data-sort-value="528.8799713434289">529(-36.18, +21.96)</td>
+<td data-sort-value="890">890</td>
+</tr>
+<tr data-model-name="jamba-1.6-mini">
+<td data-sort-value="50">50</td>
+<td data-sort-value="jamba-1.6-mini">jamba-1.6-mini</td>
+<td data-sort-value="AI21">AI21</td>
+<td data-sort-value="2.57">2.57(-0.56, +0.60)</td>
+<td data-sort-value="482.2681006540098">482(-43.23, +37.89)</td>
+<td data-sort-value="920">920</td>
+</tr>
+<tr data-model-name="llama-3.1-nemotron-70b-instruct">
+<td data-sort-value="51">51</td>
+<td data-sort-value="llama-3.1-nemotron-70b-instruct">llama-3.1-nemotron-70b-instruct</td>
+<td data-sort-value="Meta">Meta</td>
+<td data-sort-value="2.34">2.34(-0.37, +0.36)</td>
+<td data-sort-value="466.0787402276704">466(-30.46, +25.03)</td>
+<td data-sort-value="1854">1854</td>
+</tr>
+<tr data-model-name="llama-3.1-405b-instruct">
+<td data-sort-value="52">52</td>
+<td data-sort-value="llama-3.1-405b-instruct">llama-3.1-405b-instruct</td>
+<td data-sort-value="Meta">Meta</td>
+<td data-sort-value="0.9">0.9(-0.23, +0.31)</td>
+<td data-sort-value="296.4716259899707">296(-50.29, +53.37)</td>
+<td data-sort-value="1735">1735</td>
+</tr>
+<tr data-model-name="llama-3.1-70b-instruct">
+<td data-sort-value="53">53</td>
+<td data-sort-value="llama-3.1-70b-instruct">llama-3.1-70b-instruct</td>
+<td data-sort-value="Meta">Meta</td>
+<td data-sort-value="0.54">0.54(-0.12, +0.12)</td>
+<td data-sort-value="208.98906271393503">209(-46.74, +34.55)</td>
+<td data-sort-value="1923">1923</td>
+</tr>
+<tr data-model-name="llama-3.1-8b-instruct">
+<td data-sort-value="54">54</td>
+<td data-sort-value="llama-3.1-8b-instruct">llama-3.1-8b-instruct</td>
+<td data-sort-value="Meta">Meta</td>
+<td data-sort-value="0.08">0.08(-0.02, +0.01)</td>
+<td data-sort-value="-133.34048826954495">-133(-47.35, +31.19)</td>
+<td data-sort-value="5081">5081</td>
+</tr>
+</tbody>
+</table></div><div class="table-container" id="table-markdown-control" data-id="markdown-control" style="display: none;"><table class="leaderboard-table" border="0">
+<thead>
+<tr>
+<th class="sortable" data-col-key="col_rank" data-sort-type="numeric">col_rank</th>
+<th class="sortable" data-col-key="col_model" data-sort-type="text">col_model</th>
+<th class="sortable" data-col-key="col_org" data-sort-type="text">col_org</th>
+<th class="sortable" data-col-key="col_score" data-sort-type="numeric">col_score</th>
+<th class="sortable" data-col-key="col_elo" data-sort-type="numeric">col_elo</th>
+<th class="sortable" data-col-key="col_tokens" data-sort-type="numeric">col_tokens</th>
+</tr>
+</thead>
+<tbody>
+<tr data-model-name="gemini-2.5-pro-exp-03-25">
+<td data-sort-value="1">1</td>
+<td data-sort-value="gemini-2.5-pro-exp-03-25">gemini-2.5-pro-exp-03-25</td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="79.66">79.66(-1.74, +1.57)</td>
+<td data-sort-value="1351.1454384649044">1351(-18.14, +17.33)</td>
+<td data-sort-value="2577">2577</td>
+</tr>
+<tr data-model-name="gemini-2.0-pro-exp-02-05">
+<td data-sort-value="2">2</td>
+<td data-sort-value="gemini-2.0-pro-exp-02-05">gemini-2.0-pro-exp-02-05</td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="73.26">73.26(-2.02, +1.47)</td>
+<td data-sort-value="1289.0793376102713">1289(-17.52, +13.24)</td>
+<td data-sort-value="2372">2372</td>
+</tr>
+<tr data-model-name="gemini-2.0-flash-thinking-exp-01-21">
+<td data-sort-value="3">3</td>
+<td data-sort-value="gemini-2.0-flash-thinking-exp-01-21">gemini-2.0-flash-thinking-exp-01-21</td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="65.43">65.43(-2.27, +3.15)</td>
+<td data-sort-value="1224.845390521764">1225(-17.18, +24.79)</td>
+<td data-sort-value="2488">2488</td>
+</tr>
+<tr data-model-name="o1-high">
+<td data-sort-value="4">4</td>
+<td data-sort-value="o1-high">o1-high</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="61.73">61.73(-2.25, +1.87)</td>
+<td data-sort-value="1197.058424270097">1197(-16.38, +13.86)</td>
+<td data-sort-value="1503">1503</td>
+</tr>
+<tr data-model-name="o1-medium">
+<td data-sort-value="5">5</td>
+<td data-sort-value="o1-medium">o1-medium</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="57.79">57.79(-2.51, +2.25)</td>
+<td data-sort-value="1168.5769322234855">1169(-17.78, +16.17)</td>
+<td data-sort-value="1487">1487</td>
+</tr>
+<tr data-model-name="o1-low">
+<td data-sort-value="6">6</td>
+<td data-sort-value="o1-low">o1-low</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="55.26">55.26(-2.64, +2.89)</td>
+<td data-sort-value="1150.6787125264957">1151(-18.46, +20.43)</td>
+<td data-sort-value="1513">1513</td>
+</tr>
+<tr data-model-name="o3-mini-high">
+<td data-sort-value="7">7</td>
+<td data-sort-value="o3-mini-high">o3-mini-high</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="54.6">54.6(-2.15, +2.78)</td>
+<td data-sort-value="1146.0272228016308">1146(-14.97, +19.62)</td>
+<td data-sort-value="1257">1257</td>
+</tr>
+<tr data-model-name="gemini-2.0-flash-lite-001">
+<td data-sort-value="8">8</td>
+<td data-sort-value="gemini-2.0-flash-lite-001">gemini-2.0-flash-lite-001</td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="53.04">53.04(-2.59, +2.42)</td>
+<td data-sort-value="1135.1703478646325">1135(-18.07, +16.93)</td>
+<td data-sort-value="2196">2196</td>
+</tr>
+<tr data-model-name="gemini-2.0-flash-001">
+<td data-sort-value="9">9</td>
+<td data-sort-value="gemini-2.0-flash-001"><span class="model-tag model-judge">gemini-2.0-flash-001 (judge)</span></td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="53.04">53.04(-2.49, +2.30)</td>
+<td data-sort-value="1135.169901418015">1135(-17.37, +16.06)</td>
+<td data-sort-value="1901">1901</td>
+</tr>
+<tr data-model-name="claude-3.7-sonnet">
+<td data-sort-value="10">10</td>
+<td data-sort-value="claude-3.7-sonnet"><span class="model-tag model-baseline">claude-3.7-sonnet (baseline)</span></td>
+<td data-sort-value="Anthropic">Anthropic</td>
+<td data-sort-value="50.0">50.0(-0.00, +0.00)</td>
+<td data-sort-value="1114.0">1114(-0.00, +0.00)</td>
+<td data-sort-value="1094">1094</td>
+</tr>
+<tr data-model-name="deepseek-chat-v3-0324">
+<td data-sort-value="11">11</td>
+<td data-sort-value="deepseek-chat-v3-0324">deepseek-chat-v3-0324</td>
+<td data-sort-value="Deepseek">Deepseek</td>
+<td data-sort-value="47.24">47.24(-1.99, +2.77)</td>
+<td data-sort-value="1094.81010185384">1095(-13.92, +19.23)</td>
+<td data-sort-value="1085">1085</td>
+</tr>
+<tr data-model-name="o3-mini-medium">
+<td data-sort-value="12">12</td>
+<td data-sort-value="o3-mini-medium">o3-mini-medium</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="47.06">47.06(-2.27, +2.81)</td>
+<td data-sort-value="1093.541570164146">1094(-15.90, +19.58)</td>
+<td data-sort-value="1221">1221</td>
+</tr>
+<tr data-model-name="gemma-3-27b-it">
+<td data-sort-value="13">13</td>
+<td data-sort-value="gemma-3-27b-it">gemma-3-27b-it</td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="46.93">46.93(-2.43, +2.63)</td>
+<td data-sort-value="1092.6636985851712">1093(-17.06, +18.28)</td>
+<td data-sort-value="1654">1654</td>
+</tr>
+<tr data-model-name="o3-mini-low">
+<td data-sort-value="14">14</td>
+<td data-sort-value="o3-mini-low">o3-mini-low</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="43.83">43.83(-2.50, +3.08)</td>
+<td data-sort-value="1070.9224923016025">1071(-17.75, +21.56)</td>
+<td data-sort-value="1205">1205</td>
+</tr>
+<tr data-model-name="deepseek-r1">
+<td data-sort-value="15">15</td>
+<td data-sort-value="deepseek-r1">deepseek-r1</td>
+<td data-sort-value="Deepseek">Deepseek</td>
+<td data-sort-value="42.06">42.06(-2.22, +2.04)</td>
+<td data-sort-value="1058.3886409070926">1058(-15.96, +14.43)</td>
+<td data-sort-value="1211">1211</td>
+</tr>
+<tr data-model-name="gpt-4.5-preview">
+<td data-sort-value="16">16</td>
+<td data-sort-value="gpt-4.5-preview">gpt-4.5-preview</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="39.04">39.04(-1.57, +2.05)</td>
+<td data-sort-value="1036.5632493487876">1037(-11.50, +14.83)</td>
+<td data-sort-value="1040">1040</td>
+</tr>
+<tr data-model-name="command-a">
+<td data-sort-value="17">17</td>
+<td data-sort-value="command-a">command-a</td>
+<td data-sort-value="Cohere">Cohere</td>
+<td data-sort-value="35.03">35.03(-2.10, +1.86)</td>
+<td data-sort-value="1006.7055468990186">1007(-16.30, +14.05)</td>
+<td data-sort-value="1083">1083</td>
+</tr>
+<tr data-model-name="gpt-4o-2024-11-20">
+<td data-sort-value="18">18</td>
+<td data-sort-value="gpt-4o-2024-11-20">gpt-4o-2024-11-20</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="32.35">32.35(-2.33, +2.06)</td>
+<td data-sort-value="985.8194449373492">986(-18.84, +16.14)</td>
+<td data-sort-value="1142">1142</td>
+</tr>
+<tr data-model-name="claude-3.5-sonnet">
+<td data-sort-value="19">19</td>
+<td data-sort-value="claude-3.5-sonnet">claude-3.5-sonnet</td>
+<td data-sort-value="Anthropic">Anthropic</td>
+<td data-sort-value="24.9">24.9(-2.00, +2.38)</td>
+<td data-sort-value="922.2652299400522">922(-19.12, +21.38)</td>
+<td data-sort-value="682">682</td>
+</tr>
+<tr data-model-name="deepseek-v3">
+<td data-sort-value="20">20</td>
+<td data-sort-value="deepseek-v3">deepseek-v3</td>
+<td data-sort-value="Deepseek">Deepseek</td>
+<td data-sort-value="23.62">23.62(-1.46, +1.73)</td>
+<td data-sort-value="910.0932426265244">910(-14.37, +16.29)</td>
+<td data-sort-value="1007">1007</td>
+</tr>
+<tr data-model-name="qwen-2.5-72b-instruct">
+<td data-sort-value="21">21</td>
+<td data-sort-value="qwen-2.5-72b-instruct">qwen-2.5-72b-instruct</td>
+<td data-sort-value="Alibaba">Alibaba</td>
+<td data-sort-value="19.42">19.42(-1.28, +1.72)</td>
+<td data-sort-value="866.7727120050399">867(-14.58, +18.58)</td>
+<td data-sort-value="1097">1097</td>
+</tr>
+<tr data-model-name="wizardlm-2-8x22b">
+<td data-sort-value="22">22</td>
+<td data-sort-value="wizardlm-2-8x22b">wizardlm-2-8x22b</td>
+<td data-sort-value="Microsoft">Microsoft</td>
+<td data-sort-value="18.19">18.19(-1.37, +1.62)</td>
+<td data-sort-value="852.8046096785015">853(-16.47, +18.33)</td>
+<td data-sort-value="1028">1028</td>
+</tr>
+<tr data-model-name="nova-pro-v1">
+<td data-sort-value="23">23</td>
+<td data-sort-value="nova-pro-v1">nova-pro-v1</td>
+<td data-sort-value="Amazon">Amazon</td>
+<td data-sort-value="17.95">17.95(-1.73, +1.55)</td>
+<td data-sort-value="849.9790446950963">850(-21.19, +17.67)</td>
+<td data-sort-value="905">905</td>
+</tr>
+<tr data-model-name="grok-2-1212">
+<td data-sort-value="24">24</td>
+<td data-sort-value="grok-2-1212">grok-2-1212</td>
+<td data-sort-value="xAI">xAI</td>
+<td data-sort-value="17.66">17.66(-1.52, +1.46)</td>
+<td data-sort-value="846.5170419460457">847(-18.78, +16.89)</td>
+<td data-sort-value="898">898</td>
+</tr>
+<tr data-model-name="gpt-4-1106-preview">
+<td data-sort-value="25">25</td>
+<td data-sort-value="gpt-4-1106-preview">gpt-4-1106-preview</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="16.91">16.91(-1.66, +1.46)</td>
+<td data-sort-value="837.3935942449624">837(-21.29, +17.53)</td>
+<td data-sort-value="840">840</td>
+</tr>
+<tr data-model-name="claude-3.5-haiku">
+<td data-sort-value="26">26</td>
+<td data-sort-value="claude-3.5-haiku">claude-3.5-haiku</td>
+<td data-sort-value="Anthropic">Anthropic</td>
+<td data-sort-value="16.26">16.26(-1.36, +1.55)</td>
+<td data-sort-value="829.2190422355541">829(-17.88, +19.12)</td>
+<td data-sort-value="601">601</td>
+</tr>
+<tr data-model-name="mistral-large-2411">
+<td data-sort-value="27">27</td>
+<td data-sort-value="mistral-large-2411">mistral-large-2411</td>
+<td data-sort-value="Mistral">Mistral</td>
+<td data-sort-value="16.03">16.03(-1.28, +1.29)</td>
+<td data-sort-value="826.3098083601153">826(-17.11, +16.11)</td>
+<td data-sort-value="906">906</td>
+</tr>
+<tr data-model-name="claude-3.5-sonnet-20240620">
+<td data-sort-value="28">28</td>
+<td data-sort-value="claude-3.5-sonnet-20240620">claude-3.5-sonnet-20240620</td>
+<td data-sort-value="Anthropic">Anthropic</td>
+<td data-sort-value="15.75">15.75(-1.91, +1.68)</td>
+<td data-sort-value="822.6955674782297">823(-26.31, +21.09)</td>
+<td data-sort-value="628">628</td>
+</tr>
+<tr data-model-name="command-r-plus-08-2024">
+<td data-sort-value="29">29</td>
+<td data-sort-value="command-r-plus-08-2024">command-r-plus-08-2024</td>
+<td data-sort-value="Cohere">Cohere</td>
+<td data-sort-value="14.39">14.39(-1.93, +1.42)</td>
+<td data-sort-value="804.1511579492794">804(-28.83, +19.29)</td>
+<td data-sort-value="969">969</td>
+</tr>
+<tr data-model-name="gpt-4o-mini">
+<td data-sort-value="30">30</td>
+<td data-sort-value="gpt-4o-mini"><span class="model-tag model-judge">gpt-4o-mini (judge)</span></td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="14.22">14.22(-1.43, +1.54)</td>
+<td data-sort-value="801.7623746152508">802(-21.25, +21.08)</td>
+<td data-sort-value="830">830</td>
+</tr>
+<tr data-model-name="mistral-small-3.1-24b-instruct-2503">
+<td data-sort-value="31">31</td>
+<td data-sort-value="mistral-small-3.1-24b-instruct-2503">mistral-small-3.1-24b-instruct-2503</td>
+<td data-sort-value="Mistral">Mistral</td>
+<td data-sort-value="14.06">14.06(-1.27, +1.42)</td>
+<td data-sort-value="799.5001850913033">800(-18.91, +19.60)</td>
+<td data-sort-value="961">961</td>
+</tr>
+<tr data-model-name="lfm-7b">
+<td data-sort-value="32">32</td>
+<td data-sort-value="lfm-7b">lfm-7b</td>
+<td data-sort-value="Liquid AI">Liquid AI</td>
+<td data-sort-value="13.62">13.62(-1.33, +1.14)</td>
+<td data-sort-value="793.1342554398536">793(-20.61, +16.21)</td>
+<td data-sort-value="1011">1011</td>
+</tr>
+<tr data-model-name="jamba-1.6-large">
+<td data-sort-value="33">33</td>
+<td data-sort-value="jamba-1.6-large">jamba-1.6-large</td>
+<td data-sort-value="AI21">AI21</td>
+<td data-sort-value="13.29">13.29(-1.34, +1.08)</td>
+<td data-sort-value="788.241104341417">788(-21.20, +15.65)</td>
+<td data-sort-value="859">859</td>
+</tr>
+<tr data-model-name="nova-lite-v1">
+<td data-sort-value="34">34</td>
+<td data-sort-value="nova-lite-v1">nova-lite-v1</td>
+<td data-sort-value="Amazon">Amazon</td>
+<td data-sort-value="13.29">13.29(-1.33, +1.42)</td>
+<td data-sort-value="788.2161583613346">788(-21.04, +20.44)</td>
+<td data-sort-value="994">994</td>
+</tr>
+<tr data-model-name="mistral-small-24b-instruct-2501">
+<td data-sort-value="35">35</td>
+<td data-sort-value="mistral-small-24b-instruct-2501">mistral-small-24b-instruct-2501</td>
+<td data-sort-value="Mistral">Mistral</td>
+<td data-sort-value="10.55">10.55(-1.25, +1.08)</td>
+<td data-sort-value="742.6428065796829">743(-24.27, +19.04)</td>
+<td data-sort-value="998">998</td>
+</tr>
+<tr data-model-name="gemma-2-27b-it">
+<td data-sort-value="36">36</td>
+<td data-sort-value="gemma-2-27b-it">gemma-2-27b-it</td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="10.34">10.34(-1.54, +1.27)</td>
+<td data-sort-value="738.7156548806995">739(-30.83, +22.67)</td>
+<td data-sort-value="794">794</td>
+</tr>
+<tr data-model-name="qwen2.5-32b-instruct">
+<td data-sort-value="37">37</td>
+<td data-sort-value="qwen2.5-32b-instruct">qwen2.5-32b-instruct</td>
+<td data-sort-value="Alibaba">Alibaba</td>
+<td data-sort-value="9.98">9.98(-1.38, +0.93)</td>
+<td data-sort-value="731.9757451537608">732(-28.48, +17.22)</td>
+<td data-sort-value="795">795</td>
+</tr>
+<tr data-model-name="nova-micro-v1">
+<td data-sort-value="38">38</td>
+<td data-sort-value="nova-micro-v1">nova-micro-v1</td>
+<td data-sort-value="Amazon">Amazon</td>
+<td data-sort-value="9.37">9.37(-1.03, +1.03)</td>
+<td data-sort-value="719.7939438626531">720(-22.18, +20.18)</td>
+<td data-sort-value="927">927</td>
+</tr>
+<tr data-model-name="lfm-40b">
+<td data-sort-value="39">39</td>
+<td data-sort-value="lfm-40b">lfm-40b</td>
+<td data-sort-value="Liquid AI">Liquid AI</td>
+<td data-sort-value="8.99">8.99(-1.04, +1.19)</td>
+<td data-sort-value="711.9208696682663">712(-23.28, +23.88)</td>
+<td data-sort-value="863">863</td>
+</tr>
+<tr data-model-name="minimax-01">
+<td data-sort-value="40">40</td>
+<td data-sort-value="minimax-01">minimax-01</td>
+<td data-sort-value="MiniMax">MiniMax</td>
+<td data-sort-value="8.87">8.87(-1.11, +1.04)</td>
+<td data-sort-value="709.3440114654518">709(-25.34, +21.18)</td>
+<td data-sort-value="370">370</td>
+</tr>
+<tr data-model-name="hermes-3-llama-3.1-405b">
+<td data-sort-value="41">41</td>
+<td data-sort-value="hermes-3-llama-3.1-405b">hermes-3-llama-3.1-405b</td>
+<td data-sort-value="NousResearch">NousResearch</td>
+<td data-sort-value="8.8">8.8(-1.19, +1.31)</td>
+<td data-sort-value="707.8472830011694">708(-27.51, +26.54)</td>
+<td data-sort-value="771">771</td>
+</tr>
+<tr data-model-name="llama-3.1-nemotron-70b-instruct">
+<td data-sort-value="42">42</td>
+<td data-sort-value="llama-3.1-nemotron-70b-instruct">llama-3.1-nemotron-70b-instruct</td>
+<td data-sort-value="Meta">Meta</td>
+<td data-sort-value="8.66">8.66(-0.86, +0.98)</td>
+<td data-sort-value="704.6747710055229">705(-19.74, +20.62)</td>
+<td data-sort-value="1854">1854</td>
+</tr>
+<tr data-model-name="hermes-3-llama-3.1-70b">
+<td data-sort-value="43">43</td>
+<td data-sort-value="hermes-3-llama-3.1-70b">hermes-3-llama-3.1-70b</td>
+<td data-sort-value="NousResearch">NousResearch</td>
+<td data-sort-value="8.65">8.65(-1.35, +0.91)</td>
+<td data-sort-value="704.5635345012495">705(-31.98, +19.12)</td>
+<td data-sort-value="771">771</td>
+</tr>
+<tr data-model-name="command-r-08-2024">
+<td data-sort-value="44">44</td>
+<td data-sort-value="command-r-08-2024">command-r-08-2024</td>
+<td data-sort-value="Cohere">Cohere</td>
+<td data-sort-value="7.87">7.87(-1.11, +1.20)</td>
+<td data-sort-value="686.6721444910261">687(-28.58, +26.92)</td>
+<td data-sort-value="796">796</td>
+</tr>
+<tr data-model-name="llama-3.3-70b-instruct">
+<td data-sort-value="45">45</td>
+<td data-sort-value="llama-3.3-70b-instruct">llama-3.3-70b-instruct</td>
+<td data-sort-value="Meta">Meta</td>
+<td data-sort-value="6.3">6.3(-0.97, +1.07)</td>
+<td data-sort-value="645.1157088028934">645(-30.93, +29.07)</td>
+<td data-sort-value="809">809</td>
+</tr>
+<tr data-model-name="command-r7b-12-2024">
+<td data-sort-value="46">46</td>
+<td data-sort-value="command-r7b-12-2024">command-r7b-12-2024</td>
+<td data-sort-value="Cohere">Cohere</td>
+<td data-sort-value="6.25">6.25(-0.78, +0.87)</td>
+<td data-sort-value="643.5392519777743">644(-24.41, +24.24)</td>
+<td data-sort-value="882">882</td>
+</tr>
+<tr data-model-name="gemma-2-9b-it">
+<td data-sort-value="47">47</td>
+<td data-sort-value="gemma-2-9b-it">gemma-2-9b-it</td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="5.89">5.89(-0.73, +0.97)</td>
+<td data-sort-value="632.4828035616965">632(-24.30, +28.45)</td>
+<td data-sort-value="751">751</td>
+</tr>
+<tr data-model-name="olmo-2-0325-32b-instruct">
+<td data-sort-value="48">48</td>
+<td data-sort-value="olmo-2-0325-32b-instruct">olmo-2-0325-32b-instruct</td>
+<td data-sort-value="Allen AI">Allen AI</td>
+<td data-sort-value="4.94">4.94(-0.69, +0.90)</td>
+<td data-sort-value="600.4249360955911">600(-27.46, +30.55)</td>
+<td data-sort-value="890">890</td>
+</tr>
+<tr data-model-name="qwen-2.5-7b-instruct">
+<td data-sort-value="49">49</td>
+<td data-sort-value="qwen-2.5-7b-instruct">qwen-2.5-7b-instruct</td>
+<td data-sort-value="Alibaba">Alibaba</td>
+<td data-sort-value="4.84">4.84(-0.65, +0.86)</td>
+<td data-sort-value="596.6314142321743">597(-26.17, +29.88)</td>
+<td data-sort-value="844">844</td>
+</tr>
+<tr data-model-name="llama-3.1-405b-instruct">
+<td data-sort-value="50">50</td>
+<td data-sort-value="llama-3.1-405b-instruct">llama-3.1-405b-instruct</td>
+<td data-sort-value="Meta">Meta</td>
+<td data-sort-value="4.82">4.82(-0.67, +0.88)</td>
+<td data-sort-value="595.6140889618731">596(-27.23, +30.85)</td>
+<td data-sort-value="1735">1735</td>
+</tr>
+<tr data-model-name="lfm-3b">
+<td data-sort-value="51">51</td>
+<td data-sort-value="lfm-3b">lfm-3b</td>
+<td data-sort-value="Liquid AI">Liquid AI</td>
+<td data-sort-value="4.49">4.49(-0.82, +0.75)</td>
+<td data-sort-value="583.062546929754">583(-36.62, +27.87)</td>
+<td data-sort-value="776">776</td>
+</tr>
+<tr data-model-name="llama-3.1-70b-instruct">
+<td data-sort-value="52">52</td>
+<td data-sort-value="llama-3.1-70b-instruct">llama-3.1-70b-instruct</td>
+<td data-sort-value="Meta">Meta</td>
+<td data-sort-value="4.24">4.24(-0.87, +0.77)</td>
+<td data-sort-value="572.4544592754903">572(-41.52, +30.55)</td>
+<td data-sort-value="1923">1923</td>
+</tr>
+<tr data-model-name="jamba-1.6-mini">
+<td data-sort-value="53">53</td>
+<td data-sort-value="jamba-1.6-mini">jamba-1.6-mini</td>
+<td data-sort-value="AI21">AI21</td>
+<td data-sort-value="3.17">3.17(-0.52, +0.73)</td>
+<td data-sort-value="519.9019729261431">520(-32.06, +37.66)</td>
+<td data-sort-value="920">920</td>
+</tr>
+<tr data-model-name="llama-3.1-8b-instruct">
+<td data-sort-value="54">54</td>
+<td data-sort-value="llama-3.1-8b-instruct">llama-3.1-8b-instruct</td>
+<td data-sort-value="Meta">Meta</td>
+<td data-sort-value="1.68">1.68(-0.54, +0.35)</td>
+<td data-sort-value="407.02703957068593">407(-67.51, +33.85)</td>
+<td data-sort-value="5081">5081</td>
+</tr>
+</tbody>
+</table></div><div class="table-container" id="table-length-control" data-id="length-control" style="display: none;"><table class="leaderboard-table" border="0">
+<thead>
+<tr>
+<th class="sortable" data-col-key="col_rank" data-sort-type="numeric">col_rank</th>
+<th class="sortable" data-col-key="col_model" data-sort-type="text">col_model</th>
+<th class="sortable" data-col-key="col_org" data-sort-type="text">col_org</th>
+<th class="sortable" data-col-key="col_score" data-sort-type="numeric">col_score</th>
+<th class="sortable" data-col-key="col_elo" data-sort-type="numeric">col_elo</th>
+<th class="sortable" data-col-key="col_tokens" data-sort-type="numeric">col_tokens</th>
+</tr>
+</thead>
+<tbody>
+<tr data-model-name="deepseek-chat-v3-0324">
+<td data-sort-value="1">1</td>
+<td data-sort-value="deepseek-chat-v3-0324">deepseek-chat-v3-0324</td>
+<td data-sort-value="Deepseek">Deepseek</td>
+<td data-sort-value="53.74">53.74(-2.12, +1.98)</td>
+<td data-sort-value="1140.053453058485">1140(-14.82, +13.84)</td>
+<td data-sort-value="1085">1085</td>
+</tr>
+<tr data-model-name="claude-3.7-sonnet">
+<td data-sort-value="2">2</td>
+<td data-sort-value="claude-3.7-sonnet"><span class="model-tag model-baseline">claude-3.7-sonnet (baseline)</span></td>
+<td data-sort-value="Anthropic">Anthropic</td>
+<td data-sort-value="50.0">50.0(-0.00, +0.00)</td>
+<td data-sort-value="1114.0">1114(-0.00, +0.00)</td>
+<td data-sort-value="1094">1094</td>
+</tr>
+<tr data-model-name="deepseek-r1">
+<td data-sort-value="3">3</td>
+<td data-sort-value="deepseek-r1">deepseek-r1</td>
+<td data-sort-value="Deepseek">Deepseek</td>
+<td data-sort-value="47.06">47.06(-2.39, +2.89)</td>
+<td data-sort-value="1093.568266665784">1094(-16.72, +20.06)</td>
+<td data-sort-value="1211">1211</td>
+</tr>
+<tr data-model-name="gemini-2.5-pro-exp-03-25">
+<td data-sort-value="4">4</td>
+<td data-sort-value="gemini-2.5-pro-exp-03-25">gemini-2.5-pro-exp-03-25</td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="45.87">45.87(-2.77, +2.15)</td>
+<td data-sort-value="1085.2264063065832">1085(-19.51, +14.99)</td>
+<td data-sort-value="2577">2577</td>
+</tr>
+<tr data-model-name="gemini-2.0-pro-exp-02-05">
+<td data-sort-value="5">5</td>
+<td data-sort-value="gemini-2.0-pro-exp-02-05">gemini-2.0-pro-exp-02-05</td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="45.81">45.81(-2.99, +2.62)</td>
+<td data-sort-value="1084.7924863051776">1085(-21.00, +18.30)</td>
+<td data-sort-value="2372">2372</td>
+</tr>
+<tr data-model-name="gpt-4.5-preview">
+<td data-sort-value="6">6</td>
+<td data-sort-value="gpt-4.5-preview">gpt-4.5-preview</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="42.83">42.83(-2.57, +1.88)</td>
+<td data-sort-value="1063.8100879778603">1064(-18.40, +13.26)</td>
+<td data-sort-value="1040">1040</td>
+</tr>
+<tr data-model-name="o1-high">
+<td data-sort-value="7">7</td>
+<td data-sort-value="o1-high">o1-high</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="41.47">41.47(-2.03, +2.42)</td>
+<td data-sort-value="1054.1413053141218">1054(-14.67, +17.19)</td>
+<td data-sort-value="1503">1503</td>
+</tr>
+<tr data-model-name="o3-mini-high">
+<td data-sort-value="8">8</td>
+<td data-sort-value="o3-mini-high">o3-mini-high</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="40.27">40.27(-2.26, +2.47)</td>
+<td data-sort-value="1045.5335512368265">1046(-16.52, +17.68)</td>
+<td data-sort-value="1257">1257</td>
+</tr>
+<tr data-model-name="o1-medium">
+<td data-sort-value="9">9</td>
+<td data-sort-value="o1-medium">o1-medium</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="39.21">39.21(-2.40, +2.21)</td>
+<td data-sort-value="1037.8501333533652">1038(-17.73, +15.91)</td>
+<td data-sort-value="1487">1487</td>
+</tr>
+<tr data-model-name="command-a">
+<td data-sort-value="10">10</td>
+<td data-sort-value="command-a">command-a</td>
+<td data-sort-value="Cohere">Cohere</td>
+<td data-sort-value="38.04">38.04(-2.08, +2.19)</td>
+<td data-sort-value="1029.2460066699548">1029(-15.52, +15.99)</td>
+<td data-sort-value="1083">1083</td>
+</tr>
+<tr data-model-name="o1-low">
+<td data-sort-value="11">11</td>
+<td data-sort-value="o1-low">o1-low</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="35.08">35.08(-2.02, +2.16)</td>
+<td data-sort-value="1007.0475866145936">1007(-15.62, +16.27)</td>
+<td data-sort-value="1513">1513</td>
+</tr>
+<tr data-model-name="gpt-4o-2024-11-20">
+<td data-sort-value="12">12</td>
+<td data-sort-value="gpt-4o-2024-11-20">gpt-4o-2024-11-20</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="34.73">34.73(-1.71, +1.70)</td>
+<td data-sort-value="1004.4072242592912">1004(-13.26, +12.89)</td>
+<td data-sort-value="1142">1142</td>
+</tr>
+<tr data-model-name="o3-mini-medium">
+<td data-sort-value="13">13</td>
+<td data-sort-value="o3-mini-medium">o3-mini-medium</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="33.31">33.31(-1.82, +1.77)</td>
+<td data-sort-value="993.3970605002268">993(-14.46, +13.65)</td>
+<td data-sort-value="1221">1221</td>
+</tr>
+<tr data-model-name="claude-3.5-sonnet">
+<td data-sort-value="14">14</td>
+<td data-sort-value="claude-3.5-sonnet">claude-3.5-sonnet</td>
+<td data-sort-value="Anthropic">Anthropic</td>
+<td data-sort-value="32.3">32.3(-2.20, +2.37)</td>
+<td data-sort-value="985.4334543589476">985(-17.76, +18.50)</td>
+<td data-sort-value="682">682</td>
+</tr>
+<tr data-model-name="gemini-2.0-flash-thinking-exp-01-21">
+<td data-sort-value="15">15</td>
+<td data-sort-value="gemini-2.0-flash-thinking-exp-01-21">gemini-2.0-flash-thinking-exp-01-21</td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="31.08">31.08(-2.43, +2.73)</td>
+<td data-sort-value="975.6765859562122">976(-20.20, +21.66)</td>
+<td data-sort-value="2488">2488</td>
+</tr>
+<tr data-model-name="o3-mini-low">
+<td data-sort-value="16">16</td>
+<td data-sort-value="o3-mini-low">o3-mini-low</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="30.34">30.34(-1.79, +2.42)</td>
+<td data-sort-value="969.5950934131037">970(-14.92, +19.46)</td>
+<td data-sort-value="1205">1205</td>
+</tr>
+<tr data-model-name="deepseek-v3">
+<td data-sort-value="17">17</td>
+<td data-sort-value="deepseek-v3">deepseek-v3</td>
+<td data-sort-value="Deepseek">Deepseek</td>
+<td data-sort-value="27.33">27.33(-1.95, +1.86)</td>
+<td data-sort-value="944.094701121998">944(-17.43, +15.96)</td>
+<td data-sort-value="1007">1007</td>
+</tr>
+<tr data-model-name="gemini-2.0-flash-001">
+<td data-sort-value="18">18</td>
+<td data-sort-value="gemini-2.0-flash-001"><span class="model-tag model-judge">gemini-2.0-flash-001 (judge)</span></td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="26.19">26.19(-1.41, +1.98)</td>
+<td data-sort-value="934.0463049637868">934(-12.93, +17.37)</td>
+<td data-sort-value="1901">1901</td>
+</tr>
+<tr data-model-name="gemma-3-27b-it">
+<td data-sort-value="19">19</td>
+<td data-sort-value="gemma-3-27b-it">gemma-3-27b-it</td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="25.38">25.38(-1.74, +2.13)</td>
+<td data-sort-value="926.6903154668672">927(-16.33, +18.99)</td>
+<td data-sort-value="1654">1654</td>
+</tr>
+<tr data-model-name="claude-3.5-haiku">
+<td data-sort-value="20">20</td>
+<td data-sort-value="claude-3.5-haiku">claude-3.5-haiku</td>
+<td data-sort-value="Anthropic">Anthropic</td>
+<td data-sort-value="24.64">24.64(-2.26, +2.19)</td>
+<td data-sort-value="919.7963213088894">920(-21.84, +19.94)</td>
+<td data-sort-value="601">601</td>
+</tr>
+<tr data-model-name="gemini-2.0-flash-lite-001">
+<td data-sort-value="21">21</td>
+<td data-sort-value="gemini-2.0-flash-lite-001">gemini-2.0-flash-lite-001</td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="23.44">23.44(-1.37, +1.90)</td>
+<td data-sort-value="908.3850489980618">908(-13.53, +17.88)</td>
+<td data-sort-value="2196">2196</td>
+</tr>
+<tr data-model-name="jamba-1.6-large">
+<td data-sort-value="22">22</td>
+<td data-sort-value="jamba-1.6-large">jamba-1.6-large</td>
+<td data-sort-value="AI21">AI21</td>
+<td data-sort-value="20.61">20.61(-1.29, +1.48)</td>
+<td data-sort-value="879.7233655623853">880(-14.06, +15.33)</td>
+<td data-sort-value="859">859</td>
+</tr>
+<tr data-model-name="claude-3.5-sonnet-20240620">
+<td data-sort-value="23">23</td>
+<td data-sort-value="claude-3.5-sonnet-20240620">claude-3.5-sonnet-20240620</td>
+<td data-sort-value="Anthropic">Anthropic</td>
+<td data-sort-value="20.19">20.19(-2.20, +1.96)</td>
+<td data-sort-value="875.2718325936395">875(-24.81, +20.35)</td>
+<td data-sort-value="628">628</td>
+</tr>
+<tr data-model-name="minimax-01">
+<td data-sort-value="24">24</td>
+<td data-sort-value="minimax-01">minimax-01</td>
+<td data-sort-value="MiniMax">MiniMax</td>
+<td data-sort-value="19.1">19.1(-2.46, +2.74)</td>
+<td data-sort-value="863.2488566441876">863(-29.12, +29.25)</td>
+<td data-sort-value="370">370</td>
+</tr>
+<tr data-model-name="nova-pro-v1">
+<td data-sort-value="25">25</td>
+<td data-sort-value="nova-pro-v1">nova-pro-v1</td>
+<td data-sort-value="Amazon">Amazon</td>
+<td data-sort-value="18.21">18.21(-1.89, +1.86)</td>
+<td data-sort-value="852.9900616376046">853(-22.98, +20.98)</td>
+<td data-sort-value="905">905</td>
+</tr>
+<tr data-model-name="grok-2-1212">
+<td data-sort-value="26">26</td>
+<td data-sort-value="grok-2-1212">grok-2-1212</td>
+<td data-sort-value="xAI">xAI</td>
+<td data-sort-value="17.94">17.94(-1.98, +1.66)</td>
+<td data-sort-value="849.9080771947441">850(-24.54, +18.92)</td>
+<td data-sort-value="898">898</td>
+</tr>
+<tr data-model-name="gpt-4o-mini">
+<td data-sort-value="27">27</td>
+<td data-sort-value="gpt-4o-mini"><span class="model-tag model-judge">gpt-4o-mini (judge)</span></td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="17.83">17.83(-1.66, +1.75)</td>
+<td data-sort-value="848.5611033995199">849(-20.42, +20.00)</td>
+<td data-sort-value="830">830</td>
+</tr>
+<tr data-model-name="qwen-2.5-72b-instruct">
+<td data-sort-value="28">28</td>
+<td data-sort-value="qwen-2.5-72b-instruct">qwen-2.5-72b-instruct</td>
+<td data-sort-value="Alibaba">Alibaba</td>
+<td data-sort-value="17.59">17.59(-1.29, +1.60)</td>
+<td data-sort-value="845.7258340804856">846(-15.89, +18.48)</td>
+<td data-sort-value="1097">1097</td>
+</tr>
+<tr data-model-name="mistral-large-2411">
+<td data-sort-value="29">29</td>
+<td data-sort-value="mistral-large-2411">mistral-large-2411</td>
+<td data-sort-value="Mistral">Mistral</td>
+<td data-sort-value="15.07">15.07(-2.00, +1.83)</td>
+<td data-sort-value="813.6242553969203">814(-28.84, +23.64)</td>
+<td data-sort-value="906">906</td>
+</tr>
+<tr data-model-name="gemma-2-27b-it">
+<td data-sort-value="30">30</td>
+<td data-sort-value="gemma-2-27b-it">gemma-2-27b-it</td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="12.66">12.66(-1.40, +1.31)</td>
+<td data-sort-value="778.4589375836434">778(-23.02, +19.79)</td>
+<td data-sort-value="794">794</td>
+</tr>
+<tr data-model-name="gpt-4-1106-preview">
+<td data-sort-value="31">31</td>
+<td data-sort-value="gpt-4-1106-preview">gpt-4-1106-preview</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="11.87">11.87(-1.28, +1.34)</td>
+<td data-sort-value="765.6699457685675">766(-22.32, +21.26)</td>
+<td data-sort-value="840">840</td>
+</tr>
+<tr data-model-name="mistral-small-3.1-24b-instruct-2503">
+<td data-sort-value="32">32</td>
+<td data-sort-value="mistral-small-3.1-24b-instruct-2503">mistral-small-3.1-24b-instruct-2503</td>
+<td data-sort-value="Mistral">Mistral</td>
+<td data-sort-value="11.5">11.5(-1.20, +1.43)</td>
+<td data-sort-value="759.5328440988785">760(-21.45, +23.11)</td>
+<td data-sort-value="961">961</td>
+</tr>
+<tr data-model-name="nova-lite-v1">
+<td data-sort-value="33">33</td>
+<td data-sort-value="nova-lite-v1">nova-lite-v1</td>
+<td data-sort-value="Amazon">Amazon</td>
+<td data-sort-value="10.7">10.7(-0.96, +1.27)</td>
+<td data-sort-value="745.4357668890306">745(-18.24, +21.99)</td>
+<td data-sort-value="994">994</td>
+</tr>
+<tr data-model-name="lfm-7b">
+<td data-sort-value="34">34</td>
+<td data-sort-value="lfm-7b">lfm-7b</td>
+<td data-sort-value="Liquid AI">Liquid AI</td>
+<td data-sort-value="10.57">10.57(-0.87, +0.85)</td>
+<td data-sort-value="743.0072451631947">743(-16.52, +15.20)</td>
+<td data-sort-value="1011">1011</td>
+</tr>
+<tr data-model-name="command-r-plus-08-2024">
+<td data-sort-value="35">35</td>
+<td data-sort-value="command-r-plus-08-2024">command-r-plus-08-2024</td>
+<td data-sort-value="Cohere">Cohere</td>
+<td data-sort-value="9.57">9.57(-1.16, +1.23)</td>
+<td data-sort-value="723.8289538373499">724(-24.75, +23.40)</td>
+<td data-sort-value="969">969</td>
+</tr>
+<tr data-model-name="wizardlm-2-8x22b">
+<td data-sort-value="36">36</td>
+<td data-sort-value="wizardlm-2-8x22b">wizardlm-2-8x22b</td>
+<td data-sort-value="Microsoft">Microsoft</td>
+<td data-sort-value="9.31">9.31(-1.08, +1.07)</td>
+<td data-sort-value="718.6222218248581">719(-23.60, +20.84)</td>
+<td data-sort-value="1028">1028</td>
+</tr>
+<tr data-model-name="qwen2.5-32b-instruct">
+<td data-sort-value="37">37</td>
+<td data-sort-value="qwen2.5-32b-instruct">qwen2.5-32b-instruct</td>
+<td data-sort-value="Alibaba">Alibaba</td>
+<td data-sort-value="8.96">8.96(-0.98, +1.25)</td>
+<td data-sort-value="711.3043660187043">711(-22.04, +24.97)</td>
+<td data-sort-value="795">795</td>
+</tr>
+<tr data-model-name="mistral-small-24b-instruct-2501">
+<td data-sort-value="38">38</td>
+<td data-sort-value="mistral-small-24b-instruct-2501">mistral-small-24b-instruct-2501</td>
+<td data-sort-value="Mistral">Mistral</td>
+<td data-sort-value="8.93">8.93(-1.10, +1.35)</td>
+<td data-sort-value="710.5111607480412">711(-24.77, +27.09)</td>
+<td data-sort-value="998">998</td>
+</tr>
+<tr data-model-name="hermes-3-llama-3.1-405b">
+<td data-sort-value="39">39</td>
+<td data-sort-value="hermes-3-llama-3.1-405b">hermes-3-llama-3.1-405b</td>
+<td data-sort-value="NousResearch">NousResearch</td>
+<td data-sort-value="8.1">8.1(-0.98, +1.49)</td>
+<td data-sort-value="691.988350504444">692(-24.15, +32.32)</td>
+<td data-sort-value="771">771</td>
+</tr>
+<tr data-model-name="gemma-2-9b-it">
+<td data-sort-value="40">40</td>
+<td data-sort-value="gemma-2-9b-it">gemma-2-9b-it</td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="7.83">7.83(-1.04, +1.05)</td>
+<td data-sort-value="685.7516988284724">686(-26.90, +23.80)</td>
+<td data-sort-value="751">751</td>
+</tr>
+<tr data-model-name="hermes-3-llama-3.1-70b">
+<td data-sort-value="41">41</td>
+<td data-sort-value="hermes-3-llama-3.1-70b">hermes-3-llama-3.1-70b</td>
+<td data-sort-value="NousResearch">NousResearch</td>
+<td data-sort-value="7.31">7.31(-1.05, +1.16)</td>
+<td data-sort-value="672.7035457640255">673(-28.70, +27.75)</td>
+<td data-sort-value="771">771</td>
+</tr>
+<tr data-model-name="nova-micro-v1">
+<td data-sort-value="42">42</td>
+<td data-sort-value="nova-micro-v1">nova-micro-v1</td>
+<td data-sort-value="Amazon">Amazon</td>
+<td data-sort-value="7.17">7.17(-1.03, +0.93)</td>
+<td data-sort-value="669.1564035316558">669(-28.83, +22.88)</td>
+<td data-sort-value="927">927</td>
+</tr>
+<tr data-model-name="command-r-08-2024">
+<td data-sort-value="43">43</td>
+<td data-sort-value="command-r-08-2024">command-r-08-2024</td>
+<td data-sort-value="Cohere">Cohere</td>
+<td data-sort-value="5.96">5.96(-0.69, +1.00)</td>
+<td data-sort-value="634.6694042776242">635(-22.59, +29.02)</td>
+<td data-sort-value="796">796</td>
+</tr>
+<tr data-model-name="lfm-40b">
+<td data-sort-value="44">44</td>
+<td data-sort-value="lfm-40b">lfm-40b</td>
+<td data-sort-value="Liquid AI">Liquid AI</td>
+<td data-sort-value="5.86">5.86(-0.79, +0.73)</td>
+<td data-sort-value="631.5986626285148">632(-26.64, +21.73)</td>
+<td data-sort-value="863">863</td>
+</tr>
+<tr data-model-name="llama-3.3-70b-instruct">
+<td data-sort-value="45">45</td>
+<td data-sort-value="llama-3.3-70b-instruct">llama-3.3-70b-instruct</td>
+<td data-sort-value="Meta">Meta</td>
+<td data-sort-value="5.32">5.32(-0.82, +0.88)</td>
+<td data-sort-value="613.8688695525884">614(-30.65, +28.21)</td>
+<td data-sort-value="809">809</td>
+</tr>
+<tr data-model-name="command-r7b-12-2024">
+<td data-sort-value="46">46</td>
+<td data-sort-value="command-r7b-12-2024">command-r7b-12-2024</td>
+<td data-sort-value="Cohere">Cohere</td>
+<td data-sort-value="4.94">4.94(-0.90, +0.83)</td>
+<td data-sort-value="600.4713198755412">600(-36.86, +28.32)</td>
+<td data-sort-value="882">882</td>
+</tr>
+<tr data-model-name="lfm-3b">
+<td data-sort-value="47">47</td>
+<td data-sort-value="lfm-3b">lfm-3b</td>
+<td data-sort-value="Liquid AI">Liquid AI</td>
+<td data-sort-value="4.26">4.26(-0.85, +0.55)</td>
+<td data-sort-value="573.5214585743912">574(-40.35, +21.86)</td>
+<td data-sort-value="776">776</td>
+</tr>
+<tr data-model-name="qwen-2.5-7b-instruct">
+<td data-sort-value="48">48</td>
+<td data-sort-value="qwen-2.5-7b-instruct">qwen-2.5-7b-instruct</td>
+<td data-sort-value="Alibaba">Alibaba</td>
+<td data-sort-value="3.53">3.53(-0.74, +0.92)</td>
+<td data-sort-value="539.3629059073063">539(-41.98, +41.84)</td>
+<td data-sort-value="844">844</td>
+</tr>
+<tr data-model-name="olmo-2-0325-32b-instruct">
+<td data-sort-value="49">49</td>
+<td data-sort-value="olmo-2-0325-32b-instruct">olmo-2-0325-32b-instruct</td>
+<td data-sort-value="Allen AI">Allen AI</td>
+<td data-sort-value="3.42">3.42(-0.49, +0.69)</td>
+<td data-sort-value="533.6811072082967">534(-28.01, +32.97)</td>
+<td data-sort-value="890">890</td>
+</tr>
+<tr data-model-name="jamba-1.6-mini">
+<td data-sort-value="50">50</td>
+<td data-sort-value="jamba-1.6-mini">jamba-1.6-mini</td>
+<td data-sort-value="AI21">AI21</td>
+<td data-sort-value="3.09">3.09(-0.59, +0.57)</td>
+<td data-sort-value="515.3843664440876">515(-37.74, +30.70)</td>
+<td data-sort-value="920">920</td>
+</tr>
+<tr data-model-name="llama-3.1-nemotron-70b-instruct">
+<td data-sort-value="51">51</td>
+<td data-sort-value="llama-3.1-nemotron-70b-instruct">llama-3.1-nemotron-70b-instruct</td>
+<td data-sort-value="Meta">Meta</td>
+<td data-sort-value="2.67">2.67(-0.43, +0.53)</td>
+<td data-sort-value="489.4822198197161">489(-31.14, +32.05)</td>
+<td data-sort-value="1854">1854</td>
+</tr>
+<tr data-model-name="llama-3.1-405b-instruct">
+<td data-sort-value="52">52</td>
+<td data-sort-value="llama-3.1-405b-instruct">llama-3.1-405b-instruct</td>
+<td data-sort-value="Meta">Meta</td>
+<td data-sort-value="0.85">0.85(-0.18, +0.23)</td>
+<td data-sort-value="287.98710685072695">288(-41.41, +41.61)</td>
+<td data-sort-value="1735">1735</td>
+</tr>
+<tr data-model-name="llama-3.1-70b-instruct">
+<td data-sort-value="53">53</td>
+<td data-sort-value="llama-3.1-70b-instruct">llama-3.1-70b-instruct</td>
+<td data-sort-value="Meta">Meta</td>
+<td data-sort-value="0.56">0.56(-0.13, +0.13)</td>
+<td data-sort-value="213.85412028073983">214(-47.49, +36.63)</td>
+<td data-sort-value="1923">1923</td>
+</tr>
+<tr data-model-name="llama-3.1-8b-instruct">
+<td data-sort-value="54">54</td>
+<td data-sort-value="llama-3.1-8b-instruct">llama-3.1-8b-instruct</td>
+<td data-sort-value="Meta">Meta</td>
+<td data-sort-value="0.08">0.08(-0.02, +0.02)</td>
+<td data-sort-value="-128.2741378289477">-128(-52.39, +49.27)</td>
+<td data-sort-value="5081">5081</td>
+</tr>
+</tbody>
+</table></div><div class="table-container" id="table-no-control" data-id="no-control" style="display: none;"><table class="leaderboard-table" border="0">
+<thead>
+<tr>
+<th class="sortable" data-col-key="col_rank" data-sort-type="numeric">col_rank</th>
+<th class="sortable" data-col-key="col_model" data-sort-type="text">col_model</th>
+<th class="sortable" data-col-key="col_org" data-sort-type="text">col_org</th>
+<th class="sortable" data-col-key="col_score" data-sort-type="numeric">col_score</th>
+<th class="sortable" data-col-key="col_elo" data-sort-type="numeric">col_elo</th>
+<th class="sortable" data-col-key="col_tokens" data-sort-type="numeric">col_tokens</th>
+</tr>
+</thead>
+<tbody>
+<tr data-model-name="gemini-2.5-pro-exp-03-25">
+<td data-sort-value="1">1</td>
+<td data-sort-value="gemini-2.5-pro-exp-03-25">gemini-2.5-pro-exp-03-25</td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="82.94">82.94(-1.34, +1.05)</td>
+<td data-sort-value="1274.720970877108">1275(-26.65, +16.13)</td>
+<td data-sort-value="2577">2577</td>
+</tr>
+<tr data-model-name="gemini-2.0-pro-exp-02-05">
+<td data-sort-value="2">2</td>
+<td data-sort-value="gemini-2.0-pro-exp-02-05">gemini-2.0-pro-exp-02-05</td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="76.12">76.12(-1.20, +0.84)</td>
+<td data-sort-value="1201.4201151854857">1201(-21.93, +10.97)</td>
+<td data-sort-value="2372">2372</td>
+</tr>
+<tr data-model-name="gemini-2.0-flash-thinking-exp-01-21">
+<td data-sort-value="3">3</td>
+<td data-sort-value="gemini-2.0-flash-thinking-exp-01-21">gemini-2.0-flash-thinking-exp-01-21</td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="70.4">70.4(-1.25, +1.19)</td>
+<td data-sort-value="1150.5474413034085">1151(-21.01, +12.90)</td>
+<td data-sort-value="2488">2488</td>
+</tr>
+<tr data-model-name="deepseek-chat-v3-0324">
+<td data-sort-value="4">4</td>
+<td data-sort-value="deepseek-chat-v3-0324">deepseek-chat-v3-0324</td>
+<td data-sort-value="Deepseek">Deepseek</td>
+<td data-sort-value="60.52">60.52(-1.07, +1.25)</td>
+<td data-sort-value="1074.2094609524454">1074(-18.38, +12.02)</td>
+<td data-sort-value="1085">1085</td>
+</tr>
+<tr data-model-name="gemini-2.0-flash-lite-001">
+<td data-sort-value="5">5</td>
+<td data-sort-value="gemini-2.0-flash-lite-001">gemini-2.0-flash-lite-001</td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="58.22">58.22(-1.37, +1.26)</td>
+<td data-sort-value="1057.6328795690788">1058(-20.35, +11.87)</td>
+<td data-sort-value="2196">2196</td>
+</tr>
+<tr data-model-name="gemini-2.0-flash-001">
+<td data-sort-value="6">6</td>
+<td data-sort-value="gemini-2.0-flash-001"><span class="model-tag model-judge">gemini-2.0-flash-001 (judge)</span></td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="57.8">57.8(-0.71, +1.40)</td>
+<td data-sort-value="1054.6199771848842">1055(-15.70, +12.92)</td>
+<td data-sort-value="1901">1901</td>
+</tr>
+<tr data-model-name="o1-high">
+<td data-sort-value="7">7</td>
+<td data-sort-value="o1-high">o1-high</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="54.86">54.86(-1.67, +1.55)</td>
+<td data-sort-value="1033.8909331866075">1034(-22.36, +13.76)</td>
+<td data-sort-value="1503">1503</td>
+</tr>
+<tr data-model-name="gemma-3-27b-it">
+<td data-sort-value="8">8</td>
+<td data-sort-value="gemma-3-27b-it">gemma-3-27b-it</td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="52.54">52.54(-1.59, +1.37)</td>
+<td data-sort-value="1017.661475348644">1018(-21.68, +12.44)</td>
+<td data-sort-value="1654">1654</td>
+</tr>
+<tr data-model-name="deepseek-r1">
+<td data-sort-value="9">9</td>
+<td data-sort-value="deepseek-r1">deepseek-r1</td>
+<td data-sort-value="Deepseek">Deepseek</td>
+<td data-sort-value="52.44">52.44(-0.97, +1.72)</td>
+<td data-sort-value="1016.9892784670934">1017(-17.44, +14.82)</td>
+<td data-sort-value="1211">1211</td>
+</tr>
+<tr data-model-name="o1-medium">
+<td data-sort-value="10">10</td>
+<td data-sort-value="o1-medium">o1-medium</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="51.13">51.13(-1.54, +1.08)</td>
+<td data-sort-value="1007.8801228005248">1008(-21.37, +10.37)</td>
+<td data-sort-value="1487">1487</td>
+</tr>
+<tr data-model-name="claude-3.7-sonnet">
+<td data-sort-value="11">11</td>
+<td data-sort-value="claude-3.7-sonnet"><span class="model-tag model-baseline">claude-3.7-sonnet (baseline)</span></td>
+<td data-sort-value="Anthropic">Anthropic</td>
+<td data-sort-value="50.0">50.0(-0.00, +0.00)</td>
+<td data-sort-value="1000.0">1000(-10.65, +2.86)</td>
+<td data-sort-value="1094">1094</td>
+</tr>
+<tr data-model-name="o3-mini-high">
+<td data-sort-value="12">12</td>
+<td data-sort-value="o3-mini-high">o3-mini-high</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="49.04">49.04(-1.62, +1.23)</td>
+<td data-sort-value="993.3101254030864">993(-21.90, +11.45)</td>
+<td data-sort-value="1257">1257</td>
+</tr>
+<tr data-model-name="o1-low">
+<td data-sort-value="13">13</td>
+<td data-sort-value="o1-low">o1-low</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="48.98">48.98(-1.21, +1.15)</td>
+<td data-sort-value="992.880933762746">993(-19.05, +10.87)</td>
+<td data-sort-value="1513">1513</td>
+</tr>
+<tr data-model-name="command-a">
+<td data-sort-value="14">14</td>
+<td data-sort-value="command-a">command-a</td>
+<td data-sort-value="Cohere">Cohere</td>
+<td data-sort-value="45.82">45.82(-1.07, +1.00)</td>
+<td data-sort-value="970.8821445682082">971(-18.15, +9.83)</td>
+<td data-sort-value="1083">1083</td>
+</tr>
+<tr data-model-name="gpt-4.5-preview">
+<td data-sort-value="15">15</td>
+<td data-sort-value="gpt-4.5-preview">gpt-4.5-preview</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="45.27">45.27(-1.24, +1.22)</td>
+<td data-sort-value="967.0466221138188">967(-19.39, +11.38)</td>
+<td data-sort-value="1040">1040</td>
+</tr>
+<tr data-model-name="gpt-4o-2024-11-20">
+<td data-sort-value="16">16</td>
+<td data-sort-value="gpt-4o-2024-11-20">gpt-4o-2024-11-20</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="45.03">45.03(-1.59, +1.60)</td>
+<td data-sort-value="965.378910428928">965(-21.84, +14.01)</td>
+<td data-sort-value="1142">1142</td>
+</tr>
+<tr data-model-name="o3-mini-medium">
+<td data-sort-value="17">17</td>
+<td data-sort-value="o3-mini-medium">o3-mini-medium</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="41.94">41.94(-1.21, +1.76)</td>
+<td data-sort-value="943.4812132397226">943(-19.29, +15.40)</td>
+<td data-sort-value="1221">1221</td>
+</tr>
+<tr data-model-name="o3-mini-low">
+<td data-sort-value="18">18</td>
+<td data-sort-value="o3-mini-low">o3-mini-low</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="39.2">39.2(-1.32, +1.85)</td>
+<td data-sort-value="923.7195750588528">924(-20.31, +16.26)</td>
+<td data-sort-value="1205">1205</td>
+</tr>
+<tr data-model-name="deepseek-v3">
+<td data-sort-value="19">19</td>
+<td data-sort-value="deepseek-v3">deepseek-v3</td>
+<td data-sort-value="Deepseek">Deepseek</td>
+<td data-sort-value="32.93">32.93(-1.00, +1.63)</td>
+<td data-sort-value="876.4004014338328">876(-18.55, +15.57)</td>
+<td data-sort-value="1007">1007</td>
+</tr>
+<tr data-model-name="qwen-2.5-72b-instruct">
+<td data-sort-value="20">20</td>
+<td data-sort-value="qwen-2.5-72b-instruct">qwen-2.5-72b-instruct</td>
+<td data-sort-value="Alibaba">Alibaba</td>
+<td data-sort-value="24.0">24.0(-1.20, +1.04)</td>
+<td data-sort-value="799.738329960028">800(-22.23, +12.63)</td>
+<td data-sort-value="1097">1097</td>
+</tr>
+<tr data-model-name="nova-pro-v1">
+<td data-sort-value="21">21</td>
+<td data-sort-value="nova-pro-v1">nova-pro-v1</td>
+<td data-sort-value="Amazon">Amazon</td>
+<td data-sort-value="21.08">21.08(-1.35, +0.97)</td>
+<td data-sort-value="770.6737758946598">771(-25.10, +12.79)</td>
+<td data-sort-value="905">905</td>
+</tr>
+<tr data-model-name="claude-3.5-sonnet">
+<td data-sort-value="22">22</td>
+<td data-sort-value="claude-3.5-sonnet">claude-3.5-sonnet</td>
+<td data-sort-value="Anthropic">Anthropic</td>
+<td data-sort-value="20.6">20.6(-1.19, +1.68)</td>
+<td data-sort-value="765.577524654713">766(-23.49, +20.26)</td>
+<td data-sort-value="682">682</td>
+</tr>
+<tr data-model-name="jamba-1.6-large">
+<td data-sort-value="23">23</td>
+<td data-sort-value="jamba-1.6-large">jamba-1.6-large</td>
+<td data-sort-value="AI21">AI21</td>
+<td data-sort-value="20.35">20.35(-0.91, +1.17)</td>
+<td data-sort-value="762.9587667277772">763(-20.54, +15.12)</td>
+<td data-sort-value="859">859</td>
+</tr>
+<tr data-model-name="grok-2-1212">
+<td data-sort-value="24">24</td>
+<td data-sort-value="grok-2-1212">grok-2-1212</td>
+<td data-sort-value="xAI">xAI</td>
+<td data-sort-value="18.05">18.05(-0.76, +1.24)</td>
+<td data-sort-value="737.2192421286256">737(-19.81, +17.00)</td>
+<td data-sort-value="898">898</td>
+</tr>
+<tr data-model-name="mistral-large-2411">
+<td data-sort-value="25">25</td>
+<td data-sort-value="mistral-large-2411">mistral-large-2411</td>
+<td data-sort-value="Mistral">Mistral</td>
+<td data-sort-value="16.83">16.83(-0.81, +1.25)</td>
+<td data-sort-value="722.503771177931">723(-20.93, +17.92)</td>
+<td data-sort-value="906">906</td>
+</tr>
+<tr data-model-name="lfm-7b">
+<td data-sort-value="26">26</td>
+<td data-sort-value="lfm-7b">lfm-7b</td>
+<td data-sort-value="Liquid AI">Liquid AI</td>
+<td data-sort-value="16.44">16.44(-1.25, +1.09)</td>
+<td data-sort-value="717.5362324104588">718(-26.91, +16.27)</td>
+<td data-sort-value="1011">1011</td>
+</tr>
+<tr data-model-name="gpt-4o-mini">
+<td data-sort-value="27">27</td>
+<td data-sort-value="gpt-4o-mini"><span class="model-tag model-judge">gpt-4o-mini (judge)</span></td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="16.07">16.07(-1.07, +1.02)</td>
+<td data-sort-value="712.8077851304017">713(-24.72, +15.66)</td>
+<td data-sort-value="830">830</td>
+</tr>
+<tr data-model-name="wizardlm-2-8x22b">
+<td data-sort-value="28">28</td>
+<td data-sort-value="wizardlm-2-8x22b">wizardlm-2-8x22b</td>
+<td data-sort-value="Microsoft">Microsoft</td>
+<td data-sort-value="15.74">15.74(-0.93, +1.00)</td>
+<td data-sort-value="708.6014517981355">709(-23.16, +15.60)</td>
+<td data-sort-value="1028">1028</td>
+</tr>
+<tr data-model-name="mistral-small-3.1-24b-instruct-2503">
+<td data-sort-value="29">29</td>
+<td data-sort-value="mistral-small-3.1-24b-instruct-2503">mistral-small-3.1-24b-instruct-2503</td>
+<td data-sort-value="Mistral">Mistral</td>
+<td data-sort-value="15.24">15.24(-0.91, +1.52)</td>
+<td data-sort-value="701.9356972545586">702(-23.24, +22.56)</td>
+<td data-sort-value="961">961</td>
+</tr>
+<tr data-model-name="nova-lite-v1">
+<td data-sort-value="30">30</td>
+<td data-sort-value="nova-lite-v1">nova-lite-v1</td>
+<td data-sort-value="Amazon">Amazon</td>
+<td data-sort-value="15.04">15.04(-0.75, +1.00)</td>
+<td data-sort-value="699.1473499195763">699(-20.99, +16.10)</td>
+<td data-sort-value="994">994</td>
+</tr>
+<tr data-model-name="gpt-4-1106-preview">
+<td data-sort-value="31">31</td>
+<td data-sort-value="gpt-4-1106-preview">gpt-4-1106-preview</td>
+<td data-sort-value="OpenAI">OpenAI</td>
+<td data-sort-value="13.32">13.32(-0.89, +1.16)</td>
+<td data-sort-value="674.6774834023549">675(-24.41, +19.63)</td>
+<td data-sort-value="840">840</td>
+</tr>
+<tr data-model-name="llama-3.1-nemotron-70b-instruct">
+<td data-sort-value="32">32</td>
+<td data-sort-value="llama-3.1-nemotron-70b-instruct">llama-3.1-nemotron-70b-instruct</td>
+<td data-sort-value="Meta">Meta</td>
+<td data-sort-value="12.61">12.61(-1.03, +0.77)</td>
+<td data-sort-value="663.7750904856204">664(-27.58, +14.64)</td>
+<td data-sort-value="1854">1854</td>
+</tr>
+<tr data-model-name="claude-3.5-haiku">
+<td data-sort-value="33">33</td>
+<td data-sort-value="claude-3.5-haiku">claude-3.5-haiku</td>
+<td data-sort-value="Anthropic">Anthropic</td>
+<td data-sort-value="12.58">12.58(-1.24, +0.95)</td>
+<td data-sort-value="663.1560781431197">663(-31.10, +17.54)</td>
+<td data-sort-value="601">601</td>
+</tr>
+<tr data-model-name="claude-3.5-sonnet-20240620">
+<td data-sort-value="34">34</td>
+<td data-sort-value="claude-3.5-sonnet-20240620">claude-3.5-sonnet-20240620</td>
+<td data-sort-value="Anthropic">Anthropic</td>
+<td data-sort-value="12.18">12.18(-0.95, +0.92)</td>
+<td data-sort-value="656.7484259688831">657(-26.56, +17.48)</td>
+<td data-sort-value="628">628</td>
+</tr>
+<tr data-model-name="command-r-plus-08-2024">
+<td data-sort-value="35">35</td>
+<td data-sort-value="command-r-plus-08-2024">command-r-plus-08-2024</td>
+<td data-sort-value="Cohere">Cohere</td>
+<td data-sort-value="11.93">11.93(-0.92, +1.02)</td>
+<td data-sort-value="652.8023000102512">653(-26.53, +19.03)</td>
+<td data-sort-value="969">969</td>
+</tr>
+<tr data-model-name="gemma-2-27b-it">
+<td data-sort-value="36">36</td>
+<td data-sort-value="gemma-2-27b-it">gemma-2-27b-it</td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="11.65">11.65(-1.00, +0.76)</td>
+<td data-sort-value="648.0764680777827">648(-28.17, +15.26)</td>
+<td data-sort-value="794">794</td>
+</tr>
+<tr data-model-name="mistral-small-24b-instruct-2501">
+<td data-sort-value="37">37</td>
+<td data-sort-value="mistral-small-24b-instruct-2501">mistral-small-24b-instruct-2501</td>
+<td data-sort-value="Mistral">Mistral</td>
+<td data-sort-value="11.21">11.21(-1.23, +0.86)</td>
+<td data-sort-value="640.4116964704174">640(-33.21, +17.51)</td>
+<td data-sort-value="998">998</td>
+</tr>
+<tr data-model-name="nova-micro-v1">
+<td data-sort-value="38">38</td>
+<td data-sort-value="nova-micro-v1">nova-micro-v1</td>
+<td data-sort-value="Amazon">Amazon</td>
+<td data-sort-value="10.14">10.14(-0.96, +0.92)</td>
+<td data-sort-value="621.0826519856005">621(-29.90, +19.59)</td>
+<td data-sort-value="927">927</td>
+</tr>
+<tr data-model-name="qwen2.5-32b-instruct">
+<td data-sort-value="39">39</td>
+<td data-sort-value="qwen2.5-32b-instruct">qwen2.5-32b-instruct</td>
+<td data-sort-value="Alibaba">Alibaba</td>
+<td data-sort-value="8.12">8.12(-0.77, +1.23)</td>
+<td data-sort-value="578.4334922462635">578(-29.35, +29.71)</td>
+<td data-sort-value="795">795</td>
+</tr>
+<tr data-model-name="lfm-40b">
+<td data-sort-value="40">40</td>
+<td data-sort-value="lfm-40b">lfm-40b</td>
+<td data-sort-value="Liquid AI">Liquid AI</td>
+<td data-sort-value="7.69">7.69(-0.56, +0.54)</td>
+<td data-sort-value="568.3277207152107">568(-24.87, +15.51)</td>
+<td data-sort-value="863">863</td>
+</tr>
+<tr data-model-name="minimax-01">
+<td data-sort-value="41">41</td>
+<td data-sort-value="minimax-01">minimax-01</td>
+<td data-sort-value="MiniMax">MiniMax</td>
+<td data-sort-value="7.63">7.63(-0.70, +0.66)</td>
+<td data-sort-value="566.7095033712608">567(-28.59, +18.68)</td>
+<td data-sort-value="370">370</td>
+</tr>
+<tr data-model-name="hermes-3-llama-3.1-405b">
+<td data-sort-value="42">42</td>
+<td data-sort-value="hermes-3-llama-3.1-405b">hermes-3-llama-3.1-405b</td>
+<td data-sort-value="NousResearch">NousResearch</td>
+<td data-sort-value="7.59">7.59(-0.68, +0.80)</td>
+<td data-sort-value="565.8778894993102">566(-28.35, +21.76)</td>
+<td data-sort-value="771">771</td>
+</tr>
+<tr data-model-name="hermes-3-llama-3.1-70b">
+<td data-sort-value="43">43</td>
+<td data-sort-value="hermes-3-llama-3.1-70b">hermes-3-llama-3.1-70b</td>
+<td data-sort-value="NousResearch">NousResearch</td>
+<td data-sort-value="7.09">7.09(-0.82, +0.68)</td>
+<td data-sort-value="553.1132667600051">553(-33.63, +19.90)</td>
+<td data-sort-value="771">771</td>
+</tr>
+<tr data-model-name="gemma-2-9b-it">
+<td data-sort-value="44">44</td>
+<td data-sort-value="gemma-2-9b-it">gemma-2-9b-it</td>
+<td data-sort-value="Google">Google</td>
+<td data-sort-value="7.03">7.03(-0.81, +0.66)</td>
+<td data-sort-value="551.4044974537674">551(-33.46, +19.73)</td>
+<td data-sort-value="751">751</td>
+</tr>
+<tr data-model-name="command-r-08-2024">
+<td data-sort-value="45">45</td>
+<td data-sort-value="command-r-08-2024">command-r-08-2024</td>
+<td data-sort-value="Cohere">Cohere</td>
+<td data-sort-value="5.95">5.95(-0.50, +0.70)</td>
+<td data-sort-value="520.4383606117401">520(-26.78, +23.38)</td>
+<td data-sort-value="796">796</td>
+</tr>
+<tr data-model-name="command-r7b-12-2024">
+<td data-sort-value="46">46</td>
+<td data-sort-value="command-r7b-12-2024">command-r7b-12-2024</td>
+<td data-sort-value="Cohere">Cohere</td>
+<td data-sort-value="5.9">5.9(-0.60, +0.74)</td>
+<td data-sort-value="518.9630375173572">519(-30.46, +24.73)</td>
+<td data-sort-value="882">882</td>
+</tr>
+<tr data-model-name="lfm-3b">
+<td data-sort-value="47">47</td>
+<td data-sort-value="lfm-3b">lfm-3b</td>
+<td data-sort-value="Liquid AI">Liquid AI</td>
+<td data-sort-value="5.66">5.66(-0.74, +0.66)</td>
+<td data-sort-value="511.3260655860101">511(-36.45, +23.24)</td>
+<td data-sort-value="776">776</td>
+</tr>
+<tr data-model-name="llama-3.3-70b-instruct">
+<td data-sort-value="48">48</td>
+<td data-sort-value="llama-3.3-70b-instruct">llama-3.3-70b-instruct</td>
+<td data-sort-value="Meta">Meta</td>
+<td data-sort-value="5.28">5.28(-0.71, +0.61)</td>
+<td data-sort-value="498.5252394736583">499(-36.98, +23.04)</td>
+<td data-sort-value="809">809</td>
+</tr>
+<tr data-model-name="olmo-2-0325-32b-instruct">
+<td data-sort-value="49">49</td>
+<td data-sort-value="olmo-2-0325-32b-instruct">olmo-2-0325-32b-instruct</td>
+<td data-sort-value="Allen AI">Allen AI</td>
+<td data-sort-value="5.12">5.12(-0.60, +0.75)</td>
+<td data-sort-value="492.68283815572886">493(-33.35, +28.08)</td>
+<td data-sort-value="890">890</td>
+</tr>
+<tr data-model-name="jamba-1.6-mini">
+<td data-sort-value="50">50</td>
+<td data-sort-value="jamba-1.6-mini">jamba-1.6-mini</td>
+<td data-sort-value="AI21">AI21</td>
+<td data-sort-value="4.98">4.98(-0.76, +0.69)</td>
+<td data-sort-value="487.85238528997616">488(-40.81, +26.74)</td>
+<td data-sort-value="920">920</td>
+</tr>
+<tr data-model-name="qwen-2.5-7b-instruct">
+<td data-sort-value="51">51</td>
+<td data-sort-value="qwen-2.5-7b-instruct">qwen-2.5-7b-instruct</td>
+<td data-sort-value="Alibaba">Alibaba</td>
+<td data-sort-value="4.4">4.4(-0.52, +0.80)</td>
+<td data-sort-value="465.3121770609491">465(-33.46, +33.31)</td>
+<td data-sort-value="844">844</td>
+</tr>
+<tr data-model-name="llama-3.1-405b-instruct">
+<td data-sort-value="52">52</td>
+<td data-sort-value="llama-3.1-405b-instruct">llama-3.1-405b-instruct</td>
+<td data-sort-value="Meta">Meta</td>
+<td data-sort-value="3.87">3.87(-0.52, +0.66)</td>
+<td data-sort-value="441.8619510059534">442(-36.33, +31.35)</td>
+<td data-sort-value="1735">1735</td>
+</tr>
+<tr data-model-name="llama-3.1-70b-instruct">
+<td data-sort-value="53">53</td>
+<td data-sort-value="llama-3.1-70b-instruct">llama-3.1-70b-instruct</td>
+<td data-sort-value="Meta">Meta</td>
+<td data-sort-value="3.37">3.37(-0.50, +0.44)</td>
+<td data-sort-value="417.0984587990995">417(-39.54, +24.93)</td>
+<td data-sort-value="1923">1923</td>
+</tr>
+<tr data-model-name="llama-3.1-8b-instruct">
+<td data-sort-value="54">54</td>
+<td data-sort-value="llama-3.1-8b-instruct">llama-3.1-8b-instruct</td>
+<td data-sort-value="Meta">Meta</td>
+<td data-sort-value="1.45">1.45(-0.35, +0.29)</td>
+<td data-sort-value="267.32414580815885">267(-59.33, +34.40)</td>
+<td data-sort-value="5081">5081</td>
+</tr>
+</tbody>
+</table></div>
+
+          </div>
+
+          
+          <script>
+            // --- Configuration ---
+            var translationsData = {"ko": {"title": "Ko-Arena-Hard 리더보드 ({{update_date}})", "heading": "Ko-Arena-Hard-Auto 리더보드 ({{update_date}})", "notice": "<strong style=\"color: var(--judge-color-text)\">주의:</strong> judge 모델(gemini-2.0-flash, gpt-4o-mini)은 자체 답변 선호 경향으로 인해 실제 성능보다 점수가 높게 나타날 수 있습니다. 해당 모델들의 점수 해석 시 유의하시기 바랍니다.", "select_leaderboard_label": "리더보드 선택:", "select_language_label": "언어 선택:", "search_placeholder": "모델명 검색...", "lang_ko": "한국어", "lang_en": "English", "col_rank": "순위", "col_org": "기관", "col_model": "모델", "col_score": "점수 (CI)", "col_elo": "Elo 점수 (CI)", "col_tokens": "평균 토큰", "lb_type_no_control": "컨트롤 없음", "lb_type_markdown_control": "마크다운 컨트롤", "lb_type_length_control": "길이 컨트롤", "lb_type_style_control": "스타일 컨트롤 (마크다운 + 길이)"}, "en": {"title": "Ko-Arena-Hard Leaderboard ({{update_date}})", "heading": "Ko-Arena-Hard-Auto Leaderboard ({{update_date}})", "notice": "<strong style=\"color: var(--judge-color-text)\">Caution:</strong> Judge models (gemini-2.0-flash, gpt-4o-mini) may show inflated scores due to self-preference bias. Please interpret their scores with caution.", "select_leaderboard_label": "Select Leaderboard:", "select_language_label": "Select Language:", "search_placeholder": "Search model name...", "lang_ko": "한국어", "lang_en": "English", "col_rank": "Rank", "col_org": "Organization", "col_model": "Model", "col_score": "Score (CI)", "col_elo": "Elo Score (CI)", "col_tokens": "Avg Tokens", "lb_type_no_control": "No Control", "lb_type_markdown_control": "Markdown Control", "lb_type_length_control": "Length Control", "lb_type_style_control": "Style Control (Markdown + Length)"}};
+            var updateDate = "2025-03-27";
+            var defaultLang = "ko";
+            var currentSort = { key: 'col_rank', dir: 'desc' }; // Default sort: Rank descending
+
+            // --- DOM Elements ---
+            var leaderboardSelect = document.getElementById('leaderboard-select');
+            var languageSelect = document.getElementById('language-select');
+            var searchInput = document.getElementById('model-search-input');
+            var tableContainerParent = document.querySelector('.container'); // Or specific parent if needed
+            var translatableElements; // Will be populated on DOMContentLoaded
+
+            // --- Core Functions ---
+
+            /**
+             * Gets the currently visible table element.
+             * @returns {HTMLTableElement | null} The visible table or null. <--- CORRECTED
+             */
+            function getVisibleTable() {
+              var visibleContainer = document.querySelector('.table-container[style*="display: block"]');
+              return visibleContainer ? visibleContainer.querySelector('table.leaderboard-table') : null;
+            }
+
+            /**
+             * Updates text content and placeholders based on the selected language.
+             * @param {string} lang - The language code (e.g., 'ko', 'en'). <--- CORRECTED
+             */
+            function updateTranslations(lang) {
+              document.documentElement.lang = lang; // Update html lang attribute
+
+              translatableElements.forEach(function(el) {
+                var key = el.dataset.translateKey;
+                var placeholderKey = el.dataset.translateKeyPlaceholder;
+                var translatedText = '';
+                var isPlaceholder = false;
+
+                if (placeholderKey) {
+                  key = placeholderKey;
+                  isPlaceholder = true;
+                }
+
+                // Get translation, fallback to defaultLang, then key itself
+                if (translationsData[lang] && translationsData[lang][key]) {
+                  translatedText = translationsData[lang][key];
+                } else if (translationsData[defaultLang] && translationsData[defaultLang][key]) {
+                  console.warn('Missing translation for key: ' + key + ' in language: ' + lang + '. Falling back.');
+                  translatedText = translationsData[defaultLang][key];
+                } else {
+                  console.error('Missing translation for key: ' + key + '.');
+                  translatedText = key; // Use key as fallback text
+                }
+
+                // Replace dynamic values like update_date - Use double braces {} for literal braces
+                translatedText = translatedText.replace('{{update_date}}', updateDate); // Correctly escape for JS replace inside f-string
+
+                // Update element content or attribute
+                if (isPlaceholder) {
+                  el.placeholder = translatedText;
+                } else if (el.tagName === 'TITLE') {
+                  el.textContent = translatedText;
+                } else {
+                  // Use innerHTML for elements that might contain HTML tags (like the notice)
+                  // Use textContent for others (like labels, options, headers) for security and performance
+                  if (key === 'notice') {
+                     el.innerHTML = translatedText;
+                  } else {
+                     el.textContent = translatedText;
+                  }
+                }
+              });
+
+              // Update table headers specifically (since they are generated dynamically)
+              var visibleTable = getVisibleTable();
+              if (visibleTable) {
+                var headers = visibleTable.querySelectorAll('thead th[data-col-key]');
+                headers.forEach(function(th) {
+                  var key = th.dataset.colKey;
+                  var headerText = key; // Fallback
+                  if (translationsData[lang] && translationsData[lang][key]) {
+                    headerText = translationsData[lang][key];
+                  } else if (translationsData[defaultLang] && translationsData[defaultLang][key]) {
+                    headerText = translationsData[defaultLang][key];
+                  }
+                  th.textContent = headerText; // Update header text
+                });
+                // Re-apply sort indicators after text change
+                updateSortIndicators(visibleTable);
               }
-        }
+            }
 
-      </style>
-    </head>
-    <body>
-      <div class="container">
-        <h1><a href="https://github.com/qwopqwop200/ko-arena-hard-auto" target="_blank" rel="noopener noreferrer">Ko-Arena-Hard-Auto Leaderboard (2025-03-26)</a></h1>
+            /**
+             * Filters table rows based on the search input value.
+             */
+            function filterTable() {
+                var searchTerm = searchInput.value.toLowerCase().trim();
+                var visibleTable = getVisibleTable();
+                if (!visibleTable) return;
 
-        <p class="notice">
-          <strong style="color: var(--judge-color)">주의:</strong> judge 모델(gemini-2.0-flash, gpt-4o-mini)은 자체 답변 선호 경향으로 인해 실제 성능보다 점수가 높게 나타날 수 있습니다. 해당 모델들의 점수 해석 시 유의하시기 바랍니다.
-        </p>
+                var rows = visibleTable.querySelectorAll('tbody tr');
+                rows.forEach(function(row) {
+                    var modelName = row.dataset.modelName || ''; // Get model name from data attribute
+                    var isMatch = modelName.includes(searchTerm);
+                    row.classList.toggle('filtered-out', !isMatch); // Add/remove class to hide/show
+                });
+            }
 
-        <div class="table-container">
-          <table class="dataframe leaderboard-table">
-  <thead>
-    <tr style="text-align: right;">
-      <th>Rank</th>
-      <th>Model</th>
-      <th>Score (CI)</th>
-      <th>Avg. Tokens</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td><span class="model-tag model-baseline">claude-3.7-sonnet (baseline)</span></td>
-      <td>50.0(-0.00, +0.00)</td>
-      <td>1094</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>deepseek-chat-v3-0324</td>
-      <td>49.59(-2.33, +2.26)</td>
-      <td>1085</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>gemini-2.0-pro-exp-02-05</td>
-      <td>47.56(-2.79, +3.16)</td>
-      <td>2372</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>gemini-2.5-pro-exp-03-25</td>
-      <td>47.45(-3.08, +3.04)</td>
-      <td>2577</td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td>deepseek-r1</td>
-      <td>44.07(-2.74, +2.80)</td>
-      <td>1211</td>
-    </tr>
-    <tr>
-      <td>6</td>
-      <td>o1-high</td>
-      <td>42.87(-2.49, +2.28)</td>
-      <td>1503</td>
-    </tr>
-    <tr>
-      <td>7</td>
-      <td>o3-mini-high</td>
-      <td>41.86(-2.13, +2.46)</td>
-      <td>1257</td>
-    </tr>
-    <tr>
-      <td>8</td>
-      <td>o1-medium</td>
-      <td>41.04(-2.43, +2.30)</td>
-      <td>1487</td>
-    </tr>
-    <tr>
-      <td>9</td>
-      <td>gpt-4.5-preview</td>
-      <td>40.81(-2.41, +2.16)</td>
-      <td>1040</td>
-    </tr>
-    <tr>
-      <td>10</td>
-      <td>o1-low</td>
-      <td>37.31(-2.22, +2.23)</td>
-      <td>1513</td>
-    </tr>
-    <tr>
-      <td>11</td>
-      <td>claude-3.5-sonnet</td>
-      <td>37.04(-2.58, +2.83)</td>
-      <td>682</td>
-    </tr>
-    <tr>
-      <td>12</td>
-      <td>o3-mini-medium</td>
-      <td>35.2(-2.31, +2.22)</td>
-      <td>1221</td>
-    </tr>
-    <tr>
-      <td>13</td>
-      <td>command-a</td>
-      <td>34.31(-1.99, +2.21)</td>
-      <td>1083</td>
-    </tr>
-    <tr>
-      <td>14</td>
-      <td>gemini-2.0-flash-thinking-exp-01-21</td>
-      <td>32.45(-2.50, +2.53)</td>
-      <td>2488</td>
-    </tr>
-    <tr>
-      <td>15</td>
-      <td>o3-mini-low</td>
-      <td>32.38(-2.02, +2.12)</td>
-      <td>1205</td>
-    </tr>
-    <tr>
-      <td>16</td>
-      <td>gpt-4o-2024-11-20</td>
-      <td>30.8(-1.96, +1.78)</td>
-      <td>1142</td>
-    </tr>
-    <tr>
-      <td>17</td>
-      <td>claude-3.5-haiku</td>
-      <td>28.67(-2.80, +2.67)</td>
-      <td>601</td>
-    </tr>
-    <tr>
-      <td>18</td>
-      <td><span class="model-tag model-judge">gemini-2.0-flash-001 (judge)</span></td>
-      <td>27.65(-1.93, +1.94)</td>
-      <td>1901</td>
-    </tr>
-    <tr>
-      <td>19</td>
-      <td>gemma-3-27b-it</td>
-      <td>26.53(-1.97, +2.03)</td>
-      <td>1654</td>
-    </tr>
-    <tr>
-      <td>20</td>
-      <td>gemini-2.0-flash-lite-001</td>
-      <td>25.0(-1.96, +2.13)</td>
-      <td>2196</td>
-    </tr>
-    <tr>
-      <td>21</td>
-      <td>deepseek-v3</td>
-      <td>23.77(-1.84, +1.73)</td>
-      <td>1007</td>
-    </tr>
-    <tr>
-      <td>22</td>
-      <td>claude-3.5-sonnet-20240620</td>
-      <td>23.46(-2.43, +2.33)</td>
-      <td>628</td>
-    </tr>
-    <tr>
-      <td>23</td>
-      <td>jamba-1.6-large</td>
-      <td>17.5(-1.53, +1.56)</td>
-      <td>859</td>
-    </tr>
-    <tr>
-      <td>24</td>
-      <td>grok-2-1212</td>
-      <td>17.09(-1.58, +1.71)</td>
-      <td>898</td>
-    </tr>
-    <tr>
-      <td>25</td>
-      <td>minimax-01</td>
-      <td>16.73(-2.13, +2.37)</td>
-      <td>370</td>
-    </tr>
-    <tr>
-      <td>26</td>
-      <td><span class="model-tag model-judge">gpt-4o-mini (judge)</span></td>
-      <td>16.66(-1.74, +1.56)</td>
-      <td>830</td>
-    </tr>
-    <tr>
-      <td>27</td>
-      <td>nova-pro-v1</td>
-      <td>16.33(-1.57, +1.63)</td>
-      <td>905</td>
-    </tr>
-    <tr>
-      <td>28</td>
-      <td>qwen-2.5-72b-instruct</td>
-      <td>16.15(-1.37, +1.46)</td>
-      <td>1097</td>
-    </tr>
-    <tr>
-      <td>29</td>
-      <td>mistral-large-2411</td>
-      <td>14.65(-1.47, +1.56)</td>
-      <td>906</td>
-    </tr>
-    <tr>
-      <td>30</td>
-      <td>gemma-2-27b-it</td>
-      <td>12.89(-1.48, +1.50)</td>
-      <td>794</td>
-    </tr>
-    <tr>
-      <td>31</td>
-      <td>gpt-4-1106-preview</td>
-      <td>12.65(-1.34, +1.43)</td>
-      <td>840</td>
-    </tr>
-    <tr>
-      <td>32</td>
-      <td>mistral-small-3.1-24b-instruct-2503</td>
-      <td>10.8(-1.19, +1.32)</td>
-      <td>961</td>
-    </tr>
-    <tr>
-      <td>33</td>
-      <td>command-r-plus-08-2024</td>
-      <td>10.18(-1.24, +1.24)</td>
-      <td>969</td>
-    </tr>
-    <tr>
-      <td>34</td>
-      <td>nova-lite-v1</td>
-      <td>9.78(-1.19, +1.11)</td>
-      <td>994</td>
-    </tr>
-    <tr>
-      <td>35</td>
-      <td>wizardlm-2-8x22b</td>
-      <td>9.62(-1.10, +1.09)</td>
-      <td>1028</td>
-    </tr>
-    <tr>
-      <td>36</td>
-      <td>lfm-7b</td>
-      <td>9.31(-1.01, +0.97)</td>
-      <td>1011</td>
-    </tr>
-    <tr>
-      <td>37</td>
-      <td>qwen2.5-32b-instruct</td>
-      <td>8.85(-1.10, +1.29)</td>
-      <td>795</td>
-    </tr>
-    <tr>
-      <td>38</td>
-      <td>mistral-small-24b-instruct-2501</td>
-      <td>8.57(-1.14, +1.20)</td>
-      <td>998</td>
-    </tr>
-    <tr>
-      <td>39</td>
-      <td>hermes-3-llama-3.1-405b</td>
-      <td>8.28(-1.11, +1.28)</td>
-      <td>771</td>
-    </tr>
-    <tr>
-      <td>40</td>
-      <td>hermes-3-llama-3.1-70b</td>
-      <td>7.77(-1.10, +1.18)</td>
-      <td>771</td>
-    </tr>
-    <tr>
-      <td>41</td>
-      <td>gemma-2-9b-it</td>
-      <td>7.59(-1.06, +1.25)</td>
-      <td>751</td>
-    </tr>
-    <tr>
-      <td>42</td>
-      <td>command-r-08-2024</td>
-      <td>6.61(-1.12, +1.20)</td>
-      <td>796</td>
-    </tr>
-    <tr>
-      <td>43</td>
-      <td>nova-micro-v1</td>
-      <td>6.6(-0.90, +0.94)</td>
-      <td>927</td>
-    </tr>
-    <tr>
-      <td>44</td>
-      <td>lfm-40b</td>
-      <td>5.81(-0.81, +0.89)</td>
-      <td>863</td>
-    </tr>
-    <tr>
-      <td>45</td>
-      <td>llama-3.3-70b-instruct</td>
-      <td>5.37(-0.98, +1.03)</td>
-      <td>809</td>
-    </tr>
-    <tr>
-      <td>46</td>
-      <td>command-r7b-12-2024</td>
-      <td>4.99(-0.85, +0.90)</td>
-      <td>882</td>
-    </tr>
-    <tr>
-      <td>47</td>
-      <td>lfm-3b</td>
-      <td>3.59(-0.64, +0.67)</td>
-      <td>776</td>
-    </tr>
-    <tr>
-      <td>48</td>
-      <td>qwen-2.5-7b-instruct</td>
-      <td>3.58(-0.76, +0.99)</td>
-      <td>844</td>
-    </tr>
-    <tr>
-      <td>49</td>
-      <td>olmo-2-0325-32b-instruct</td>
-      <td>3.33(-0.55, +0.63)</td>
-      <td>890</td>
-    </tr>
-    <tr>
-      <td>50</td>
-      <td>jamba-1.6-mini</td>
-      <td>2.57(-0.53, +0.60)</td>
-      <td>920</td>
-    </tr>
-    <tr>
-      <td>51</td>
-      <td>llama-3.1-nemotron-70b-instruct</td>
-      <td>2.34(-0.40, +0.42)</td>
-      <td>1854</td>
-    </tr>
-    <tr>
-      <td>52</td>
-      <td>llama-3.1-405b-instruct</td>
-      <td>0.9(-0.22, +0.29)</td>
-      <td>1735</td>
-    </tr>
-    <tr>
-      <td>53</td>
-      <td>llama-3.1-70b-instruct</td>
-      <td>0.54(-0.13, +0.15)</td>
-      <td>1923</td>
-    </tr>
-    <tr>
-      <td>54</td>
-      <td>llama-3.1-8b-instruct</td>
-      <td>0.08(-0.03, +0.02)</td>
-      <td>5081</td>
-    </tr>
-  </tbody>
-</table>
-        </div>
-      </div>
-    </body>
-    </html>
-    
+            /**
+             * Updates the visual indicators (arrows) on sortable table headers.
+             * @param {HTMLTableElement} table - The table to update indicators for. <--- CORRECTED
+             */
+            function updateSortIndicators(table) {
+                if (!table) table = getVisibleTable();
+                if (!table) return;
+
+                var headers = table.querySelectorAll('thead th.sortable');
+                headers.forEach(function(th) {
+                    th.classList.remove('sorted-asc', 'sorted-desc');
+                    if (th.dataset.colKey === currentSort.key) {
+                        th.classList.add(currentSort.dir === 'asc' ? 'sorted-asc' : 'sorted-desc');
+                    }
+                });
+            }
+
+            /**
+             * Sorts the table rows based on a column key and type.
+             * @param {string} key - The data-col-key of the header clicked. <--- CORRECTED
+             * @param {string} type - The sort type ('numeric' or 'text'). <--- CORRECTED
+             * @param {HTMLTableElement} table - The table to sort. <--- CORRECTED
+             */
+            function sortTable(key, type, table) {
+                if (!table) table = getVisibleTable();
+                if (!table) return;
+                var tbody = table.querySelector('tbody');
+                if (!tbody) return;
+
+                var rows = Array.from(tbody.querySelectorAll('tr'));
+
+                // Determine sort direction
+                var newDir = 'asc';
+                if (currentSort.key === key) {
+                    newDir = currentSort.dir === 'asc' ? 'desc' : 'asc';
+                } else {
+                    // Default direction for new column sort
+                    // Rank: descending, Score: descending, Elo: descending, Tokens: ascending, Others: ascending
+                    newDir = (key === 'col_rank' || key === 'col_score' || key === 'col_elo') ? 'desc' : 'asc';
+                }
+
+                // Find the index of the column based on the key
+                var headerIndex = getHeaderIndex(table, key);
+                if (headerIndex === -1) {
+                    // Use template literal safely within JS
+                    console.error(`Sort Error: Column key "${key}" not found in table headers.`);
+                    return;
+                }
+                var cellIndex = headerIndex; // 0-based index for querySelectorAll
+
+                rows.sort(function(rowA, rowB) {
+                    // Get the cell using the determined index
+                    var cellA = rowA.querySelectorAll('td')[cellIndex];
+                    var cellB = rowB.querySelectorAll('td')[cellIndex];
+
+                    if (!cellA || !cellB) {
+                        // Use template literal safely within JS
+                        console.warn(`Sort Warning: Cell not found at index ${cellIndex} for key "${key}".`);
+                        return 0;
+                    }
+
+                    // Get sort values from data-sort-value attribute
+                    var valA = cellA.dataset.sortValue;
+                    var valB = cellB.dataset.sortValue;
+                    var comparison = 0;
+
+                    if (type === 'numeric') {
+                        var numA = parseFloat(valA);
+                        var numB = parseFloat(valB);
+                        // Handle NaN values (treat them as lowest or highest depending on sort direction)
+                        numA = isNaN(numA) ? (newDir === 'asc' ? Infinity : -Infinity) : numA;
+                        numB = isNaN(numB) ? (newDir === 'asc' ? Infinity : -Infinity) : numB;
+                        comparison = numA - numB;
+                    } else { // 'text' sort
+                        valA = String(valA).toLowerCase();
+                        valB = String(valB).toLowerCase();
+                        comparison = valA.localeCompare(valB);
+                    }
+
+                    // Apply direction
+                    return newDir === 'asc' ? comparison : -comparison;
+                });
+
+                // Re-append rows in sorted order
+                rows.forEach(row => tbody.appendChild(row));
+
+                // Update current sort state
+                currentSort = { key: key, dir: newDir };
+                updateSortIndicators(table);
+            }
+
+            /**
+             * Gets the 0-based index of a header column by its key.
+             * @param {HTMLTableElement} table - The table element. <--- CORRECTED
+             * @param {string} key - The data-col-key to find. <--- CORRECTED
+             * @returns {number} The index or -1 if not found. <--- CORRECTED
+             */
+            function getHeaderIndex(table, key) {
+                var headers = table.querySelectorAll('thead th');
+                for (var i = 0; i < headers.length; i++) {
+                    if (headers[i].dataset.colKey === key) {
+                        return i;
+                    }
+                }
+                return -1; // Not found
+            }
+
+            /**
+             * Gets the sort type ('numeric' or 'text') for a given column key.
+             * @param {HTMLTableElement} table - The table element. <--- CORRECTED
+             * @param {string} key - The data-col-key. <--- CORRECTED
+             * @returns {string} The sort type ('numeric' or 'text'). <--- CORRECTED
+             */
+            function getHeaderSortType(table, key) {
+                if (!table || !key) return 'text';
+                // Use template literal safely within JS
+                var header = table.querySelector(`th[data-col-key="${key}"]`);
+                return header ? (header.dataset.sortType || 'text') : 'text';
+            }
+
+
+            // --- Event Listeners ---
+
+            // Leaderboard selection change
+            leaderboardSelect.addEventListener('change', function() {
+              var selectedId = this.value;
+              var targetTableId = 'table-' + selectedId;
+              var allContainers = document.querySelectorAll('.table-container');
+
+              allContainers.forEach(function(container) {
+                container.style.display = (container.id === targetTableId) ? 'block' : 'none';
+              });
+
+              // Reset sort to default (Rank Desc) when changing tables
+              currentSort = { key: 'col_rank', dir: 'desc' };
+              var newVisibleTable = getVisibleTable();
+              if (newVisibleTable) {
+                 // Apply default sort to the newly visible table
+                 sortTable(currentSort.key, getHeaderSortType(newVisibleTable, currentSort.key), newVisibleTable);
+                 // Update headers and indicators for the new table
+                 updateTranslations(languageSelect.value); // Ensure headers are translated
+              }
+              filterTable(); // Re-apply filter
+            });
+
+            // Language selection change
+            languageSelect.addEventListener('change', function() {
+              var selectedLang = this.value;
+              updateTranslations(selectedLang);
+              // No need to update placeholder separately, updateTranslations handles it
+            });
+
+            // Search input typing
+            searchInput.addEventListener('input', filterTable);
+
+            // Table header clicks for sorting (using event delegation)
+            tableContainerParent.addEventListener('click', function(event) {
+                // Find the closest sortable header that was clicked
+                var header = event.target.closest('th.sortable');
+                // Ensure the click was on a header within the currently visible table
+                var visibleTable = getVisibleTable();
+                if (header && visibleTable && visibleTable.contains(header)) {
+                    var key = header.dataset.colKey;
+                    var type = getHeaderSortType(visibleTable, key);
+                    sortTable(key, type, visibleTable);
+                }
+            });
+
+            // --- Initialization ---
+            document.addEventListener('DOMContentLoaded', function() {
+                // Query all elements needing translation *after* DOM is ready
+                translatableElements = document.querySelectorAll('[data-translate-key], [data-translate-key-placeholder]');
+                // Initial translation update
+                updateTranslations(languageSelect.value);
+
+                // Apply initial sort to the default visible table
+                var initialTable = getVisibleTable();
+                if (initialTable) {
+                    // currentSort is already set to default { key: 'col_rank', dir: 'desc' }
+                    sortTable(currentSort.key, getHeaderSortType(initialTable, currentSort.key), initialTable);
+                }
+                // Apply initial filter (if any search term is pre-filled, though unlikely here)
+                filterTable();
+            });
+          </script>
+          
+        </body>
+        </html>
+        
