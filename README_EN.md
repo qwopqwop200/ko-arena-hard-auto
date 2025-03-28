@@ -95,10 +95,10 @@ Generate ensemble judgments from the individual judge models.
 python gen_ensemble_judgment.py
 ```
 
-### Step 5. Show Results
-Outputs the model win rates. Use `--output` to save the model rankings to a CSV file. By default, `--style-control` is used. This is known to have a higher correlation with human preferences.
+### Step 5. Save Results
+Save the model evaluation results to a file.
 ```console
-python show_result.py --style-control --num-rounds 1000
+python show_result.py
 ```
 
 ### Step 6. Arena Hard UI

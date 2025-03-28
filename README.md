@@ -95,11 +95,10 @@ python gen_judgment.py
 python gen_ensemble_judgment.py
 ```
 
-### Step 5. 결과 보기
-모델 승률을 출력합니다. 모델 순위를 csv 파일로 저장하려면 `--output`을 사용하세요. 기본적으로 --style-control을 사용합니다. 
-이는 더 높은 인간의 선호도와 더 높은 상관관계를 가지고 있다고 알려져 있습니다.
+### Step 5. 결과 저장
+모델 평가 결과를 저장합니다.
 ```console
-python show_result.py --style-control --num-rounds 1000
+python show_result.py
 ```
 
 ### Step 6. Arena Hard UI

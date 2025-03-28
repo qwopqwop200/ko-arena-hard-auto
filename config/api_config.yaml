@@ -429,3 +429,11 @@ deepseek-r1:
           api_key: # Place your api_key
     api_type: openai
     parallel: 32
+
+chatgpt-4o-latest(2025-03-26):
+    model_name: chatgpt-4o-latest
+    endpoints:
+        - api_base: https://api.openai.com/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 64

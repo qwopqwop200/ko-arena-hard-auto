@@ -62,6 +62,7 @@ model_to_organization = {
     "gemini-2.0-flash-thinking-exp-01-21": "Google",
     "gemini-2.0-pro-exp-02-05": "Google",
     "gemini-2.5-pro-exp-03-25": "Google",
+    "chatgpt-4o-latest(2025-03-26)": "OpenAI",
 }
 
 # --- Translation Data ---
