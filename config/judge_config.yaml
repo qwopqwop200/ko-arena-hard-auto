@@ -3,8 +3,9 @@ name: judgment config file for Arena Hard
 bench_name: ko-arena-hard-v0.1
 
 # Arena Hard default
-judge_model: gemini-2.0-flash-001
+# judge_model: gemini-2.0-flash-001
 # judge_model: gpt-4o-mini
+judge_model: deepseek-chat-v3-0324
 reference: False # Optional
 ref_model: null  
 
