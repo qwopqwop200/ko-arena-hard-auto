@@ -437,3 +437,19 @@ chatgpt-4o-latest(2025-03-26):
           api_key: # Place your api_key
     api_type: openai
     parallel: 64
+
+qwq-32b:
+    model_name: qwen/qwq-32b
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 64
+
+claude-3.7-sonnet(thinking):
+    model_name: anthropic/claude-3.7-sonnet:thinking
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 64

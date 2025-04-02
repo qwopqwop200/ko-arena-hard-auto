@@ -85,8 +85,17 @@ def chat_completion_openai(model, messages, temperature, max_tokens, api_dict=No
                 # reasoning_effort="high",
                 temperature=temperature,
                 max_tokens=max_tokens,
+                stream=True,
                 )
-            output = completion.choices[0].message.content
+            output = []
+            try:
+                for chunk in completion:
+                    delta = chunk.choices[0].delta.content
+                    if delta is not None and delta != "":
+                        output.append(delta)
+            except:
+                pass
+            output = ''.join(output)
             break
         except openai.RateLimitError as e:
             print(type(e), e)

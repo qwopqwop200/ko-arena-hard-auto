@@ -80,3 +80,5 @@ model_list:
   - gemini-2.0-pro-exp-02-05
   - gemini-2.5-pro-exp-03-25
   - chatgpt-4o-latest(2025-03-26)
+  - claude-3.7-sonnet(thinking)
+  - qwq-32b
