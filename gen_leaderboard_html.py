@@ -71,7 +71,7 @@ translations = {
     'ko': {
         'title': "Ko-Arena-Hard 리더보드 ({{update_date}})",
         'heading': "Ko-Arena-Hard-Auto 리더보드 ({{update_date}})",
-        'notice': '<strong style="color: var(--judge-color-text)">주의:</strong> judge 모델(gemini-2.0-flash, gpt-4o-mini)은 자체 답변 선호 경향으로 인해 실제 성능보다 점수가 높게 나타날 수 있습니다. 해당 모델들의 점수 해석 시 유의하시기 바랍니다.', # Use variable for strong color
+        'notice': '<strong style="color: var(--judge-color-text)">주의:</strong> judge 모델(gemini-2.0-flash, gpt-4o-mini, deepseek-chat-v3-0324)은 자체 답변 선호 경향으로 인해 실제 성능보다 점수가 높게 나타날 수 있습니다. 해당 모델들의 점수 해석 시 유의하시기 바랍니다.', # Use variable for strong color
         'select_leaderboard_label': "리더보드 선택:",
         'select_language_label': "Select Language:",
         'search_placeholder': "모델명 검색...",
@@ -91,7 +91,7 @@ translations = {
     'en': {
         'title': "Ko-Arena-Hard Leaderboard ({{update_date}})",
         'heading': "Ko-Arena-Hard-Auto Leaderboard ({{update_date}})",
-        'notice': '<strong style="color: var(--judge-color-text)">Caution:</strong> Judge models (gemini-2.0-flash, gpt-4o-mini) may show inflated scores due to self-preference bias. Please interpret their scores with caution.', # Use variable for strong color
+        'notice': '<strong style="color: var(--judge-color-text)">Caution:</strong> Judge models (gemini-2.0-flash, gpt-4o-mini, deepseek-chat-v3-0324) may show inflated scores due to self-preference bias. Please interpret their scores with caution.', # Use variable for strong color
         'select_leaderboard_label': "Select Leaderboard:",
         'select_language_label': "Select Language:",
         'search_placeholder': "Search model name...",
@@ -138,7 +138,7 @@ def process_leaderboard_csv(csv_path: str) -> pd.DataFrame | None:
         df = pd.read_csv(csv_path)
         df['original_model'] = df['model']
         df = df.sort_values(by='score', ascending=False).reset_index(drop=True); df.index += 1; df.insert(0, 'Rank', df.index)
-        model_map = {'claude-3.7-sonnet': 'claude-3.7-sonnet (baseline)', 'gemini-2.0-flash-001': 'gemini-2.0-flash-001 (judge)', 'gpt-4o-mini': 'gpt-4o-mini (judge)'}
+        model_map = {'claude-3.7-sonnet': 'claude-3.7-sonnet (baseline)', 'gemini-2.0-flash-001': 'gemini-2.0-flash-001 (judge)', 'gpt-4o-mini': 'gpt-4o-mini (judge)', 'deepseek-chat-v3-0324': 'deepseek-chat-v3-0324 (judge)'}
         df['model_display'] = df['model'].replace(model_map)
         df["organization"] = df["model"].map(model_to_organization).fillna("Unknown")
         def style_model(name: str) -> str:

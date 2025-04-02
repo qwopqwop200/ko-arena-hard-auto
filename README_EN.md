@@ -5,7 +5,7 @@
 
 Ko-Arena-Hard-Auto is an automated evaluation tool for benchmarking Korean language models.<br>
 It uses 500 challenging questions collected by Arena-Hard-Auto-v0.1 ([Paper](https://arxiv.org/abs/2406.11939)), translated into Korean.<br>
-It uses gemini-2.0-flash and gpt-4o-mini as judges and compares the model's responses against a baseline model (default: claude-3.7-sonnet).<br>
+It uses gemini-2.0-flash, gpt-4o-mini, deepseek-chat-v3-0324 as judges and compares the model's responses against a baseline model (default: claude-3.7-sonnet).<br>
 
 For more details, please refer to the [arena-hard-auto code](https://github.com/lmarena/arena-hard-auto).
 
@@ -13,7 +13,7 @@ For more details, please refer to the [arena-hard-auto code](https://github.com/
 This fork includes the following major changes:
 
 1.  **Dataset and Prompts**: Uses the [ko-arena-hard-auto-v0.1](https://huggingface.co/datasets/qwopqwop/ko-arena-hard-auto-v0.1) dataset and different [system prompts](https://github.com/qwopqwop200/ko-arena-hard-auto/blob/main/config/judge_config.yaml#L23) for judging.
-2.  **Judge Models**: Uses gemini-2.0-flash and gpt-4o-mini and ensembles their judgments. This is intended to mitigate self-preference bias.
+2.  **Judge Models**: Uses gemini-2.0-flash, gpt-4o-mini, deepseek-chat-v3-0324 and ensembles their judgments. This is intended to mitigate self-preference bias.
 3.  **Baseline Model**: Uses claude-3.7-sonnet.
 
 ## Table of Contents

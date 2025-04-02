@@ -5,7 +5,7 @@
 
 Ko-Arena-Hard-Auto는 한국어를 벤치마킹하기위한 자동 평가 도구입니다.<br>
 Arena-Hard-Auto-v0.1([논문](https://arxiv.org/abs/2406.11939))가 수집한 500개의 어려운 질문을 번역하여 사용합니다.<br>
-gemini-2.0-flash와 gpt-4o-mini를 judge(심사위원)으로 사용하고 모델의 응답을 baseline 모델(기본값: claude-3.7-sonnet)과 비교합니다.<br>
+gemini-2.0-flash, gpt-4o-mini, deepseek-chat-v3-0324를 judge(심사위원)으로 사용하고 모델의 응답을 baseline 모델(기본값: claude-3.7-sonnet)과 비교합니다.<br>
 
 자세한 세부사항은 [arena-hard-auto 코드](https://github.com/lmarena/arena-hard-auto)를 참조하세요.
 
@@ -13,7 +13,7 @@ gemini-2.0-flash와 gpt-4o-mini를 judge(심사위원)으로 사용하고 모델
 이 포크는 다음과 같은 주요 변경 사항이 있습니다. 
 
 1. 데이터셋 및 프롬프트: [ko-arena-hard-auto-v0.1](https://huggingface.co/datasets/qwopqwop/ko-arena-hard-auto-v0.1) 데이터셋과 심사할때 다른 [시스템 프롬프트](https://github.com/qwopqwop200/ko-arena-hard-auto/blob/main/config/judge_config.yaml#L23)를 사용합니다.
-2. judge 모델: gemini-2.0-flash와 gpt-4o-mini을 사용하고 앙상블 합니다. 이는 자기 선호도 편향을 완화하기 위한것 입니다.
+2. judge 모델: gemini-2.0-flash, gpt-4o-mini, deepseek-chat-v3-0324을 사용하고 앙상블 합니다. 이는 자기 선호도 편향을 완화하기 위한것 입니다.
 3. baseline 모델: claude-3.7-sonnet을 사용합니다.
 
 ## 목차
