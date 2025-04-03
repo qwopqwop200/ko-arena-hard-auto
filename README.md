@@ -98,7 +98,7 @@ python gen_ensemble_judgment.py
 ### Step 5. 결과 저장
 모델 평가 결과를 저장합니다.
 ```console
-python show_result.py
+python gen_result.py
 ```
 
 ### Step 6. Arena Hard UI

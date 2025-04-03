@@ -1,6 +1,5 @@
 {"question_id": "328c149ed45a41c0b9d6f14659e63599", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "A>B"}]}
 {"question_id": "b43c07656ead4150b360294ee932b410", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "A>B"}]}
-{"question_id": "92abeb14dc734237a9ff52c4062b9b98", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>A"}]}
 {"question_id": "93c9b4bb32f4422f954c7af9ea2bdfcd", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A=B"}, {"score": "A>B"}]}
 {"question_id": "f54e99e9686549e7a096dd16dbab28e1", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "A>>B"}]}
 {"question_id": "69120423cec04acca9f2b8d5f68b391c", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "A>>B"}]}
@@ -22,7 +21,6 @@
 {"question_id": "ed3077a3443a4cf88233f5bc636e7394", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "A>>B"}]}
 {"question_id": "b26d8c58eaa04b1f8e7e88da9ddd4ed9", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "A>B"}]}
 {"question_id": "dbff049f35b142249c18d8faebe84039", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "A>B"}]}
-{"question_id": "face6a5531854b188dfc266e289ee595", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>A"}]}
 {"question_id": "9d7d8b61b76f4695a5590a9f6bfc0017", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "B>A"}]}
 {"question_id": "46e73778f43143199f88b2e354df85eb", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "B>A"}]}
 {"question_id": "60856d87b3484a4db45a67ac560a2b06", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "B>>A"}, {"score": "A>>B"}]}
@@ -35,7 +33,6 @@
 {"question_id": "68ab3fd2a31c473b97c416ddb1ccffb4", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "A>B"}]}
 {"question_id": "a3dfabb011e245e190a0147fef6ff14b", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "B>A"}]}
 {"question_id": "3971e3d0eb194b8c9344030bebd0c6aa", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "A=B"}]}
-{"question_id": "c63a6be043534eda89675bdc0310bc43", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>>A"}]}
 {"question_id": "20c9d951035f4b778d201db3859786c9", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "A>>B"}]}
 {"question_id": "f7c6dcee42e646abac890e3bb540d403", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "A>>B"}]}
 {"question_id": "2a6d0b92fbb5448bb2f7540db9645674", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "B>>A"}, {"score": "A>>B"}]}
@@ -76,7 +73,6 @@
 {"question_id": "26a29141be254ce0a7710e45face31f4", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "A>>B"}]}
 {"question_id": "40b8576cb60b42619b0c5530c20ea457", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>>A"}]}
 {"question_id": "2c53e72874844987b48588106c705039", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "A=B"}]}
-{"question_id": "ab10af348f7f49e6813728282ade2ca9", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>>A"}]}
 {"question_id": "3801e82e67a34ee3aaab0227342bcc2b", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "A>B"}]}
 {"question_id": "5aa9896e5bbe4ef0a158fbc803d4f37e", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "B>>A"}, {"score": "A>>B"}]}
 {"question_id": "be6f4edf7f7041e4b5d5b65934856ae6", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "B>>A"}, {"score": "A>>B"}]}
@@ -318,7 +314,6 @@
 {"question_id": "47e1fd0c1cd043fbb7223435d51b3fe6", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A=B"}, {"score": "A>B"}]}
 {"question_id": "1e75db9bac4642d6b8bb48caceaa3ef8", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>A"}]}
 {"question_id": "25fece360b994624b4dc8adf0ce3ad81", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "A>B"}]}
-{"question_id": "e1e290b44b0142538498952d2b2e3204", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>>A"}]}
 {"question_id": "4cd2d1ed1d7a4110bcb404eb08f20600", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "A=B"}]}
 {"question_id": "0977f592078f4203bf66c0dfce5f6b66", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "A>>B"}]}
 {"question_id": "20e4e911295244008f6828f3b6000843", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "A=B"}]}
@@ -408,7 +403,6 @@
 {"question_id": "5bd74e9b8a42456ea356adc87c6056c5", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>A"}]}
 {"question_id": "4bb68ae6141e4b4ba50179a31b46ae46", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>A"}]}
 {"question_id": "5821640db20c41e9be24f9d6d8471949", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "B>>A"}, {"score": "A>>B"}]}
-{"question_id": "9a9cd2f9f5e64ed7bc187ec949276a27", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>>A"}]}
 {"question_id": "e9157e4e79be40f286d253010c5734c9", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "A=B"}]}
 {"question_id": "f4dcf9f977b84e7d90777830ed4a5258", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>>A"}]}
 {"question_id": "1cf362fd353f4001a3a6fa23c6833ff0", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "B>A"}]}
@@ -498,3 +492,9 @@
 {"question_id": "32fe1f72b6804972b046b0ad91e64858", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "A>B"}]}
 {"question_id": "90d715f701f844fd9a5032e5674cbf7a", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>A"}]}
 {"question_id": "4ae5aa6ddd4a4a54a0c5ab32ca7d94be", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "A>B"}]}
+{"question_id": "9a9cd2f9f5e64ed7bc187ec949276a27", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "B>A"}]}
+{"question_id": "c63a6be043534eda89675bdc0310bc43", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "B>>A"}, {"score": "A>>B"}]}
+{"question_id": "92abeb14dc734237a9ff52c4062b9b98", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "B>>A"}, {"score": "A>>B"}]}
+{"question_id": "e1e290b44b0142538498952d2b2e3204", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "A>>B"}]}
+{"question_id": "face6a5531854b188dfc266e289ee595", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A=B"}, {"score": "A>B"}]}
+{"question_id": "ab10af348f7f49e6813728282ade2ca9", "model": "deepseek-r1", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>>A"}]}

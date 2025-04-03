@@ -67,7 +67,6 @@
 {"question_id": "74c4255dd61d41d68ea69e4469a63fce", "model": "o3-mini-high", "judge": "ensemble", "games": [{"score": "A=B"}, {"score": "B>A"}]}
 {"question_id": "26a29141be254ce0a7710e45face31f4", "model": "o3-mini-high", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "A=B"}]}
 {"question_id": "f6bf04c1e96c4726a4d32e839e2a0719", "model": "o3-mini-high", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "A=B"}]}
-{"question_id": "ab10af348f7f49e6813728282ade2ca9", "model": "o3-mini-high", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>>A"}]}
 {"question_id": "2c53e72874844987b48588106c705039", "model": "o3-mini-high", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "B>A"}]}
 {"question_id": "7ea271ef49474854a73d16a627d3f0c9", "model": "o3-mini-high", "judge": "ensemble", "games": [{"score": "B>>A"}, {"score": "A>>B"}]}
 {"question_id": "1b73387238e94e28a29c846bd9593a9d", "model": "o3-mini-high", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "B>A"}]}
@@ -273,7 +272,6 @@
 {"question_id": "949c62d9d4c148539591b6e4c863dbf9", "model": "o3-mini-high", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "B>A"}]}
 {"question_id": "eb4af5159a964e878216145538406648", "model": "o3-mini-high", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "B>A"}]}
 {"question_id": "c88cf91c43474e99ae03a1c01256da6c", "model": "o3-mini-high", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "A>>B"}]}
-{"question_id": "77fd22f6615549cc8ddd2fdd56e80cd1", "model": "o3-mini-high", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>>A"}]}
 {"question_id": "300666d333ee439197e4d584c8eec1f6", "model": "o3-mini-high", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "B>A"}]}
 {"question_id": "da1d665ed4a8438e9c156afa7a05bed8", "model": "o3-mini-high", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "A>B"}]}
 {"question_id": "f388d14f345b4900bd1b1dc6d0db0cdb", "model": "o3-mini-high", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "A>>B"}]}
@@ -498,3 +496,5 @@
 {"question_id": "4ae5aa6ddd4a4a54a0c5ab32ca7d94be", "model": "o3-mini-high", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "A>B"}]}
 {"question_id": "398e83fcf3134130a7bafc0d3b2b22ff", "model": "o3-mini-high", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "A>B"}]}
 {"question_id": "b62a3d9bc656431fbf5bc4fa88a4cc2e", "model": "o3-mini-high", "judge": "ensemble", "games": [{"score": "A=B"}, {"score": "A>>B"}]}
+{"question_id": "77fd22f6615549cc8ddd2fdd56e80cd1", "model": "o3-mini-high", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "B>A"}]}
+{"question_id": "ab10af348f7f49e6813728282ade2ca9", "model": "o3-mini-high", "judge": "ensemble", "games": [{"score": "B>>A"}, {"score": "A>>B"}]}

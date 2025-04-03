@@ -1,6 +1,5 @@
 {"question_id": "b43c07656ead4150b360294ee932b410", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "A=B"}, {"score": "A=B"}]}
 {"question_id": "328c149ed45a41c0b9d6f14659e63599", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "A>B"}]}
-{"question_id": "92abeb14dc734237a9ff52c4062b9b98", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>>A"}]}
 {"question_id": "e9a2e1240f4a46b6a832bb5d71b20ee1", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>>A"}]}
 {"question_id": "379a490a6eae40608abf3501807b2545", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "A=B"}]}
 {"question_id": "847e0891929a4521aee127ee20b50e30", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "A=B"}, {"score": "A>B"}]}
@@ -132,7 +131,6 @@
 {"question_id": "66336ae5d74d4dbcbecfb1c10d2e6b39", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "A>B"}]}
 {"question_id": "3bd60ed6975743f7833c43fbfc74fd6f", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "A>>B"}]}
 {"question_id": "7957dc0515bc4cc0a258691b9a91994e", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "A>>B"}]}
-{"question_id": "246497d8bbc8401282f484a0d194db59", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>>A"}]}
 {"question_id": "9ecd86576790494a9781f0cef4b1e2cc", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "A>>B"}]}
 {"question_id": "69a536cc1a3c4fb8b82391feacbc786d", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "B>>A"}, {"score": "A>B"}]}
 {"question_id": "06991f6da3104bf8b935d311581a348e", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "A>>B"}]}
@@ -180,8 +178,6 @@
 {"question_id": "2293654524f2499dada79a19028109ff", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "A>>B"}]}
 {"question_id": "4c960b9ee8744a98997f7bfde177d2d7", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "A>B"}]}
 {"question_id": "b5987b1c1dd3479bb9217e2f7822d70d", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "A=B"}, {"score": "A>B"}]}
-{"question_id": "8390e603a832424694dde9fb4f31ba71", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>>A"}]}
-{"question_id": "9c6e43a68efe487290644ead9aa032fb", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>>A"}]}
 {"question_id": "75c2342021e64d82b0e643dd7d2b7275", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "A>>B"}]}
 {"question_id": "1da6ae4730ef4978817746a098c16595", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>A"}]}
 {"question_id": "e2c837a41fac41d9a92e1d9d861c6277", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "A=B"}, {"score": "A>B"}]}
@@ -276,7 +272,6 @@
 {"question_id": "fb3496a54f514e729c98f36bd6058ffd", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "A>B"}]}
 {"question_id": "7cef87194c9a45f49a19559fa5f7b160", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "A=B"}, {"score": "A>B"}]}
 {"question_id": "f388d14f345b4900bd1b1dc6d0db0cdb", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "A>B"}]}
-{"question_id": "77fd22f6615549cc8ddd2fdd56e80cd1", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>>A"}]}
 {"question_id": "708512d0a7654dcabf815a4f24765a7d", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "B>>A"}, {"score": "A>>B"}]}
 {"question_id": "eb4af5159a964e878216145538406648", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "B>A"}]}
 {"question_id": "3c59e7294d544fca8730ce329ec237ee", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "B>>A"}, {"score": "A>B"}]}
@@ -394,7 +389,6 @@
 {"question_id": "b18307e906ef4501a0ebed3216627f51", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "A>B"}]}
 {"question_id": "170563a95e6347299e9c5a2c8029dc75", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "A>>B"}]}
 {"question_id": "a309b458a5db427f974f305c95638204", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "B>>A"}, {"score": "A>>B"}]}
-{"question_id": "9a9cd2f9f5e64ed7bc187ec949276a27", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>>A"}]}
 {"question_id": "e9902d9e6d3c4321a208644fc2b0ae61", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>A"}]}
 {"question_id": "f7965ac093b043659c23ef68143d4e7f", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "A=B"}, {"score": "A>>B"}]}
 {"question_id": "70e8424eeb92469090531711d269929a", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "A>>B"}]}
@@ -498,3 +492,9 @@
 {"question_id": "bc56550b0f38419b923e9fe2b66d15eb", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "A=B"}, {"score": "A>B"}]}
 {"question_id": "398e83fcf3134130a7bafc0d3b2b22ff", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "A>>B"}]}
 {"question_id": "4ae5aa6ddd4a4a54a0c5ab32ca7d94be", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "A=B"}, {"score": "A>>B"}]}
+{"question_id": "77fd22f6615549cc8ddd2fdd56e80cd1", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>>A"}]}
+{"question_id": "9c6e43a68efe487290644ead9aa032fb", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>>A"}]}
+{"question_id": "9a9cd2f9f5e64ed7bc187ec949276a27", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "A>B"}]}
+{"question_id": "92abeb14dc734237a9ff52c4062b9b98", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>A"}]}
+{"question_id": "246497d8bbc8401282f484a0d194db59", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "A>B"}]}
+{"question_id": "8390e603a832424694dde9fb4f31ba71", "model": "gemini-2.0-flash-thinking-exp-01-21", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "A>B"}]}

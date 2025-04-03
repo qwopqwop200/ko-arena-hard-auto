@@ -453,3 +453,27 @@ claude-3.7-sonnet(thinking):
           api_key: # Place your api_key
     api_type: openai
     parallel: 64
+
+qwen-turbo:
+    model_name: qwen/qwen-turbo
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 32
+
+qwen-plus:
+    model_name: qwen/qwen-plus
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 32
+
+qwen-max:
+    model_name: qwen/qwen-max
+    endpoints:
+        - api_base: https://openrouter.ai/api/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 64

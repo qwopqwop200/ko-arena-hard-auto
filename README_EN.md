@@ -98,7 +98,7 @@ python gen_ensemble_judgment.py
 ### Step 5. Save Results
 Save the model evaluation results to a file.
 ```console
-python show_result.py
+python gen_result.py
 ```
 
 ### Step 6. Arena Hard UI

@@ -306,7 +306,6 @@
 {"question_id": "8bf2bb5a5b224fb886713900c04f7a0c", "model": "jamba-1.6-large", "judge": "ensemble", "games": [{"score": "A=B"}, {"score": "B>A"}]}
 {"question_id": "0977f592078f4203bf66c0dfce5f6b66", "model": "jamba-1.6-large", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>A"}]}
 {"question_id": "4086b66674f94b5486fc96a6325763d7", "model": "jamba-1.6-large", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "A>B"}]}
-{"question_id": "aa548b8b8e334b84b5be2e74f41161a4", "model": "jamba-1.6-large", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>>A"}]}
 {"question_id": "1e75db9bac4642d6b8bb48caceaa3ef8", "model": "jamba-1.6-large", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>A"}]}
 {"question_id": "b4b1c3f799f6459b8cfb15fa27e399e7", "model": "jamba-1.6-large", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>A"}]}
 {"question_id": "df95f4c8c38a44debdcdc5075ec4bc72", "model": "jamba-1.6-large", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>>A"}]}
@@ -405,7 +404,6 @@
 {"question_id": "0dea89391d074b73a19c8e48ece8640c", "model": "jamba-1.6-large", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "B>>A"}]}
 {"question_id": "1878e158a9fa4c5e887e50431a7525fc", "model": "jamba-1.6-large", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "A>B"}]}
 {"question_id": "65406830980f4f28a7832075aa5ad43f", "model": "jamba-1.6-large", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "B>A"}]}
-{"question_id": "f7be129aaae14fcea0b8c5416e265652", "model": "jamba-1.6-large", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>>A"}]}
 {"question_id": "f7965ac093b043659c23ef68143d4e7f", "model": "jamba-1.6-large", "judge": "ensemble", "games": [{"score": "B>A"}, {"score": "A=B"}]}
 {"question_id": "e721d9f0b6894d0cbe62c3161394cca2", "model": "jamba-1.6-large", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>>A"}]}
 {"question_id": "1cf362fd353f4001a3a6fa23c6833ff0", "model": "jamba-1.6-large", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "B>A"}]}
@@ -498,3 +496,5 @@
 {"question_id": "4ae5aa6ddd4a4a54a0c5ab32ca7d94be", "model": "jamba-1.6-large", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>A"}]}
 {"question_id": "cb04ca3956dc42ca92fbae10b2384dff", "model": "jamba-1.6-large", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>>A"}]}
 {"question_id": "90d715f701f844fd9a5032e5674cbf7a", "model": "jamba-1.6-large", "judge": "ensemble", "games": [{"score": "A>>B"}, {"score": "B>>A"}]}
+{"question_id": "aa548b8b8e334b84b5be2e74f41161a4", "model": "jamba-1.6-large", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "B>A"}]}
+{"question_id": "f7be129aaae14fcea0b8c5416e265652", "model": "jamba-1.6-large", "judge": "ensemble", "games": [{"score": "A>B"}, {"score": "B>A"}]}

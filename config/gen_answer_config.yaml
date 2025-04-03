@@ -65,3 +65,6 @@ model_list:
   - chatgpt-4o-latest(2025-03-26)
   - qwq-32b
   - claude-3.7-sonnet(thinking)
+  - qwen-turbo
+  - qwen-plus
+  - qwen-max
