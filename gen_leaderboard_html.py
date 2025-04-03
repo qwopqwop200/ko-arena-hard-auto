@@ -65,6 +65,9 @@ model_to_organization = {
     "chatgpt-4o-latest(2025-03-26)": "OpenAI",
     "qwq-32b": "Alibaba",
     "claude-3.7-sonnet(thinking)": "Anthropic",
+    "qwen-turbo": "Alibaba",
+    "qwen-plus": "Alibaba",
+    "qwen-max": "Alibaba",
 }
 
 # --- Translation Data ---
