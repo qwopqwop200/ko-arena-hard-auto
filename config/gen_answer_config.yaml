@@ -68,3 +68,4 @@ model_list:
   - qwen-turbo
   - qwen-plus
   - qwen-max
+  - quasar-alpha
