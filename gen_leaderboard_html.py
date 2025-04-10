@@ -68,6 +68,8 @@ model_to_organization = {
     "qwen-turbo": "Alibaba",
     "qwen-plus": "Alibaba",
     "qwen-max": "Alibaba",
+    "grok-3-beta": "xAI",
+    "grok-3-mini-beta": "xAI",
 }
 
 # --- Translation Data ---
