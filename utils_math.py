@@ -58,7 +58,7 @@ def compute_mle_elo(df, SCALE=400, BASE=10, INIT_RATING=1000, baseline_model="gp
     tie_idx[len(tie_idx)//2:] = False
     Y[tie_idx] = 1.0
 
-    lr = LogisticRegression(fit_intercept=False, penalty=None, tol=1e-8)
+    lr = LogisticRegression(fit_intercept=False, penalty=None, tol=1e-8, max_iter=100000)
     lr.fit(X,Y)
 
     elo_scores = SCALE * lr.coef_[0] + INIT_RATING

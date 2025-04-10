@@ -69,3 +69,5 @@ model_list:
   - qwen-plus
   - qwen-max
   - quasar-alpha
+  - grok-3-beta
+  - grok-3-mini-beta
