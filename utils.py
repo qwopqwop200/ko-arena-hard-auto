@@ -65,7 +65,14 @@ def make_config(config_file: str) -> dict:
     return config_kwargs
 
 
-def chat_completion_openai(model, messages, temperature, max_tokens, api_dict=None):
+def chat_completion_openai(
+    model,
+    messages,
+    temperature,
+    max_tokens,
+    api_dict=None,
+    streaming=True,
+):
     import openai
     if api_dict:
         client = openai.OpenAI(
@@ -85,17 +92,20 @@ def chat_completion_openai(model, messages, temperature, max_tokens, api_dict=No
                 # reasoning_effort="high",
                 temperature=temperature,
                 max_tokens=max_tokens,
-                stream=True,
-                )
-            output = []
-            try:
-                for chunk in completion:
-                    delta = chunk.choices[0].delta.content
-                    if delta is not None and delta != "":
-                        output.append(delta)
-            except:
-                pass
-            output = ''.join(output)
+                stream=streaming,
+            )
+            if streaming:
+                output = []
+                try:
+                    for chunk in completion:
+                        delta = chunk.choices[0].delta.content
+                        if delta is not None and delta != "":
+                            output.append(delta)
+                except:
+                    pass
+                output = ''.join(output)
+            else:
+                output = completion.choices[0].message.content
             break
         except openai.RateLimitError as e:
             print(type(e), e)
@@ -106,7 +116,7 @@ def chat_completion_openai(model, messages, temperature, max_tokens, api_dict=No
         except KeyError:
             print(type(e), e)
             break
-    
+
     return output
 
 

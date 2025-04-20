@@ -68,8 +68,10 @@ def get_battles_from_row(row, first_game_only, multiplier, baseline_model, metad
     output = {"question_id": row["question_id"],
             "model_a": baseline_model,
             "model_b": row["model"]}
-
-    game = row["games"][1]
+    try:
+        game = row["games"][1]
+    except:
+        game = row["games"][0]
 
     weight = 1
     if game["score"] == "A=B":

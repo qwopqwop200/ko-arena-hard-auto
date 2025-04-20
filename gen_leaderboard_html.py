@@ -70,6 +70,18 @@ model_to_organization = {
     "qwen-max": "Alibaba",
     "grok-3-beta": "xAI",
     "grok-3-mini-beta": "xAI",
+    "gpt-4.1-nano-2025-04-14" : "OpenAI",
+    "gpt-4.1-mini-2025-04-14" : "OpenAI",
+    "gpt-4.1-2025-04-14" : "OpenAI",
+    "llama-4-scout" : "Meta",
+    "llama-4-maverick" : "Meta",
+    "o4-mini-low" : "OpenAI",
+    "o4-mini-medium" : "OpenAI",
+    "o4-mini-high" : "OpenAI",
+    "o3-low" : "OpenAI",
+    "gemini-2.5-flash-preview" : "Google",
+    "gemini-2.5-flash-preview(thinking)" : "Google",
+    "quasar-alpha": "OpenAI"
 }
 
 # --- Translation Data ---
