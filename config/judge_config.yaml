@@ -97,5 +97,7 @@ model_list:
   - o4-mini-medium
   - o4-mini-high
   - o3-low
+  - o3-medium
+  - o3-high
   - gemini-2.5-flash-preview
   - gemini-2.5-flash-preview(thinking)

@@ -574,6 +574,22 @@ o3-low:
     api_type: openai
     parallel: 64
 
+o3-medium:
+    model_name: o3
+    endpoints:
+        - api_base: https://api.openai.com/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 64
+
+o3-high:
+    model_name: o3
+    endpoints:
+        - api_base: https://api.openai.com/v1
+          api_key: # Place your api_key
+    api_type: openai
+    parallel: 64
+
 gemini-2.5-flash-preview:
     model_name: google/gemini-2.5-flash-preview
     endpoints:

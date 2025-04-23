@@ -79,6 +79,8 @@ model_to_organization = {
     "o4-mini-medium" : "OpenAI",
     "o4-mini-high" : "OpenAI",
     "o3-low" : "OpenAI",
+    "o3-medium" : "OpenAI",
+    "o3-high" : "OpenAI",
     "gemini-2.5-flash-preview" : "Google",
     "gemini-2.5-flash-preview(thinking)" : "Google",
     "quasar-alpha": "OpenAI"
